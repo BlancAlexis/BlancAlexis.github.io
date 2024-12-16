@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -32,6 +33,8 @@ import androidx.navigation.compose.rememberNavController
 
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import fr.balexis.cv.g.Item
+import fr.balexis.cv.g.ItemUiState
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -41,7 +44,13 @@ data class Person(
 )
 
 val list = (1..10).map {
-    Person("Person $it", it)
+    ItemUiState(
+        "Wimomerde $it",
+        " Alternant dev mobile",
+        "Septembre 2023 - 2024",
+        "Développements de nouvelles fonctionnalités\n" + "Corrections de bugs \n" + "Mise en place d’architecture logicielle \n" + "Intégré en équipe suivant une méthode Agile\n" + "Test unitaire",
+        listOf("Kotlin", "Java", "Android")
+    )
 }
 
 @Composable
@@ -137,20 +146,30 @@ fun App() {
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     Text(
-                                        "Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n" + "\n" + "Durant cette années j'ai eu la chance de m'intégrer dans une équipe SCRUM afin de mener à bien les différents projets de l'entreprise.\n" + "\n" + "J'ai notamment pu travailler sur l'application MEWI Driver Android qui est actuellement en production, mon travail à aussi bien été du bugfixe que du développement de nouvelles fonctionnalités, essentiellement en Java et XML, mais avec du Kotlin pour les nouvelles fonctionnalités.\n" + "\n" + "Mais également travailler sur une application en développement, utilisant Kotlin et Compose pour les écrans de l'application. Grâce à celle-ci j'ai eu l'occasion de faire de la conception, mettre en place des architectures MVVM + Clean archi pour de nouvelle fonctionnalités, ainsi que refactor du code pour traiter des bugs.\n" + "\n" + "\n" + "En terme d'API que je maitrise : \n" + "- Compose\n" + "- Volley\n" + "- Retrofit\n" + "- Room\n" + "- Coroutine\n" + "- Hilt\n" + "- Koin\n" + "- RxJava\n" + "\n" + "\n" + "D'un point de vu personnel et via mes études en bachelor universitaire de technologie j'ai pu également mené à bien quelques petits projets afin de m'ouvrir au dévelopement mobile via par d'autre façon, tel que Flutter et Kotlin KMM.\n" + "\n" + "Mon github est disponible à cette adresse. \n" + "\n" + "Dans le passé, j'ai pu effectué un an en apprentissage pour devenir mécanicien automobile, pour finalement me réorienter.\n" + "\n" + "#Informatique #DevMobile #Programmation #Android #Kotlin #Compose"
+                                        "Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n"
                                     )
                                 }
                             }
+                            //filter
+                            items(list.take(3)) { exp ->
+                                Item(exp)
+                            }
+                            item {
+                                Divider(
+                                    color = Color.Black, thickness = 1.dp
+                                )
+                            }
                             items(list) { exp ->
-                                Row(
-                                    modifier = Modifier.fillMaxWidth().padding(16.dp),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Text(exp.name)
-                                    Text(exp.age.toString())
-                                }
+                                Item(exp)
+                            }
+                            item {
+                                Divider()
+                            }
+                            items(list) { exp ->
+                                Item(exp)
                             }
                         }
+
                     }
                 }
 
