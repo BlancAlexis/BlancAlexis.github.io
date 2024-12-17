@@ -1,5 +1,8 @@
 package fr.balexis.cv.data
 
+import fr.balexis.cv.model.BaseItemData
+import fr.balexis.cv.model.FullItemData
+
 val listSchool = listOf(
     BaseItemData(
         "BUT Informatique", "IUT Lyon 1 - Bourg-en-Bresse", "2021 - 2024"
@@ -45,8 +48,8 @@ val listPersonalProject = listOf(
             "Hive",
             "Dio"
         ),
-        "IUT Lyon 1"
-    ),
+
+        ),
     FullItemData(
         "Guide des monuments de roubaix",
         "Application permettant la visualisation des monuments et une mise en favori",
@@ -61,8 +64,8 @@ val listPersonalProject = listOf(
             "Room",
             "Coil"
         ),
-        "IUT Lyon 1"
-    )
+
+        )
 )
 
 val listProfesionalExperience = listOf(
@@ -86,9 +89,9 @@ val listProfesionalExperience = listOf(
         "Wimova"
     ),
     FullItemData(
-        "Intérim - Travailler métallurgie en horaire 3/8",
+        "Intérim - Usine en horaire 3/8",
         "Travail en équipe",
-        "Juin - Août 2020 jusqu'à 2023",
+        "Été 2020 - 2023",
         listOf(),
         "Nexans"
     ),
@@ -101,18 +104,3 @@ val listProfesionalExperience = listOf(
     )
 )
 
-open class BaseItemData(
-    open val title : String,
-    open val description : String,
-    open val date : String
-)
-
-data class FullItemData(
-    override val title : String,
-    override val description : String,
-    override val date : String,
-    val tags : List<String>,
-    val companyName : String = ""
-) : BaseItemData(title, description, date) {
-
-}

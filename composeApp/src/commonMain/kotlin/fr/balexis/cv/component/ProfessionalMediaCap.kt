@@ -10,15 +10,14 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.compose_multiplatform
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 sealed interface SocialNav {
@@ -56,7 +55,7 @@ fun ProfessionalMediaCap(
         ) {
             Icon(
                 modifier = Modifier.size(24.dp),
-                painter = painterResource(Res.drawable.compose_multiplatform),
+                imageVector = Icons.Default.Email,
                 contentDescription = null
 
             )
@@ -67,8 +66,7 @@ fun ProfessionalMediaCap(
 
         ) {
             Icon(
-                modifier = Modifier.size(24.dp),
-                painter = painterResource(Res.drawable.compose_multiplatform),
+                imageVector = Icons.Default.Email,
                 contentDescription = null
 
             )
@@ -80,7 +78,7 @@ fun ProfessionalMediaCap(
         ) {
             Icon(
                 modifier = Modifier.size(24.dp),
-                painter = painterResource(Res.drawable.compose_multiplatform),
+                imageVector = Icons.Default.Email,
                 contentDescription = null
 
             )

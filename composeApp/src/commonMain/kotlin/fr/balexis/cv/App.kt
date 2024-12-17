@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
@@ -23,17 +24,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.compose_multiplatform
+import balexiscv.composeapp.generated.resources.istockphoto_1090878494_612x612
+import fr.balexis.cv.component.ExperienceDivider
 import fr.balexis.cv.component.LazyColumnCategory
 import fr.balexis.cv.component.ProfessionalMediaCap
 import fr.balexis.cv.component.SocialNav
 import fr.balexis.cv.component.TrainingItem
-import fr.balexis.cv.component.ExperienceDivider
 import fr.balexis.cv.component.stickyHeaderContent
 import fr.balexis.cv.data.Item
 import fr.balexis.cv.data.listMentoredProject
@@ -83,18 +86,21 @@ fun App() {
                                 }
                             })
                         Row(
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
+                            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Image(
-                                painter = painterResource(Res.drawable.compose_multiplatform),
+                                painter = painterResource(Res.drawable.istockphoto_1090878494_612x612),
                                 modifier = Modifier.widthIn(max = 150.dp),
                                 contentDescription = null,
                             )
                             Text(
                                 text = "BLANC Alexis",
                                 style = MaterialTheme.typography.h4,
-                                modifier = Modifier.padding(start = 16.dp).align(Alignment.Bottom)
+                                fontWeight = FontWeight.Bold,
+                                textDecoration = TextDecoration.Underline,
+                                modifier = Modifier.padding(start = 16.dp).offset(x = -(8).dp)
+                                    .align(Alignment.Bottom)
                             )
                         }
                     }
@@ -105,7 +111,10 @@ fun App() {
                         shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
                     ) {
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
+                            modifier = Modifier
+                                .wrapContentSize()
+                                .widthIn(max = 1000.dp)
+                                .padding(horizontal = 16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             item {
@@ -126,7 +135,9 @@ fun App() {
                                 )
                             }
 
-                            itemsIndexed(listProfesionalExperience.take(3), key = { _, item -> item.hashCode() }) { index, exp ->
+                            itemsIndexed(
+                                listProfesionalExperience.take(3),
+                                key = { _, item -> item.hashCode() }) { index, exp ->
                                 LazyColumnCategory(listProfesionalExperience.size, index) { shape ->
                                     Item(shape, exp)
 
@@ -179,8 +190,8 @@ fun App() {
                                 }
                             }
                         }
-
                     }
+
                 }
 
             }

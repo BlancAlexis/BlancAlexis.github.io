@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import fr.balexis.cv.data.BaseItemData
+import fr.balexis.cv.model.BaseItemData
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

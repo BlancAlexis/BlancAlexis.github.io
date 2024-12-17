@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +24,8 @@ fun stickyHeaderContent(
     Row(
         modifier = Modifier.drawBehind {
             drawRect(Color(0xFF00888F), size = size.copy(height = size.height / 2))
-        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Color(0xFF2F5475)),
+        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Color(0xFF2F5475))
+            .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
