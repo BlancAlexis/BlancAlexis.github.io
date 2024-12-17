@@ -1,3 +1,4 @@
+/*
 package fr.balexis.cv
 
 import androidx.compose.ui.graphics.Color
@@ -12,4 +13,4 @@ sealed class icon(
     class GITHUB : icon(Color.Black, R.drawable.github, R.string.github)
     class MAIL : icon(Color.Black, R.drawable.mail, R.string.mail)
 
-}
+}*/
