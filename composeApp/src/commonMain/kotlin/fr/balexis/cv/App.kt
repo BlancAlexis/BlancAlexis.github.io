@@ -7,14 +7,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.DrawerDefaults.shape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -29,11 +32,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import fr.balexis.cv.component.ExperienceDivider
 import fr.balexis.cv.component.LazyColumnCategory
 import fr.balexis.cv.component.ProfessionalMediaCap
 import fr.balexis.cv.component.SocialNav
 import fr.balexis.cv.component.TrainingItem
-import fr.balexis.cv.component.ExperienceDivider
 import fr.balexis.cv.component.stickyHeaderContent
 import fr.balexis.cv.data.Item
 import fr.balexis.cv.data.listMentoredProject
@@ -105,7 +108,10 @@ fun App() {
                         shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
                     ) {
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
+                            modifier = Modifier
+                                .wrapContentSize()
+                                .widthIn(max = 1000.dp)
+                                .padding(horizontal = 16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             item {
@@ -126,7 +132,9 @@ fun App() {
                                 )
                             }
 
-                            itemsIndexed(listProfesionalExperience.take(3), key = { _, item -> item.hashCode() }) { index, exp ->
+                            itemsIndexed(
+                                listProfesionalExperience.take(3),
+                                key = { _, item -> item.hashCode() }) { index, exp ->
                                 LazyColumnCategory(listProfesionalExperience.size, index) { shape ->
                                     Item(shape, exp)
 
@@ -179,8 +187,8 @@ fun App() {
                                 }
                             }
                         }
-
                     }
+
                 }
 
             }
