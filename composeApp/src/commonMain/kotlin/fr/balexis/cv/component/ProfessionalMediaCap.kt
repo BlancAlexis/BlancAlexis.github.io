@@ -18,6 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.github
+import balexiscv.composeapp.generated.resources.linkedin
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 sealed interface SocialNav {
@@ -54,8 +58,9 @@ fun ProfessionalMediaCap(
 
         ) {
             Icon(
+                tint = Color.Unspecified,
                 modifier = Modifier.size(24.dp),
-                imageVector = Icons.Default.Email,
+                painter = painterResource(Res.drawable.linkedin),
                 contentDescription = null
 
             )
@@ -66,7 +71,9 @@ fun ProfessionalMediaCap(
 
         ) {
             Icon(
-                imageVector = Icons.Default.Email,
+                tint = Color.Unspecified,
+                modifier = Modifier.size(24.dp),
+                painter = painterResource(Res.drawable.github),
                 contentDescription = null
 
             )

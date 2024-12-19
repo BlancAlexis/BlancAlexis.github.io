@@ -27,17 +27,6 @@ fun LazyColumnCategory(
                 else -> RectangleShape
             }
         )
-        /* if (idx == itemCount - 1) {
-             Row(
-                 modifier = Modifier.fillMaxWidth().padding(8.dp),
-                 horizontalArrangement = Arrangement.Center
-             ) {
-                 IconButton(onClick = { *//*TODO*//* }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown, contentDescription = null
-                    )
-                }
-            }
-        }*/
     }
 }
+

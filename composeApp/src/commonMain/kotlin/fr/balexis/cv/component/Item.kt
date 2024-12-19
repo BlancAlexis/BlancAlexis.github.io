@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,7 +31,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.android
 import fr.balexis.cv.model.FullItemData
+import org.jetbrains.compose.resources.painterResource
 
 val topShape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
 val bottomShape = RoundedCornerShape(bottomStart = 15.dp, bottomEnd = 15.dp)
@@ -58,6 +62,12 @@ fun Item(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        Icon(
+                            modifier = Modifier.size(28.dp),
+                            tint = Color.Unspecified,
+                            painter = painterResource(Res.drawable.android),
+                            contentDescription = null
+                        )
                         Text(itemUiState.title, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                         Text(
                             itemUiState.date, style = TextStyle(
@@ -113,4 +123,9 @@ fun Item(
             }
         }
     }
+}
+
+@Composable
+fun shapeWrapper(){
+
 }
