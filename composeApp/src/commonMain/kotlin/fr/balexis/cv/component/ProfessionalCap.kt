@@ -87,3 +87,9 @@ fun ProfessionalMediaCap(
         }
     }
 }
+
+sealed class MySocial(
+    val name: String, open val url: String
+) {
+    data class LKDN(override val url: String) : MySocial("linkedin", url)
+}
