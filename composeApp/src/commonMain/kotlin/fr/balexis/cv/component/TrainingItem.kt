@@ -11,34 +11,26 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import fr.balexis.cv.model.BaseItemData
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun TrainingItem(exp: BaseItemData, shape: Shape) {
+fun TrainingItem(exp: BaseItemData) {
     Card(
-        shape = shape,
-        backgroundColor = Color(0xFF3C91E6),
+        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        elevation = 2.dp,
     ) {
-
-        Card(
-            modifier = Modifier.fillMaxWidth().padding(8.dp),
-            elevation = 2.dp,
-        ) {
-            ListItem(text = {
-                Text(exp.title)
-            }, icon = {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.List, contentDescription = null
-                )
-            }, secondaryText = {
-                Text(exp.description)
-            }, trailing = {
-                Text(exp.date)
-            })
-        }
+        ListItem(text = {
+            Text(exp.title)
+        }, icon = {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.List, contentDescription = null
+            )
+        }, secondaryText = {
+            Text(exp.description)
+        }, trailing = {
+            Text(exp.date)
+        })
     }
 }
