@@ -20,7 +20,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -43,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
@@ -67,15 +67,15 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 
 const val MAX_SCREEN_WIDTH = 1200
-@OptIn(ExperimentalFoundationApi::class)
+val DEFAULT_MAX_ITEM = 2
+
 @Composable
 fun MainPage(
     onEvent: (MainScreenEvent) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val uriHandler = LocalUriHandler.current
-    var nextItem by remember { mutableStateOf(2) }
-    val pagerState = rememberPagerState(initialPage = 0, pageCount = { 2 })
+    val pagerState = rememberPagerState(initialPage = 0, pageCount = { MainScreenTabs.entries.size })
     val tabSelectedIndex by remember { derivedStateOf { pagerState.currentPage } }
     Column(
         modifier = Modifier.fillMaxSize().background(Color(0xFFF1F2F6)),
@@ -143,7 +143,7 @@ fun MainPage(
                     ) { page ->
                     when (page) {
                         0 -> {
-                            ExperienceList(nextItem)
+                            ExperienceList()
                         }
 
                         1 -> {
@@ -184,8 +184,8 @@ fun Profile() {
 
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
-private fun ExperienceList(nextItem: Int) {
-    var nextItem1 = nextItem
+private fun ExperienceList() {
+    var maxItemsLazyRowProXP by remember { mutableStateOf(DEFAULT_MAX_ITEM) }
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
@@ -201,17 +201,19 @@ private fun ExperienceList(nextItem: Int) {
                 )
             }
         }
-        //filter
         stickyHeader {
             stickyHeaderContent(
                 text = "Expérience"
             )
         }
 
-        itemsIndexed(listProfesionalExperience.take(nextItem1),
+        itemsIndexed(listProfesionalExperience.take(maxItemsLazyRowProXP),
             key = { _, item -> item.hashCode() }) { index, exp ->
             LazyColumnCategory(listProfesionalExperience.size, index) { shape ->
-                BackgroundWrapper(shape = shape, content = { CustomListItem(exp) })
+                BackgroundWrapper(shape = if(index != listProfesionalExperience.size - 1) { shape } else { RectangleShape }) {
+                    CustomListItem(exp)
+
+                }
             }
         }
         if (listProfesionalExperience.size > 2) {
@@ -219,21 +221,23 @@ private fun ExperienceList(nextItem: Int) {
                 Row(horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
+
                         .padding(bottom = 8.dp).clip(
                             RoundedCornerShape(
                                 bottomStart = 16.dp, bottomEnd = 16.dp
                             )
                         ).background(Color(0xFF3C91E6)).clickable {
-                            nextItem1 = if (nextItem1 < listProfesionalExperience.size) {
-                                listProfesionalExperience.size
-                            } else {
-                                2
-                            }
+                            maxItemsLazyRowProXP =
+                                if (maxItemsLazyRowProXP < listProfesionalExperience.size) {
+                                    listProfesionalExperience.size
+                                } else {
+                                    2
+                                }
                         }
 
                 ) {
                     Icon(
-                        imageVector = if (nextItem1 == 2) {
+                        imageVector = if (maxItemsLazyRowProXP == 2) {
                             Icons.Default.ArrowDropDown
                         } else {
                             Icons.Default.KeyboardArrowUp
@@ -242,7 +246,6 @@ private fun ExperienceList(nextItem: Int) {
                 }
             }
         }
-
         stickyHeader {
             stickyHeaderContent(
                 text = "Projets personnels"
@@ -292,6 +295,7 @@ private fun ExperienceList(nextItem: Int) {
     }
 }
 
+
 @Composable
 private fun ProfileHeader() {
     Row(
@@ -310,7 +314,8 @@ private fun ProfileHeader() {
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             textDecoration = TextDecoration.Underline,
-            modifier = Modifier.weight(1F).padding(start = 16.dp).offset(x = -(8).dp).align(Alignment.Bottom)
+            modifier = Modifier.weight(1F).padding(start = 16.dp).offset(x = -(8).dp)
+                .align(Alignment.Bottom)
         )
     }
 }

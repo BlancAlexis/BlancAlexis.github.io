@@ -22,9 +22,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.linkedin
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun contactDialog(
@@ -68,7 +65,8 @@ fun contactDialog(
                     Icon(
                         modifier = Modifier.size(size = 30.dp),
                         tint = Color.Unspecified,
-                        painter = painterResource(Res.drawable.linkedin),
+                        imageVector = Icons.Default.Phone,
+                        //painter = painterResource(Res.drawable.linkedin),
                         contentDescription = null
 
                     )
