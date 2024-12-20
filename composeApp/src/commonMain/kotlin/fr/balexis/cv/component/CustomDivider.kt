@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ExperienceDivider() {
+fun CustomDivider() {
     Divider(
         color = Color.Black,
         thickness = 1.dp,

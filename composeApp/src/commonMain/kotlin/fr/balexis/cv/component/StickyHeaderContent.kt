@@ -24,7 +24,7 @@ fun stickyHeaderContent(
     Row(
         modifier = Modifier.drawBehind {
             drawRect(Color(0xFF00888F), size = size.copy(height = size.height / 2))
-        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Color(0xFF2F5475))
+        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Color(0xFF3C91E6))
             .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center

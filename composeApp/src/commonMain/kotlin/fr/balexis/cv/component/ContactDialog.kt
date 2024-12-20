@@ -3,9 +3,7 @@ package fr.balexis.cv.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
@@ -24,50 +22,41 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.linkedin
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun contactDialog(
-    //onEvent: (event: ContactEvent) -> Unit
+    onEvent: (event: ContactEvent) -> Unit
 
 ) {
-    Dialog(
-        onDismissRequest = {
-
-        }
-    ) {
+    Dialog(onDismissRequest = {
+        onEvent(ContactEvent.closeDialog)
+    }) {
         Card(
-            modifier = Modifier.padding(16.dp),
             elevation = 8.dp,
         ) {
             Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text("Me contacter",
-                    style = MaterialTheme.typography.h2,
-                    fontWeight = FontWeight.Bold)
-            }
+                Row(
+                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        "Me contacter",
+                        style = MaterialTheme.typography.h2,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
                 Text(
                     "Pour me contacter rien de plus simple, vous avez l'embarras du choix!"
                 )
                 InfoRow(
-                    imageVector = Icons.Default.Phone,
-                    text = "07.81.70.86.41"
+                    imageVector = Icons.Default.Phone, text = "07.81.70.86.41"
                 )
                 InfoRow(
-                    imageVector = Icons.Default.Email,
-                    text = "thomas.johnson@example.com"
+                    imageVector = Icons.Default.Email, text = "thomas.johnson@example.com"
                 )
                 Row(
                     verticalAlignment = Alignment.Bottom,
@@ -76,7 +65,8 @@ fun contactDialog(
                     Icon(
                         modifier = Modifier.size(size = 30.dp),
                         tint = Color.Unspecified,
-                        painter = painterResource(Res.drawable.linkedin),
+                        imageVector = Icons.Default.Phone,
+                        //painter = painterResource(Res.drawable.linkedin),
                         contentDescription = null
 
                     )
@@ -88,14 +78,17 @@ fun contactDialog(
     }
 }
 
+sealed interface ContactEvent {
+    object closeDialog : ContactEvent
+
+}
+
 @Composable
 fun InfoRow(
-    imageVector: ImageVector,
-    text: String
+    imageVector: ImageVector, text: String
 ) {
     Row(
-        verticalAlignment = Alignment.Bottom,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Icon(
             modifier = Modifier.size(size = 30.dp),

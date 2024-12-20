@@ -24,19 +24,17 @@ fun App() {
         ) {
             composable<Routes.MainPage> {
                 MainPage(
-                    navigation = {
-                        navController.navigate(it)
+                    onEvent = {
+                        dialogContact.value = true
                     }
                 )
-                if (dialogContact.value){
-                    contactDialog()
+                if (dialogContact.value) {
+                    contactDialog(
+                        onEvent = {
+                            dialogContact.value = false
+                        }
+                    )
                 }
-            }
-            composable<Routes.AboutPage> {
-
-            }
-            composable<Routes.ContactPage> {
-
             }
 
         }
@@ -47,9 +45,6 @@ sealed interface Routes {
     @Serializable
     data object MainPage : Routes
 
-    @Serializable
-    data object AboutPage : Routes
-
-    @Serializable
-    data object ContactPage : Routes
 }
+
+
