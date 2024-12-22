@@ -12,12 +12,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
@@ -51,10 +54,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.istockphoto_1090878494_612x612
+import balexiscv.composeapp.generated.resources.waving_robot
+import fr.balexis.cv.component.CountryRow
 import fr.balexis.cv.component.CustomDivider
+import fr.balexis.cv.component.FrameworkCard
+import fr.balexis.cv.component.AbilitySkillsRow
+import fr.balexis.cv.component.LanguageRow
 import fr.balexis.cv.component.LazyColumnCategory
 import fr.balexis.cv.component.ProfessionalMediaCap
 import fr.balexis.cv.component.SocialNav
+import fr.balexis.cv.component.SoftSkillRow
 import fr.balexis.cv.component.TrainingItem
 import fr.balexis.cv.component.stickyHeaderContent
 import fr.balexis.cv.data.BackgroundWrapper
@@ -137,9 +146,7 @@ fun MainPage(
                 }
                 HorizontalPager(
                     state = pagerState,
-                    modifier = Modifier.wrapContentSize().widthIn(max = MAX_SCREEN_WIDTH.dp)
-                        .padding(horizontal = 16.dp),
-
+                    modifier = Modifier.wrapContentSize().widthIn(max = MAX_SCREEN_WIDTH.dp).padding(horizontal = 8.dp),
                     ) { page ->
                     when (page) {
                         0 -> {
@@ -172,13 +179,70 @@ enum class MainScreenTabs(
     )
 }
 
+data class country(
+    val name: String, val icon: String
+)
+
 @Composable
 fun Profile() {
     Column(
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text(text = "Profile")
+        LanguageRow(
+            listOf("Français : Langue natale", "Anglais : Niveau B2")
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                "Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n"
+            )
+        }
+        SoftSkillRow(
+            listOf("Adaptabilité", "Autonomie", "Rigeur")
+        )
+
+
+        val pagerState = rememberPagerState(initialPage = 0, pageCount = { 2 })
+        HorizontalPager(
+            state = pagerState, modifier = Modifier.fillMaxWidth()
+        ) {
+            FrameworkCard(
+                text = "Android", icon = Res.drawable.waving_robot
+            )
+        }
+        Row(
+            Modifier
+                .wrapContentHeight()
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            repeat(pagerState.pageCount) { iteration ->
+                val color =
+                    if (pagerState.currentPage == iteration) Color.DarkGray else Color.LightGray
+                Box(
+                    modifier = Modifier
+                        .padding(2.dp)
+                        .clip(CircleShape)
+                        .background(color)
+                        .size(16.dp)
+                )
+            }
+        }
+
+
+        CountryRow()
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            AbilitySkillsRow()
+        }
+
     }
 }
 

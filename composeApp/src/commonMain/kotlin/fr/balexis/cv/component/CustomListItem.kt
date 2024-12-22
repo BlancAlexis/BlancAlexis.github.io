@@ -40,7 +40,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.android
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import balexiscv.composeapp.generated.resources.flutter_icon
+import balexiscv.composeapp.generated.resources.kotlin_Icon
 import fr.balexis.cv.model.FullItemData
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -67,8 +70,9 @@ fun CustomListItem(
                     verticalArrangement = Arrangement.Center
                 ) {
                         Icon(
+                            tint = Color.Unspecified,
                             modifier = Modifier.size(50.dp),
-                            painter = painterResource(Res.drawable.compose_multiplatform),
+                            painter = painterResource(Res.drawable.kotlin_Icon),
                             contentDescription = null
                         )
                 }
@@ -118,7 +122,7 @@ fun CustomListItem(
                 )
             }
             KeySkillsRow(
-                itemUiState
+                itemUiState.tags
             )
         }
     }
@@ -127,11 +131,11 @@ fun CustomListItem(
 
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
-private fun KeySkillsRow(itemUiState: FullItemData) {
+ fun KeySkillsRow(itemUiState: List<String>, autoScroll : Boolean = false) {
     LazyRow(
         modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(itemUiState.tags) { skill ->
+        items(itemUiState) { skill ->
             Chip(onClick = {
 
             }, content = {
