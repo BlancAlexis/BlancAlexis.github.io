@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import balexiscv.composeapp.generated.resources.Res
@@ -37,6 +38,7 @@ sealed interface SocialNav {
 fun ProfessionalMediaCap(
     modifier: Modifier = Modifier, onEvent: (event: SocialNav) -> Unit
 ) {
+    val color = LocalAppColors.current.surface
     Row(
         horizontalArrangement = Arrangement.Center, modifier = modifier.then(
             Modifier
@@ -53,14 +55,21 @@ fun ProfessionalMediaCap(
         verticalAlignment = Alignment.CenterVertically
 
     ) {
-        IconButton(onClick = {
+        IconButton(
+            onClick = {
             onEvent(SocialNav.Linkedin)
         }
 
         ) {
+
             Icon(
                 tint = Color.Unspecified,
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier.size(24.dp).drawBehind {
+                    drawCircle(
+                        color = color,
+                        radius = size.width - 6.dp.toPx()
+                    )
+                },
                 painter = painterResource(Res.drawable.linkedin),
                 contentDescription = null
 
@@ -73,7 +82,12 @@ fun ProfessionalMediaCap(
         ) {
             Icon(
                 tint = Color.Unspecified,
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier.size(24.dp).drawBehind {
+                    drawCircle(
+                        color = color,
+                        radius = size.width - 6.dp.toPx()
+                    )
+                },
                 painter = painterResource(Res.drawable.github),
                 contentDescription = null
 
@@ -85,7 +99,12 @@ fun ProfessionalMediaCap(
 
         ) {
             Icon(
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier.size(24.dp).drawBehind {
+                    drawCircle(
+                        color = color,
+                        radius = size.width - 6.dp.toPx()
+                    )
+                },
                 imageVector = Icons.Default.Email,
                 contentDescription = null
 

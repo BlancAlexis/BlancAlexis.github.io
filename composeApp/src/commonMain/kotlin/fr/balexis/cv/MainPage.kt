@@ -51,22 +51,23 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.istockphoto_1090878494_612x612
-import balexiscv.composeapp.generated.resources.waving_robot
-import fr.balexis.cv.component.CountryRow
+import fr.balexis.cv.component.ProgrammingLanguageRow
 import fr.balexis.cv.component.CustomDivider
 import fr.balexis.cv.component.FrameworkCard
-import fr.balexis.cv.component.AbilitySkillsRow
+import fr.balexis.cv.data.Framework
 import fr.balexis.cv.component.LanguageRow
 import fr.balexis.cv.component.LazyColumnCategory
 import fr.balexis.cv.component.ProfessionalMediaCap
 import fr.balexis.cv.component.SocialNav
 import fr.balexis.cv.component.SoftSkillRow
 import fr.balexis.cv.component.TrainingItem
+import fr.balexis.cv.component.archi
 import fr.balexis.cv.component.stickyHeaderContent
 import fr.balexis.cv.data.BackgroundWrapper
 import fr.balexis.cv.data.CustomListItem
@@ -129,7 +130,7 @@ fun MainPage(
                     backgroundColor = LocalAppColors.current.primary,
                     indicator = { tabPositions ->
                         TabRowDefaults.Indicator(
-                            color = LightAppColors.onPrimary,
+                            color = LightAppColors.surface,
                             modifier = Modifier.tabIndicatorOffset(tabPositions[tabSelectedIndex])
                         )
                     },
@@ -183,71 +184,76 @@ enum class MainScreenTabs(
     )
 }
 
-data class country(
-    val name: String, val icon: String
-)
-
 @Composable
 fun Profile() {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        LanguageRow(
-            listOf("Français : Langue natale", "Anglais : Niveau B2")
-        )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
+            modifier = Modifier.clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.surface).fillMaxWidth().padding(vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                "Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n"
+            LanguageRow(
+                listOf("Français : Langue natale", "Anglais : Niveau B2")
             )
-        }
-        SoftSkillRow(
-            listOf("Adaptabilité", "Autonomie", "Rigeur")
-        )
-
-
-        val pagerState = rememberPagerState(initialPage = 0, pageCount = { 2 })
-        HorizontalPager(
-            state = pagerState, modifier = Modifier.fillMaxWidth()
-        ) {
-            FrameworkCard(
-                text = "Android", icon = Res.drawable.waving_robot
-            )
-        }
-        Row(
-            Modifier
-                .wrapContentHeight()
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            repeat(pagerState.pageCount) { iteration ->
-                val color =
-                    if (pagerState.currentPage == iteration) Color.DarkGray else Color.LightGray
-                Box(
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .clip(CircleShape)
-                        .background(color)
-                        .size(16.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    textAlign = TextAlign.Justify,
+                    text ="Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n"
                 )
             }
+            SoftSkillRow(
+                listOf("Adaptabilité", "Autonomie", "Rigeur")
+            )
         }
 
+            val pagerState = rememberPagerState(initialPage = 0, pageCount = { Framework.entries.size })
+            HorizontalPager(
+                state = pagerState, modifier = Modifier.fillMaxWidth()
+            ) { index ->
+                val framework = Framework.entries[index]
+                FrameworkCard(
+                    title = framework.title,
+                    subtitle = framework.langages,
+                    description = framework.view,
+                    icon = framework.icon,
+                    libraries = framework.libraries,
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-        CountryRow()
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            AbilitySkillsRow()
+            }
+            Row(
+                Modifier
+                    .wrapContentHeight()
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                repeat(pagerState.pageCount) { iteration ->
+                    val color =
+                        if (pagerState.currentPage == iteration) Color.DarkGray else Color.LightGray
+                    Box(
+                        modifier = Modifier
+                            .padding(2.dp)
+                            .clip(CircleShape)
+                            .background(color)
+                            .size(16.dp)
+                    )
+                }
+            }
+
+
+            ProgrammingLanguageRow()
+        archi()
+        archi(listOf("GIT","Bitrise","Trello","Agile"))
+
         }
-
-    }
 }
 
 @Composable
