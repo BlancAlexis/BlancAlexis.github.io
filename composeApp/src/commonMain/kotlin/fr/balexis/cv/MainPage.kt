@@ -26,6 +26,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
+import androidx.compose.material.TabRowDefaults
+import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -72,6 +74,8 @@ import fr.balexis.cv.data.listMentoredProject
 import fr.balexis.cv.data.listPersonalProject
 import fr.balexis.cv.data.listProfesionalExperience
 import fr.balexis.cv.data.listSchool
+import fr.balexis.cv.theme.LightAppColors
+import fr.balexis.cv.theme.LocalAppColors
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 
@@ -87,7 +91,7 @@ fun MainPage(
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { MainScreenTabs.entries.size })
     val tabSelectedIndex by remember { derivedStateOf { pagerState.currentPage } }
     Column(
-        modifier = Modifier.fillMaxSize().background(Color(0xFFF1F2F6)),
+        modifier = Modifier.fillMaxSize().background(LocalAppColors.current.background),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
@@ -113,7 +117,7 @@ fun MainPage(
         }
         Surface(
             modifier = Modifier.weight(1f).fillMaxWidth(),
-            color = Color(0xFF00888F),
+            color = LocalAppColors.current.primary,
             shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
         ) {
             Column(
@@ -122,13 +126,13 @@ fun MainPage(
                 TabRow(
                     modifier = Modifier.wrapContentSize().widthIn(max = MAX_SCREEN_WIDTH.dp),
                     selectedTabIndex = tabSelectedIndex,
-                    backgroundColor = Color(0xFF00888F),
-                    /* indicator = { tabPositions ->
-                         TabRowDefaults.Indicator(
-                             color = Color.Red,
-                             modifier = Modifier.tabIndicatorOffset(tabPositions[tabSelectedIndex])
-                         )
-                     },*/
+                    backgroundColor = LocalAppColors.current.primary,
+                    indicator = { tabPositions ->
+                        TabRowDefaults.Indicator(
+                            color = LightAppColors.onPrimary,
+                            modifier = Modifier.tabIndicatorOffset(tabPositions[tabSelectedIndex])
+                        )
+                    },
                 ) {
 
                     MainScreenTabs.entries.forEach { tab ->
@@ -261,7 +265,8 @@ private fun ExperienceList() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    "Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n"
+                    color = LocalAppColors.current.onPrimary,
+                    text ="Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n"
                 )
             }
         }
@@ -290,7 +295,7 @@ private fun ExperienceList() {
                             RoundedCornerShape(
                                 bottomStart = 16.dp, bottomEnd = 16.dp
                             )
-                        ).background(Color(0xFF3C91E6)).clickable {
+                        ).background(LocalAppColors.current.surface).clickable {
                             maxItemsLazyRowProXP =
                                 if (maxItemsLazyRowProXP < listProfesionalExperience.size) {
                                     listProfesionalExperience.size

@@ -4,11 +4,7 @@ package fr.balexis.cv
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key.Companion.R
 import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.android
-import balexiscv.composeapp.generated.resources.flutter_icon
-import balexiscv.composeapp.generated.resources.github
-import balexiscv.composeapp.generated.resources.kotlin_Icon
-import balexiscv.composeapp.generated.resources.linkedin
+
 
 /*
 sealed class icon(
