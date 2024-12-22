@@ -46,52 +46,6 @@ private fun professionalCapPreview() {
     )
 }
 
-@Preview
-@Composable
-private fun d() {
-    Card(
-        elevation = 8.dp
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier.wrapContentSize()
-            ) {
-                IconButton(
-                    onClick = {}
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                        contentDescription = null
-                    )
-                }
-            }
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = "test"
-                )
-                Text(
-                    text = "test"
-                )
-            }
-            Column {
-                Text(
-                    text = "test"
-                )
-                IconButton(
-                    onClick = {}
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                        contentDescription = null
-                    )
-                }
-            }
-        }
-    }
-}
+
 
 

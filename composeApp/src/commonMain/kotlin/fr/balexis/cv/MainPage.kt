@@ -1,21 +1,13 @@
 package fr.balexis.cv
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,8 +19,6 @@ import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Person
@@ -36,39 +26,19 @@ import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.istockphoto_1090878494_612x612
-import fr.balexis.cv.component.CustomDivider
-import fr.balexis.cv.component.LazyColumnCategory
+import fr.balexis.cv.component.ExperienceList
 import fr.balexis.cv.component.ProfessionalMediaCap
+import fr.balexis.cv.component.ProfileHeader
 import fr.balexis.cv.component.SocialNav
-import fr.balexis.cv.component.TrainingItem
-import fr.balexis.cv.component.stickyHeaderContent
-import fr.balexis.cv.data.BackgroundWrapper
-import fr.balexis.cv.data.CustomListItem
-import fr.balexis.cv.data.listMentoredProject
-import fr.balexis.cv.data.listPersonalProject
-import fr.balexis.cv.data.listProfesionalExperience
-import fr.balexis.cv.data.listSchool
-import fr.balexis.cv.theme.LightAppColors
 import fr.balexis.cv.theme.LocalAppColors
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.painterResource
 
 const val MAX_SCREEN_WIDTH = 1200
 val DEFAULT_MAX_ITEM = 2
@@ -96,7 +66,7 @@ fun MainPage(
                         }
 
                         is SocialNav.Github -> {
-                            onEvent(MainScreenEvent.openContactDialog)
+                            onEvent(MainScreenEvent.OpenContactDialog)
                         }
 
                         is SocialNav.Mail -> {
@@ -120,16 +90,18 @@ fun MainPage(
                     backgroundColor = LocalAppColors.current.primary,
                     indicator = { tabPositions ->
                         TabRowDefaults.Indicator(
-                            color = LightAppColors.onPrimary,
+                            color = LocalAppColors.current.surface,
                             modifier = Modifier.tabIndicatorOffset(tabPositions[tabSelectedIndex])
                         )
                     },
                 ) {
 
                     MainScreenTabs.entries.forEach { tab ->
-                        Tab(text = { Text(text = tab.text) }, icon = {
+                        val isSelected = tabSelectedIndex == tab.ordinal
+                        Tab(text = { Text(text = tab.text, color = if (isSelected) LocalAppColors.current.surface else LocalAppColors.current.onPrimary,) }, icon = {
                             Icon(
-                                imageVector = if (tabSelectedIndex == tab.ordinal) tab.selectedIcon else tab.unselectedIcon,
+                                tint = if (isSelected) LocalAppColors.current.surface else LocalAppColors.current.onPrimary,
+                                imageVector = if (isSelected) tab.selectedIcon else tab.unselectedIcon,
                                 contentDescription = tab.text
                             )
                         }, selected = tabSelectedIndex == tab.ordinal, onClick = {
@@ -161,7 +133,7 @@ fun MainPage(
 }
 
 sealed interface MainScreenEvent {
-    object openContactDialog : MainScreenEvent
+    data object OpenContactDialog : MainScreenEvent
 }
 
 
@@ -186,141 +158,5 @@ fun Profile() {
     }
 }
 
-@Composable
-@OptIn(ExperimentalFoundationApi::class)
-private fun ExperienceList() {
-    var maxItemsLazyRowProXP by remember { mutableStateOf(DEFAULT_MAX_ITEM) }
-    LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        item {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    color = LocalAppColors.current.onPrimary,
-                    text ="Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique.\n"
-                )
-            }
-        }
-        stickyHeader {
-            stickyHeaderContent(
-                text = "Expérience"
-            )
-        }
-
-        itemsIndexed(listProfesionalExperience.take(maxItemsLazyRowProXP),
-            key = { _, item -> item.hashCode() }) { index, exp ->
-            LazyColumnCategory(listProfesionalExperience.size, index) { shape ->
-                BackgroundWrapper(shape = if(index != listProfesionalExperience.size - 1) { shape } else { RectangleShape }) {
-                    CustomListItem(exp)
-
-                }
-            }
-        }
-        if (listProfesionalExperience.size > 2) {
-            item {
-                Row(horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
-
-                        .padding(bottom = 8.dp).clip(
-                            RoundedCornerShape(
-                                bottomStart = 16.dp, bottomEnd = 16.dp
-                            )
-                        ).background(LocalAppColors.current.surface).clickable {
-                            maxItemsLazyRowProXP =
-                                if (maxItemsLazyRowProXP < listProfesionalExperience.size) {
-                                    listProfesionalExperience.size
-                                } else {
-                                    2
-                                }
-                        }
-
-                ) {
-                    Icon(
-                        imageVector = if (maxItemsLazyRowProXP == 2) {
-                            Icons.Default.ArrowDropDown
-                        } else {
-                            Icons.Default.KeyboardArrowUp
-                        }, contentDescription = null
-                    )
-                }
-            }
-        }
-        stickyHeader {
-            stickyHeaderContent(
-                text = "Projets personnels"
-            )
-        }
-        itemsIndexed(listPersonalProject, key = { _, item -> item.hashCode() }) { index, exp ->
-            LazyColumnCategory(
-                listPersonalProject.size, index
-            ) { shape ->
-                BackgroundWrapper(shape) {
-                    CustomListItem(exp)
-                }
-            }
-        }
-        item {
-            CustomDivider()
-        }
-        stickyHeader {
-            stickyHeaderContent(
-                text = "Projets tutorés"
-            )
-        }
-        itemsIndexed(listMentoredProject, key = { _, item -> item.hashCode() }) { index, exp ->
-            LazyColumnCategory(
-                listMentoredProject.size, index
-            ) { shape ->
-                BackgroundWrapper(shape) {
-                    CustomListItem(exp)
-                }
-            }
-        }
-        item {
-            CustomDivider()
-        }
-        stickyHeader {
-            stickyHeaderContent(
-                text = "Formation"
-            )
-        }
-        itemsIndexed(listSchool, key = { _, item -> item.hashCode() }) { index, exp ->
-            LazyColumnCategory(listSchool.size, index) { shape ->
-                BackgroundWrapper(shape) {
-                    TrainingItem(exp)
-                }
-            }
-        }
-    }
-}
 
 
-@Composable
-private fun ProfileHeader() {
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(start = 3.dp, top = 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
-    ) {
-        Image(
-            painter = painterResource(Res.drawable.istockphoto_1090878494_612x612),
-            modifier = Modifier.widthIn(max = 150.dp),
-            contentDescription = null,
-        )
-        Text(
-            maxLines = 1,
-            text = "BLANC Alexis",
-            fontWeight = FontWeight.Bold,
-            fontSize = 30.sp,
-            textDecoration = TextDecoration.Underline,
-            modifier = Modifier.weight(1F).padding(start = 16.dp).offset(x = -(8).dp)
-                .align(Alignment.Bottom)
-        )
-    }
-}
