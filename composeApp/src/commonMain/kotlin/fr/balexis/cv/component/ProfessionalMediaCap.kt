@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.github
 import balexiscv.composeapp.generated.resources.linkedin
+import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -47,7 +48,7 @@ fun ProfessionalMediaCap(
                         bottomStart = 32.dp, bottomEnd = 32.dp
                     )
                 )
-                .background(Color(0xFF902923))
+                .background(LocalAppColors.current.primary)
         ),
         verticalAlignment = Alignment.CenterVertically
 
