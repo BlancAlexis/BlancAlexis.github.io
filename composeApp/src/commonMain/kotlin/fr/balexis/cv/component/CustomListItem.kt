@@ -17,6 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Chip
+import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -42,6 +43,9 @@ import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
 import fr.balexis.cv.model.FullItemData
+import fr.balexis.cv.theme.LocalAppColors
+import fr.balexis.cv.theme.columbiaBlue
+import fr.balexis.cv.theme.pearl
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -56,7 +60,8 @@ fun CustomListItem(
 ) {
     var isOpen by remember { mutableStateOf(false) }
     Card(
-        modifier = Modifier.fillMaxWidth().padding(8.dp), elevation = 8.dp
+        backgroundColor = columbiaBlue,
+        modifier = Modifier.fillMaxWidth().padding(8.dp), elevation = 4.dp
     ) {
         Column {
             Row(
@@ -129,10 +134,10 @@ fun CustomListItem(
 @OptIn(ExperimentalMaterialApi::class)
 private fun KeySkillsRow(itemUiState: FullItemData) {
     LazyRow(
-        modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(itemUiState.tags) { skill ->
-            Chip(onClick = {
+            Chip(colors = ChipDefaults.chipColors(backgroundColor = pearl),onClick = {
 
             }, content = {
                 Icon(
@@ -146,7 +151,7 @@ private fun KeySkillsRow(itemUiState: FullItemData) {
 
 @Composable
 fun BackgroundWrapper(
-    shape: Shape, color: Color = Color(0xFF93E9BE), content: @Composable () -> Unit
+    shape: Shape, color: Color = LocalAppColors.current.surface, content: @Composable () -> Unit
 ) {
     Card(
         shape = shape,

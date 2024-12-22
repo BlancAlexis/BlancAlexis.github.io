@@ -16,15 +16,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import fr.balexis.cv.theme.LocalAppColors
 
 @Composable
 fun stickyHeaderContent(
     text: String
 ) {
+    val color = LocalAppColors.current.primary
     Row(
         modifier = Modifier.drawBehind {
-            drawRect(Color(0xFF00888F), size = size.copy(height = size.height / 2))
-        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Color(0xFF3C91E6))
+            drawRect(color, size = size.copy(height = size.height / 2))
+        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.secondary)
             .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
