@@ -43,7 +43,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.android
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import balexiscv.composeapp.generated.resources.flutter_icon
+import balexiscv.composeapp.generated.resources.kotlin_Icon
 import fr.balexis.cv.model.FullItemData
 import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.columbiaBlue
@@ -128,7 +131,7 @@ fun CustomListItem(
                 )
             }
             KeySkillsRow(
-                itemUiState
+                itemUiState.tags
             )
         }
     }
@@ -137,12 +140,12 @@ fun CustomListItem(
 
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
-private fun KeySkillsRow(itemUiState: FullItemData) {
+ fun KeySkillsRow(itemUiState: List<String>, autoScroll : Boolean = false) {
     LazyRow(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(itemUiState.tags) { skill ->
+        items(itemUiState) { skill ->
             Chip(colors = ChipDefaults.chipColors(backgroundColor = pearl), onClick = {
 
             }, content = {

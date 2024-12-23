@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import balexiscv.composeapp.generated.resources.github
+import balexiscv.composeapp.generated.resources.linkedin
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -47,7 +51,8 @@ fun ProfessionalMediaCap(
         ), verticalAlignment = Alignment.CenterVertically
 
     ) {
-        IconButton(onClick = {
+        IconButton(
+            onClick = {
             onEvent(SocialNav.Linkedin)
         }) {
             Icon(
