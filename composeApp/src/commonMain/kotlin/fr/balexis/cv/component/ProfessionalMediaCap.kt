@@ -16,9 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.compose_multiplatform
 import balexiscv.composeapp.generated.resources.github
 import balexiscv.composeapp.generated.resources.linkedin
 import fr.balexis.cv.theme.LocalAppColors
@@ -37,62 +39,57 @@ sealed interface SocialNav {
 fun ProfessionalMediaCap(
     modifier: Modifier = Modifier, onEvent: (event: SocialNav) -> Unit
 ) {
+    val circleColor = LocalAppColors.current.surface
     Row(
         horizontalArrangement = Arrangement.Center, modifier = modifier.then(
-            Modifier
-                .fillMaxWidth(0.7f)
-                .wrapContentWidth(Alignment.End)
-                .heightIn(50.dp, 100.dp)
+            Modifier.fillMaxWidth(0.7f).wrapContentWidth(Alignment.End).heightIn(50.dp, 100.dp)
                 .clip(
                     shape = RoundedCornerShape(
                         bottomStart = 32.dp, bottomEnd = 32.dp
                     )
-                )
-                .background(LocalAppColors.current.primary)
-        ),
-        verticalAlignment = Alignment.CenterVertically
+                ).background(LocalAppColors.current.primary)
+        ), verticalAlignment = Alignment.CenterVertically
 
     ) {
-        IconButton(onClick = {
+        IconButton(
+            onClick = {
             onEvent(SocialNav.Linkedin)
-        }
-
-        ) {
+        }) {
             Icon(
-                tint = Color.Unspecified,
-                modifier = Modifier.size(24.dp),
-                painter = painterResource(Res.drawable.linkedin),
+                modifier = Modifier.size(24.dp).circleBackground(circleColor, 40F),
+                painter = painterResource(Res.drawable.compose_multiplatform),
                 contentDescription = null
-
             )
         }
         IconButton(onClick = {
             onEvent(SocialNav.Github)
-        }
-
-        ) {
+        }) {
             Icon(
-                tint = Color.Unspecified,
-                modifier = Modifier.size(24.dp),
-                painter = painterResource(Res.drawable.github),
+                modifier = Modifier.size(24.dp).circleBackground(circleColor, 40F),
+                painter = painterResource(Res.drawable.compose_multiplatform),
                 contentDescription = null
 
             )
         }
         IconButton(onClick = {
             onEvent(SocialNav.Mail)
-        }
-
-        ) {
+        }) {
             Icon(
-                modifier = Modifier.size(24.dp),
-                imageVector = Icons.Default.Email,
+                modifier = Modifier.size(24.dp).circleBackground(circleColor, 40F),
+                painter = painterResource(Res.drawable.compose_multiplatform),
                 contentDescription = null
 
             )
         }
     }
 }
+
+fun Modifier.circleBackground(color: Color, radius: Float) : Modifier =
+    drawBehind {
+           drawCircle(
+                color = color, radius = radius
+           )
+    }
 
 sealed class MySocial(
     val name: String, open val url: String

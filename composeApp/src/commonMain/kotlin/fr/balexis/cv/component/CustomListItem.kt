@@ -5,12 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -68,21 +70,17 @@ fun CustomListItem(
     ) {
         Column {
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min)
             ) {
+                Icon(
+                    modifier = Modifier.size(50.dp).fillMaxHeight().align(Alignment.CenterVertically),
+                    painter = painterResource(Res.drawable.compose_multiplatform),
+                    contentDescription = null
+                )
+
                 Column(
-                    modifier = Modifier.fillMaxHeight(),
-                    verticalArrangement = Arrangement.Center
-                ) {
-                        Icon(
-                            tint = Color.Unspecified,
-                            modifier = Modifier.size(50.dp),
-                            painter = painterResource(Res.drawable.compose_multiplatform),
-                            contentDescription = null
-                        )
-                }
-                Column(
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f).padding(top = 8.dp, start = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Text(
                         itemUiState.title,
@@ -96,10 +94,6 @@ fun CustomListItem(
                     Text(
                         text = itemUiState.companyName
                     )
-                }
-                Column(
-                    horizontalAlignment = Alignment.End
-                ) {
                     Text(
                         itemUiState.date, style = TextStyle(
                             color = Color.Gray,
@@ -109,11 +103,21 @@ fun CustomListItem(
                             fontFamily = androidx.compose.ui.text.font.FontFamily.SansSerif
                         ), modifier = Modifier.padding(top = 8.dp, end = 8.dp)
                     )
+                }
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    modifier = Modifier.fillMaxHeight(),
+                    verticalArrangement = Arrangement.Center
+                ) {
                     IconButton(onClick = {
                         isOpen = !isOpen
                     }) {
                         Icon(
-                            imageVector = if (!isOpen) { Icons.Filled.ArrowDropDown } else { Icons.Filled.KeyboardArrowUp },
+                            imageVector = if (!isOpen) {
+                                Icons.Filled.ArrowDropDown
+                            } else {
+                                Icons.Filled.KeyboardArrowUp
+                            },
                             contentDescription = null
                         )
                     }
@@ -138,10 +142,11 @@ fun CustomListItem(
 @OptIn(ExperimentalMaterialApi::class)
  fun KeySkillsRow(itemUiState: List<String>, autoScroll : Boolean = false) {
     LazyRow(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(itemUiState) { skill ->
-            Chip(onClick = {
+            Chip(colors = ChipDefaults.chipColors(backgroundColor = pearl), onClick = {
 
             }, content = {
                 Icon(

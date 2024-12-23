@@ -3,6 +3,7 @@ package fr.balexis.cv
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +24,7 @@ import org.jetbrains.compose.resources.painterResource
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+enableEdgeToEdge()
         setContent {
             App()
         }
@@ -47,52 +48,6 @@ private fun professionalCapPreview() {
     )
 }
 
-@Preview
-@Composable
-private fun d() {
-    Card(
-        elevation = 8.dp
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier.wrapContentSize()
-            ) {
-                IconButton(
-                    onClick = {}
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                        contentDescription = null
-                    )
-                }
-            }
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = "test"
-                )
-                Text(
-                    text = "test"
-                )
-            }
-            Column {
-                Text(
-                    text = "test"
-                )
-                IconButton(
-                    onClick = {}
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                        contentDescription = null
-                    )
-                }
-            }
-        }
-    }
-}
+
 
 

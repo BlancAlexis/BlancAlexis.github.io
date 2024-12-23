@@ -14,6 +14,6 @@ fun CustomDivider() {
     Divider(
         color = Color.Black,
         thickness = 1.dp,
-        modifier = Modifier.widthIn(100.dp, 300.dp).fillMaxWidth(0.6f).padding(vertical = 8.dp)
+        modifier = Modifier.widthIn(100.dp, 300.dp).fillMaxWidth(0.9f).padding(vertical = 8.dp)
     )
 }

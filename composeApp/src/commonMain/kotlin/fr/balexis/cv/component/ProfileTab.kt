@@ -2,20 +2,23 @@
 
 package fr.balexis.cv.component
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ContextualFlowRow
+import androidx.compose.foundation.layout.ContextualFlowRowOverflow
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -26,162 +29,182 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.ContentDrawScope
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.node.DrawModifierNode
+import androidx.compose.ui.node.ModifierNodeElement
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
-@Composable
-fun LanguageRowItem(
-    text: String, icon: DrawableResource
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            modifier = Modifier.size(24.dp),
-            painter = painterResource(icon),
-            contentDescription = null
-        )
-        Text(
-            text, fontSize = 14.sp,
-        )
-    }
-}
+val libraryKnowAndroidNative = listOf(
+    "Retrofit",
+    "Room",
+    "Coroutine",
+    "Flow",
+    "Koin",
+    "RXJava",
+    "Hilt",
+    "Coil",
+    "Paging3",
+    "Maps"
+)
 
-@Composable
-fun LanguageRow(
-    language: List<String>
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        language.forEach {
-            LanguageRowItem(it, Res.drawable.compose_multiplatform)
-        }
-    }
+val libraryKnowFlutter = listOf(
+    "Riverpod",
+    "Bloc",
+    "Hive",
+    "Dio",
+    "Injectable + Get It",
+    "Maps"
+)
 
-}
+val libraryKnowKMP = listOf(
+    "Ktor",
+    "Kotlin Serialization",
+    "Room",
+    "Koin",
+    "Maps"
+)
 
-@Composable
-fun SoftSkillBox(
-    text: String, icon: DrawableResource
-) {
-    Box(
-        modifier = Modifier.clip(RoundedCornerShape(16.dp))
-            .border(1.dp, Color.Black, RoundedCornerShape(16.dp)).size(100.dp)
-            .background(Color.Yellow)
-    ) {
-        Icon(
-            imageVector = Icons.Default.Build,
-            modifier = Modifier.align(Alignment.TopCenter).padding(top = 16.dp),
-            // painter = painterResource(icon),
-            contentDescription = null
-        )
-        Text(
-            text, modifier = Modifier.align(Alignment.Center).matchParentSize()
-        )
-    }
-}
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-fun SoftSkillRow(
-    softSkills: List<String>
-) {
-    FlowRow(
-        modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        softSkills.forEach {
-            SoftSkillBox(it, Res.drawable.compose_multiplatform)
-        }
-    }
-}
 
 //Faire un genre de carousel horizontalPager
 
 @Composable
 fun FrameworkCard(
-    text: String, icon: DrawableResource
+    title: String,
+    subtitle: String,
+    description: String,
+    icon: DrawableResource,
+    libraries: List<String>,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp), elevation = 8.dp
+        shape = RoundedCornerShape(16.dp),
+        modifier = modifier.then(
+            Modifier.fillMaxHeight(0.4f)
+        ),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
-
-            Row(
-                modifier = Modifier.fillMaxWidth(0.2f)
-            ) {
-                Image(
-                    painter = painterResource(icon), contentDescription = null
-                )
-            }
+            Image(
+                contentScale = ContentScale.FillBounds,
+                painter = painterResource(icon),
+                contentDescription = null,
+                modifier = Modifier.fillMaxHeight().fillMaxWidth(0.3f).padding(top = 16.dp,start = 16.dp,bottom = 16.dp)
+            )
             Column(
-                modifier = Modifier.weight(1f).clip(RoundedCornerShape(4.dp)).background(Color.Red)
-                    .border(1.dp, Color.Black, RoundedCornerShape(4.dp)).padding(start = 8.dp),
+                modifier = Modifier.fillMaxHeight()
+                    .clip(RoundedCornerShape(4.dp)).background(LocalAppColors.current.surface)
+                    .border(1.dp, Color.Black, RoundedCornerShape(4.dp)).padding(8.dp),
+                verticalArrangement = Arrangement.SpaceEvenly,
 
                 ) {
-                Text("Android", fontWeight = FontWeight.Bold, fontSize = 25.sp)
-                Text("Kotlin & Java")
-                Text("Compose & XML")
+                Text(
+                    text = title,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                )
+                extFracted(subtitle, icon = Icons.Default.Build)
+                extFracted(description, icon = Icons.Default.Build)
+                CustomDivider()
                 LibraryKnow(
-                    listOf("Kotlin", "Java", "Android Studio")
+                    libs = libraries
                 )
             }
-
         }
-
     }
 }
-
-
 @Composable
-fun controlOverPager() {
+private fun extFracted(text: String, icon: ImageVector) {
+    Row(
+        modifier = Modifier.wrapContentWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            imageVector = icon,
+            modifier = Modifier.size(24.dp),
+            contentDescription = null
+        )
+        Text(
+            text = text,
+        )
+    }
 
 }
+
+
 
 
 //Lib que je connais
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
 fun LibraryKnow(
     libs: List<String>
 ) {
-    Row {
-        LazyRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            items(items = libs) {
-                Chip(content = { Text(it, fontSize = 12.sp) }, onClick = {})
-            }
+    var maxLines by remember {
+        mutableIntStateOf(2)
+    }
+    var morePresse by remember { mutableStateOf(false) }
+    val overflow = ContextualFlowRowOverflow.expandOrCollapseIndicator(
+        expandIndicator = {
+            Chip(content = { Text("Plus", fontSize = 14.sp) }, onClick = {
+                morePresse = true
+            })
+        },
+        collapseIndicator = {
+            Chip(content = { Text("Moins", fontSize = 12.sp) }, onClick = {
+                morePresse = false
+            })
+        },
+    )
+    ContextualFlowRow(
+        modifier = Modifier.fillMaxWidth().animateContentSize(),
+        maxLines = 2,
+        itemCount = libs.size,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        overflow = overflow
+    ) {
+        libs.forEach {
+            Chip(content = { Text(it, fontSize = 12.sp) }, onClick = {})
         }
     }
 }
 
 
-@OptIn(ExperimentalLayoutApi::class)
+
+
 @Composable
-fun CountryRow(
+fun archi(
+    list: List<String> = listOf("MVVM", "MVC", "MVI", "Clean architecture")
 ) {
-    FlowRow(
-        verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.Center
+    Row(
+        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp))
+            .border(1.dp, Color.Black, RoundedCornerShape(16.dp))
+            .background(LocalAppColors.current.surface),
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        LanguageRowItem("Kotlin", Res.drawable.compose_multiplatform)
-        LanguageRowItem("Java", Res.drawable.compose_multiplatform)
-        LanguageRowItem("Python", Res.drawable.compose_multiplatform)
-        LanguageRowItem("PHP", Res.drawable.compose_multiplatform)
-        LanguageRowItem("C++", Res.drawable.compose_multiplatform)
-        LanguageRowItem("SQL", Res.drawable.compose_multiplatform)
-        LanguageRowItem("Javascript", Res.drawable.compose_multiplatform)
+        list.forEach {
+            Text(it)
+        }
     }
 }
 
@@ -203,6 +226,7 @@ fun SkillsCard() {
     }
 }
 
+
 @Composable
 fun AbilitySkillsRow(
 ) {
@@ -214,6 +238,30 @@ fun AbilitySkillsRow(
     }
 }
 
-fun Modifier.controlOverPager(): Modifier =
-    clip(RoundedCornerShape(16.dp)).border(1.dp, Color.Black, RoundedCornerShape(16.dp))
 
+@Composable
+fun controlOverPager() {
+
+}
+
+fun Modifier.cardControlOverPager(position: Int, lastIndex: Int, event: () -> Unit): Modifier =
+    graphicsLayer {
+
+    }
+
+fun Modifier.circle(color: Color) = this then CircleElement(color)
+
+private data class CircleElement(val color: Color) : ModifierNodeElement<ControlNode>() {
+    override fun create() = ControlNode(color)
+
+    override fun update(node: ControlNode) {
+        node.color = color
+    }
+}
+
+private class ControlNode(var color: Color = Color.Red) : DrawModifierNode, Modifier.Node() {
+    override fun ContentDrawScope.draw() {
+        drawCircle(Color.Red, radius = 10f)
+    }
+
+}
