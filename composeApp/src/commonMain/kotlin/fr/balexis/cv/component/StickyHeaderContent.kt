@@ -42,3 +42,24 @@ fun stickyHeaderContent(
     }
     Spacer(modifier = Modifier.height(8.dp))
 }
+
+@Composable
+fun stickyHeaderContentWithoutSpacer(
+    text: String
+) {
+    val color = LocalAppColors.current.primary
+    Row(
+        modifier = Modifier.drawBehind {
+            drawRect(color, size = size.copy(height = size.height / 2))
+        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.secondary)
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = text,
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            color = Color.Black)
+    }
+}

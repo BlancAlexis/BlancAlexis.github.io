@@ -34,6 +34,22 @@ sealed interface SocialNav {
 
 }
 
+sealed interface MainScreenEvent {
+    data object OpenContactDialog : MainScreenEvent
+}
+
+sealed class ProfessionalMedia(
+    val name: String, open val url: String, val icon: String
+){
+    data class Linkedin(override val url: String) : ProfessionalMedia("linkedin", url, "linkedin")
+    data class Github(override val url: String) : ProfessionalMedia("github", url, "github")
+    data class Mail(override val url: String) : ProfessionalMedia("mail", url, "mail")
+}
+
+sealed class ActionWrapper {
+    data class OpenUrl(val url: String) : ActionWrapper()
+}
+
 @Composable
 @Preview
 fun ProfessionalMediaCap(
@@ -83,6 +99,8 @@ fun ProfessionalMediaCap(
         }
     }
 }
+
+
 
 fun Modifier.circleBackground(color: Color, radius: Float) : Modifier =
     drawBehind {

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
@@ -11,9 +12,11 @@ import balexiscv.composeapp.generated.resources.compose_multiplatform
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ProgrammingLanguageRow(
+    modifier: Modifier = Modifier
 ) {
     FlowRow(
-        verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.Center
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(4.dp), horizontalArrangement = Arrangement.Center
     ) {
         LanguageRowItem("Kotlin", Res.drawable.compose_multiplatform)
         LanguageRowItem("Java", Res.drawable.compose_multiplatform)

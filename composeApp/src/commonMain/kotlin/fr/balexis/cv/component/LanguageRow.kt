@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.vistaBlue
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -29,7 +30,7 @@ fun LanguageRowItem(
     text: String, icon: DrawableResource
 ) {
     Row(
-        Modifier.wrapContentSize().clip(RoundedCornerShape(8.dp)).background(vistaBlue)
+        Modifier.wrapContentSize().clip(RoundedCornerShape(8.dp)).background(LocalAppColors.current.surface)
             .border(1.dp, Color.Black, RoundedCornerShape(8.dp)).padding(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

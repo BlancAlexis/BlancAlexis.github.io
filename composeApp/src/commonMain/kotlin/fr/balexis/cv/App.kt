@@ -1,7 +1,6 @@
 package fr.balexis.cv
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
@@ -20,37 +19,44 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App() {
-    var dialogContact = remember { mutableStateOf(false) }
-    CompositionLocalProvider(
-        LocalAppColors provides if (isSystemInDarkTheme()) {
-            DarkAppColors
-        } else {
-            LightAppColors
-        }
-    )
-    {
+    val dialogContact = remember { mutableStateOf(false) }
+    AppTheme {
         val navController = rememberNavController()
         NavHost(
             navController = navController,
             startDestination = Routes.MainPage,
         ) {
             composable<Routes.MainPage> {
-                MainPage(
-                    onEvent = {
-                        dialogContact.value = true
-                    }
-                )
+                MainPage(onEvent = {
+                    dialogContact.value = true
+                })
                 if (dialogContact.value) {
-                    contactDialog(
-                        onEvent = {
-                            dialogContact.value = false
-                        }
-                    )
+                    contactDialog(onEvent = {
+                        dialogContact.value = false
+                    })
                 }
             }
 
+
         }
+
     }
+}
+
+@Composable
+fun AppTheme(
+    content: @Composable () -> Unit
+) {
+    CompositionLocalProvider(
+        LocalAppColors provides if (isSystemInDarkTheme()) {
+            DarkAppColors
+        } else {
+            LightAppColors
+        }
+    ) {
+        content()
+    }
+
 }
 
 sealed interface Routes {

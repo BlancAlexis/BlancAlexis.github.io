@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ContextualFlowRow
 import androidx.compose.foundation.layout.ContextualFlowRowOverflow
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,8 +46,6 @@ import androidx.compose.ui.node.ModifierNodeElement
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.compose_multiplatform
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -97,9 +94,9 @@ fun FrameworkCard(
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        modifier = modifier.then(
-            Modifier.fillMaxHeight(0.4f)
-        ),
+        modifier =
+            Modifier.fillMaxWidth().fillMaxHeight(0.4f) //Fait crash avec key item100
+
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -108,7 +105,8 @@ fun FrameworkCard(
                 contentScale = ContentScale.FillBounds,
                 painter = painterResource(icon),
                 contentDescription = null,
-                modifier = Modifier.fillMaxHeight().fillMaxWidth(0.3f).padding(top = 16.dp,start = 16.dp,bottom = 16.dp)
+                modifier = Modifier.fillMaxHeight().fillMaxWidth(0.3f)
+                    .padding(top = 16.dp, start = 16.dp, bottom = 16.dp)
             )
             Column(
                 modifier = Modifier.fillMaxHeight()
@@ -122,9 +120,9 @@ fun FrameworkCard(
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                 )
-                extFracted(subtitle, icon = Icons.Default.Build)
-                extFracted(description, icon = Icons.Default.Build)
-                CustomDivider()
+                IconTextRow(subtitle, icon = Icons.Default.Build)
+                IconTextRow(description, icon = Icons.Default.Build)
+                CustomDivider(0.8f)
                 LibraryKnow(
                     libs = libraries
                 )
@@ -132,8 +130,9 @@ fun FrameworkCard(
         }
     }
 }
+
 @Composable
-private fun extFracted(text: String, icon: ImageVector) {
+private fun IconTextRow(text: String, icon: ImageVector) {
     Row(
         modifier = Modifier.wrapContentWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -150,8 +149,6 @@ private fun extFracted(text: String, icon: ImageVector) {
     }
 
 }
-
-
 
 
 //Lib que je connais
@@ -188,8 +185,6 @@ fun LibraryKnow(
         }
     }
 }
-
-
 
 
 @Composable
