@@ -17,8 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Chip
@@ -37,15 +35,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.ContentDrawScope
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.node.DrawModifierNode
-import androidx.compose.ui.node.ModifierNodeElement
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.cpp_icon
+import balexiscv.composeapp.generated.resources.dart_icon
+import balexiscv.composeapp.generated.resources.java_icon
+import balexiscv.composeapp.generated.resources.javascript_icon
+import balexiscv.composeapp.generated.resources.kotlin_icon
+import balexiscv.composeapp.generated.resources.php_icon
+import balexiscv.composeapp.generated.resources.python_icon
+import balexiscv.composeapp.generated.resources.sql_icon
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -85,10 +88,12 @@ val libraryKnowKMP = listOf(
 
 @Composable
 fun FrameworkCard(
+
     title: String,
     subtitle: String,
     description: String,
-    icon: DrawableResource,
+    leadIcon: DrawableResource,
+    viewIcon: DrawableResource,
     libraries: List<String>,
     modifier: Modifier = Modifier
 ) {
@@ -103,7 +108,7 @@ fun FrameworkCard(
         ) {
             Image(
                 contentScale = ContentScale.FillBounds,
-                painter = painterResource(icon),
+                painter = painterResource(leadIcon),
                 contentDescription = null,
                 modifier = Modifier.fillMaxHeight().fillMaxWidth(0.3f)
                     .padding(top = 16.dp, start = 16.dp, bottom = 16.dp)
@@ -121,7 +126,7 @@ fun FrameworkCard(
                     fontSize = 20.sp,
                 )
                 IconTextRow(subtitle, icon = Icons.Default.Build)
-                IconTextRow(description, icon = Icons.Default.Build)
+                IconTextRow(description, icon = viewIcon)
                 CustomDivider(0.8f)
                 LibraryKnow(
                     libs = libraries
@@ -145,6 +150,26 @@ private fun IconTextRow(text: String, icon: ImageVector) {
         )
         Text(
             text = text,
+        )
+    }
+
+}
+
+@Composable
+private fun IconTextRow(text: String, icon: DrawableResource) {
+    Row(
+        modifier = Modifier.wrapContentWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Icon(
+            tint = Color.Unspecified,
+            painter = painterResource(icon),
+            modifier = Modifier.size(24.dp),
+            contentDescription = null
+        )
+        Text(
+            text = text, modifier = Modifier.padding(start = 8.dp)
         )
     }
 
@@ -203,60 +228,23 @@ fun archi(
     }
 }
 
-@Composable
-fun SkillsCard() {
-    val skills = listOf("Android", "Kotlin", "Java", "Python", "PHP", "C++", "SQL", "Javascript")
-    Card {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("Skills")
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                items(skills) {
-                    Text("$it")
-                }
-            }
-        }
+
+sealed class ProgrammingLanguage(
+    val name: String,
+    val icon: DrawableResource
+){
+    object Kotlin : ProgrammingLanguage("Kotlin", Res.drawable.kotlin_icon)
+    object Java : ProgrammingLanguage("Java", Res.drawable.java_icon)
+    object Python : ProgrammingLanguage("Python", Res.drawable.python_icon)
+    object PHP : ProgrammingLanguage("PHP", Res.drawable.php_icon)
+    object Cpp : ProgrammingLanguage("C++", Res.drawable.cpp_icon)
+    object Javascript : ProgrammingLanguage("Javascript", Res.drawable.javascript_icon)
+    object SQL : ProgrammingLanguage("SQL", Res.drawable.sql_icon)
+    object Dart : ProgrammingLanguage("Dart", Res.drawable.dart_icon)
+
+    companion object {
+        val entries: List<ProgrammingLanguage> = listOf(
+            Kotlin, Java, Python, PHP, Cpp, Javascript, SQL, Dart
+        )
     }
-}
-
-
-@Composable
-fun AbilitySkillsRow(
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        SkillsCard()
-        SkillsCard()
-    }
-}
-
-
-@Composable
-fun controlOverPager() {
-
-}
-
-fun Modifier.cardControlOverPager(position: Int, lastIndex: Int, event: () -> Unit): Modifier =
-    graphicsLayer {
-
-    }
-
-fun Modifier.circle(color: Color) = this then CircleElement(color)
-
-private data class CircleElement(val color: Color) : ModifierNodeElement<ControlNode>() {
-    override fun create() = ControlNode(color)
-
-    override fun update(node: ControlNode) {
-        node.color = color
-    }
-}
-
-private class ControlNode(var color: Color = Color.Red) : DrawModifierNode, Modifier.Node() {
-    override fun ContentDrawScope.draw() {
-        drawCircle(Color.Red, radius = 10f)
-    }
-
 }

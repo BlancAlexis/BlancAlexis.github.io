@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import balexiscv.composeapp.generated.resources.english_flag
+import balexiscv.composeapp.generated.resources.french_flag
 import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.vistaBlue
 import org.jetbrains.compose.resources.DrawableResource
@@ -35,28 +37,36 @@ fun LanguageRowItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
+            tint = Color.Unspecified,
             modifier = Modifier.size(24.dp),
             painter = painterResource(icon),
             contentDescription = null
         )
         Text(
-            text, fontSize = 14.sp,
+            text, fontSize = 14.sp, modifier = Modifier.padding(start = 4.dp)
         )
     }
 }
 
 @Composable
 fun LanguageRow(
-    language: List<String>
 ) {
     Row(
         modifier = Modifier.clip(RoundedCornerShape(16.dp)).fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        language.forEach {
-            LanguageRowItem(it, Res.drawable.compose_multiplatform)
+        Language.entries.forEach {
+            LanguageRowItem(it.text, it.icon)
         }
     }
+
+}
+
+enum class Language(
+    val text: String, val icon: DrawableResource
+){
+    FRENCH("Français : Langue natale", Res.drawable.french_flag),
+    ENGLISH("Anglais : Niveau B1", Res.drawable.english_flag)
 
 }
