@@ -53,8 +53,8 @@ fun ExperienceList() {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp)
                     .clip(RoundedCornerShape(4.dp)).background(
-                    LocalAppColors.current.surface
-                ).border(1.dp, Color.Black,RoundedCornerShape(4.dp)),
+                        LocalAppColors.current.surface
+                    ).border(1.dp, Color.Black, RoundedCornerShape(4.dp)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
@@ -67,7 +67,7 @@ fun ExperienceList() {
             }
         }
         stickyHeader {
-            stickyHeaderContent(
+            StickyHeaderContent(
                 text = "Expérience"
             )
         }
@@ -118,7 +118,7 @@ fun ExperienceList() {
             }
         }
         stickyHeader {
-            stickyHeaderContent(
+            StickyHeaderContent(
                 text = "Projets personnels"
             )
         }
@@ -137,7 +137,7 @@ fun ExperienceList() {
             )
         }
         stickyHeader {
-            stickyHeaderContent(
+            StickyHeaderContent(
                 text = "Projets tutorés"
             )
         }
@@ -156,7 +156,7 @@ fun ExperienceList() {
             )
         }
         stickyHeader {
-            stickyHeaderContent(
+            StickyHeaderContent(
                 text = "Formation"
             )
         }

@@ -1,27 +1,16 @@
 package fr.balexis.cv
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
@@ -41,27 +30,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import fr.balexis.cv.component.ExperienceList
-import fr.balexis.cv.component.FrameworkCard
-import fr.balexis.cv.component.HorizontalPagerDesktopControl
-import fr.balexis.cv.component.HorizontalPagerIconButtonControl
-import fr.balexis.cv.component.LanguageRow
 import fr.balexis.cv.component.MainScreenEvent
+import fr.balexis.cv.component.MediaItems
 import fr.balexis.cv.component.ProfessionalMediaCap
 import fr.balexis.cv.component.Profile
 import fr.balexis.cv.component.ProfileHeader
-import fr.balexis.cv.component.ProgrammingLanguageRow
-import fr.balexis.cv.component.SocialNav
-import fr.balexis.cv.component.SoftSkillRow
-import fr.balexis.cv.component.stickyHeaderContentWithoutSpacer
-import fr.balexis.cv.data.Framework
 import fr.balexis.cv.theme.LocalAppColors
 import kotlinx.coroutines.launch
 
@@ -87,24 +64,24 @@ fun MainPage(
             ProfessionalMediaCap(modifier = Modifier.align(Alignment.TopCenter),
                 onEvent = {
                     when (it) {
-                        is SocialNav.Linkedin -> {
+                        is MediaItems.Linkedin -> {
                             uriHandler.openUri("https://www.linkedin.com/in/alexis--blanc/")
                         }
 
-                        is SocialNav.Github -> {
+                        is MediaItems.Github -> {
                             uriHandler.openUri("https://github.com/BlancAlexis")
 
                         }
 
-                        is SocialNav.Mail -> {
+                        is MediaItems.Mail -> {
                             uriHandler.openUri("mailto:blanc.alexispro@gmail.com")
                         }
 
-                        SocialNav.Contact -> {
+                        MediaItems.Contact -> {
                             onEvent(MainScreenEvent.OpenContactDialog)
                         }
                     }
-            })
+                })
             ProfileHeader()
         }
         Surface(
@@ -126,7 +103,6 @@ fun MainPage(
                         )
                     },
                 ) {
-
                     MainScreenTabs.entries.forEach { tab ->
                         val isSelected = tabSelectedIndex == tab.ordinal
                         Tab(text = {
@@ -140,7 +116,7 @@ fun MainPage(
                                 imageVector = if (isSelected) tab.selectedIcon else tab.unselectedIcon,
                                 contentDescription = tab.text
                             )
-                        }, selected = tabSelectedIndex == tab.ordinal, onClick = {
+                        }, selected = isSelected, onClick = {
                             coroutineScope.launch {
                                 pagerState.animateScrollToPage(tab.ordinal)
                             }

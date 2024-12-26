@@ -1,7 +1,6 @@
 package fr.balexis.cv.data
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -46,7 +44,6 @@ import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
 import fr.balexis.cv.model.FullItemData
 import fr.balexis.cv.theme.LocalAppColors
-import fr.balexis.cv.theme.columbiaBlue
 import fr.balexis.cv.theme.pearl
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -71,8 +68,13 @@ fun CustomListItem(
             ) {
                 Icon(
                     tint = Color.Unspecified,
-                    modifier = Modifier.size(50.dp).fillMaxHeight().align(Alignment.CenterVertically).padding(horizontal = 4.dp),
-                    painter = if(itemUiState.mainIcon != null){ painterResource(itemUiState.mainIcon)} else {painterResource(Res.drawable.compose_multiplatform)},
+                    modifier = Modifier.size(50.dp).fillMaxHeight()
+                        .align(Alignment.CenterVertically).padding(horizontal = 4.dp),
+                    painter = if (itemUiState.mainIcon != null) {
+                        painterResource(itemUiState.mainIcon)
+                    } else {
+                        painterResource(Res.drawable.compose_multiplatform)
+                    },
                     contentDescription = null
                 )
 
@@ -138,7 +140,7 @@ fun CustomListItem(
 
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
- fun KeySkillsRow(itemUiState: List<String>, autoScroll : Boolean = false) {
+fun KeySkillsRow(itemUiState: List<String>, autoScroll: Boolean = false) {
     LazyRow(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)

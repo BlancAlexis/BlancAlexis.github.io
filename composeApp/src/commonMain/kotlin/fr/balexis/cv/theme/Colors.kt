@@ -15,8 +15,6 @@ data class AppColors(
 )
 
 
-
-
 val vistaBlue = Color(0xFF80A4ED)
 val pearl = Color(0xFFE6E1C5)
 val sage = Color(0xFFD4CB92)
@@ -40,7 +38,7 @@ val DarkAppColors = AppColors(
     surface = pearl,
     onPrimary = Color.Black,
     onBackground = Color.Black
-)
+) //TODO dark theme
 
 val LocalAppColors = staticCompositionLocalOf {
     DarkAppColors

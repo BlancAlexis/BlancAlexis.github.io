@@ -1,7 +1,7 @@
 package fr.balexis.cv
 
 
-class WasmPlatform: DevicePlatform {
+class WasmPlatform : DevicePlatform {
     override val name: String = "JS"
 }
 

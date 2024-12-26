@@ -7,17 +7,12 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.ListItem
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.mortarboard_icon
 import fr.balexis.cv.model.BaseItemData
-import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.columbiaBlue
 import org.jetbrains.compose.resources.painterResource
 

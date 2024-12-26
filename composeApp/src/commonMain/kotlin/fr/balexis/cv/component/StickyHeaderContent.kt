@@ -16,14 +16,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import fr.balexis.cv.theme.LocalAppColors
 
 @Composable
-fun stickyHeaderContent(
-    text: String
+fun StickyHeaderContent(
+    text: String, endSpacer: Boolean = true
 ) {
     val color = LocalAppColors.current.background
     Row(
@@ -38,28 +37,10 @@ fun stickyHeaderContent(
             text = text,
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp,
-            color = Color.Black)
+            color = Color.Black
+        )
     }
-    Spacer(modifier = Modifier.height(8.dp))
-}
-
-@Composable
-fun stickyHeaderContentWithoutSpacer(
-    text: String
-) {
-    val color = LocalAppColors.current.background
-    Row(
-        modifier = Modifier.drawBehind {
-            drawRect(color, size = size.copy(height = size.height / 2))
-        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.primary)
-            .padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = text,
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp,
-            color = Color.Black)
+    if (endSpacer) {
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }

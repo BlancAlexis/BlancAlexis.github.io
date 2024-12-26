@@ -36,10 +36,7 @@ fun App() {
                     })
                 }
             }
-
-
         }
-
     }
 }
 
@@ -56,7 +53,6 @@ fun AppTheme(
     ) {
         content()
     }
-
 }
 
 sealed interface Routes {

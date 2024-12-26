@@ -10,28 +10,15 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.toIntSize
-import androidx.compose.ui.unit.toSize
 import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.android_icon
-import balexiscv.composeapp.generated.resources.compose_multiplatform
 import balexiscv.composeapp.generated.resources.contact_icon
-import balexiscv.composeapp.generated.resources.flutter_icon
 import balexiscv.composeapp.generated.resources.github_icon
 import balexiscv.composeapp.generated.resources.linkedin_icon
 import balexiscv.composeapp.generated.resources.mail_icon
@@ -40,11 +27,11 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-sealed interface SocialNav {
-    data object Linkedin : SocialNav
-    data object Github : SocialNav
-    data object Mail : SocialNav
-    data object Contact : SocialNav
+sealed interface MediaItems {
+    data object Linkedin : MediaItems
+    data object Github : MediaItems
+    data object Mail : MediaItems
+    data object Contact : MediaItems
 
 }
 
@@ -53,16 +40,19 @@ sealed interface MainScreenEvent {
 }
 
 sealed class ProfessionalMedia(
-    val name: String, val action: SocialNav, val icon: DrawableResource
-){
-    data object Linkedin : ProfessionalMedia("linkedin", SocialNav.Linkedin, Res.drawable.linkedin_icon)
-    data object Github : ProfessionalMedia("github", SocialNav.Github, Res.drawable.github_icon)
-    data object Mail : ProfessionalMedia("mail", SocialNav.Mail, Res.drawable.mail_icon)
-    data object Contact : ProfessionalMedia("contact", SocialNav.Contact, Res.drawable.contact_icon)
+    val name: String, val action: MediaItems, val icon: DrawableResource
+) {
+    data object Linkedin :
+        ProfessionalMedia("linkedin", MediaItems.Linkedin, Res.drawable.linkedin_icon)
 
-    companion object{
+    data object Github : ProfessionalMedia("github", MediaItems.Github, Res.drawable.github_icon)
+    data object Mail : ProfessionalMedia("mail", MediaItems.Mail, Res.drawable.mail_icon)
+    data object Contact :
+        ProfessionalMedia("contact", MediaItems.Contact, Res.drawable.contact_icon)
+
+    companion object {
         val entries: List<ProfessionalMedia> = listOf(
-          Mail,Github,Linkedin,Contact
+            Mail, Github, Linkedin, Contact
         )
     }
 }
@@ -71,7 +61,7 @@ sealed class ProfessionalMedia(
 @Composable
 @Preview
 fun ProfessionalMediaCap(
-    modifier: Modifier = Modifier, onEvent: (event: SocialNav) -> Unit
+    modifier: Modifier = Modifier, onEvent: (event: MediaItems) -> Unit
 ) {
     val circleColor = LocalAppColors.current.primary
     Row(
@@ -103,10 +93,9 @@ fun ProfessionalMediaCap(
 }
 
 
-
-fun Modifier.circleBackground(color: Color, radius: Float) : Modifier =
+fun Modifier.circleBackground(color: Color, radius: Float): Modifier =
     drawBehind {
-           drawCircle(
-                color = color, radius = radius
-           )
+        drawCircle(
+            color = color, radius = radius
+        )
     }

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.ContextualFlowRow
 import androidx.compose.foundation.layout.ContextualFlowRowOverflow
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -44,30 +45,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.cpp_icon
-import balexiscv.composeapp.generated.resources.dart_icon
-import balexiscv.composeapp.generated.resources.java_icon
-import balexiscv.composeapp.generated.resources.javascript_icon
-import balexiscv.composeapp.generated.resources.kotlin_icon
-import balexiscv.composeapp.generated.resources.php_icon
-import balexiscv.composeapp.generated.resources.python_icon
-import balexiscv.composeapp.generated.resources.sql_icon
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-
-val libraryKnowAndroidNative = listOf(
-    "Retrofit", "Room", "Coroutine", "Flow", "Koin", "RXJava", "Hilt", "Coil", "Paging3", "Maps"
-)
-
-val libraryKnowFlutter = listOf(
-    "Riverpod", "Bloc", "Hive", "Dio", "Injectable + Get It", "Maps"
-)
-
-val libraryKnowKMP = listOf(
-    "Ktor", "Kotlin Serialization", "Room", "Koin", "Maps"
-)
 
 
 //Faire un genre de carousel horizontalPager
@@ -105,14 +85,13 @@ fun HorizontalPagerIconButtonControl(
     }
 }
 
-sealed class HorizontalPagerDesktopControl() {
-    object OnLeftButtonClick : HorizontalPagerDesktopControl()
-    object OnRightButtonClick : HorizontalPagerDesktopControl()
+sealed class HorizontalPagerDesktopControl {
+    data object OnLeftButtonClick : HorizontalPagerDesktopControl()
+    data object OnRightButtonClick : HorizontalPagerDesktopControl()
 }
 
 @Composable
 fun FrameworkCard(
-
     title: String,
     subtitle: String,
     description: String,
@@ -124,8 +103,6 @@ fun FrameworkCard(
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = modifier
-        //Fait crash avec key item100
-
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -134,12 +111,13 @@ fun FrameworkCard(
                 contentScale = ContentScale.FillBounds,
                 painter = painterResource(leadIcon),
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth(0.2f)
-                    .padding(top = 16.dp, start = 16.dp, bottom = 16.dp)
+                modifier = Modifier.fillMaxWidth(0.2f).fillMaxHeight()
+                    .padding(top = 16.dp, start = 16.dp, bottom = 16.dp, end = 8.dp)
             )
             Column(
                 modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp))
-                    .background(LocalAppColors.current.surface).border(1.dp, Color.Black, RoundedCornerShape(16.dp))
+                    .background(LocalAppColors.current.surface)
+                    .border(1.dp, Color.Black, RoundedCornerShape(16.dp))
                     .padding(8.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
 
@@ -198,7 +176,6 @@ private fun IconTextRow(text: String, icon: DrawableResource) {
 }
 
 
-//Lib que je connais
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
 fun LibraryKnow(
@@ -234,39 +211,3 @@ fun LibraryKnow(
 }
 
 
-@Composable
-fun archi(
-    list: List<String> = listOf("MVVM", "MVC", "MVI", "Clean architecture")
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp))
-            .border(1.dp, Color.Black, RoundedCornerShape(16.dp))
-            .background(LocalAppColors.current.surface),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        list.forEach {
-            Text(it)
-        }
-    }
-}
-
-
-sealed class ProgrammingLanguage(
-    val name: String,
-    val icon: DrawableResource
-){
-    object Kotlin : ProgrammingLanguage("Kotlin", Res.drawable.kotlin_icon)
-    object Java : ProgrammingLanguage("Java", Res.drawable.java_icon)
-    object Python : ProgrammingLanguage("Python", Res.drawable.python_icon)
-    object PHP : ProgrammingLanguage("PHP", Res.drawable.php_icon)
-    object Cpp : ProgrammingLanguage("C++", Res.drawable.cpp_icon)
-    object Javascript : ProgrammingLanguage("Javascript", Res.drawable.javascript_icon)
-    object SQL : ProgrammingLanguage("SQL", Res.drawable.sql_icon)
-    object Dart : ProgrammingLanguage("Dart", Res.drawable.dart_icon)
-
-    companion object {
-        val entries: List<ProgrammingLanguage> = listOf(
-            Kotlin, Java, Python, PHP, Cpp, Javascript, SQL, Dart
-        )
-    }
-}

@@ -3,8 +3,6 @@ package fr.balexis.cv.data
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.android_icon
 import balexiscv.composeapp.generated.resources.flutter_icon
-import balexiscv.composeapp.generated.resources.java_icon
-import balexiscv.composeapp.generated.resources.kotlin_icon
 import fr.balexis.cv.model.BaseItemData
 import fr.balexis.cv.model.FullItemData
 
@@ -31,8 +29,8 @@ val listMentoredProject = listOf(
         description = "Récupération d’un ancien projet IOS objective-C d’un professeur, portage sur Flutter pour le rendre multiplateforme\n" +
                 "avec un système de fichier scénario modifiable à tout moment sans besoin de recompiler",
         date = "",
-       tags =  listOf("IOS", "Flutter"),
-       companyName =  "IUT Lyon 1",
+        tags = listOf("IOS", "Flutter"),
+        companyName = "IUT Lyon 1",
         mainIcon = Res.drawable.flutter_icon
     )
 
@@ -57,7 +55,7 @@ val listPersonalProject = listOf(
         ),
         mainIcon = Res.drawable.android_icon
 
-        ),
+    ),
     FullItemData(
         title = "Guide des monuments de roubaix",
         description = "Application permettant la visualisation des monuments et une mise en favori",
@@ -72,13 +70,13 @@ val listPersonalProject = listOf(
             "Room",
             "Coil"
         ),
-mainIcon = Res.drawable.flutter_icon
-        )
+        mainIcon = Res.drawable.flutter_icon
+    )
 )
 
 val listProfesionalExperience = listOf(
     FullItemData(
-       title =  "Alternance - Développeur Android",
+        title = "Alternance - Développeur Android",
         description = "Développements de nouvelles fonctionnalités\n" +
                 "Corrections de bugs \n" +
                 "Mise en place d’architecture logicielle \n" +
@@ -112,4 +110,16 @@ val listProfesionalExperience = listOf(
         tags = listOf(),
         companyName = "Nexans"
     )
+)
+
+val libraryKnowAndroidNative = listOf(
+    "Retrofit", "Room", "Coroutine", "Flow", "Koin", "RXJava", "Hilt", "Coil", "Paging3", "Maps"
+)
+
+val libraryKnowFlutter = listOf(
+    "Riverpod", "Bloc", "Hive", "Dio", "Injectable + Get It", "Maps"
+)
+
+val libraryKnowKMP = listOf(
+    "Ktor", "Kotlin Serialization", "Room", "Koin", "Maps"
 )

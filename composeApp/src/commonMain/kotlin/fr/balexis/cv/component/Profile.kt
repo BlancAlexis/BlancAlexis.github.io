@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -37,7 +36,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import fr.balexis.cv.data.Framework
-
 import fr.balexis.cv.theme.LocalAppColors
 import kotlinx.coroutines.launch
 
@@ -78,7 +76,7 @@ fun Profile() {
 
             }
             item {
-                stickyHeaderContentWithoutSpacer("Mes frameworks")
+                StickyHeaderContent("Mes frameworks")
             }
             item {
                 val horizontalPagerState =
@@ -109,7 +107,7 @@ fun Profile() {
                         })
                         FrameworkCard(
                             title = framework.title,
-                            subtitle = framework.langages,
+                            subtitle = framework.languages,
                             description = framework.view,
                             leadIcon = framework.icon,
                             libraries = framework.libraries,
@@ -117,9 +115,7 @@ fun Profile() {
                                 .height(200.dp),
                             viewIcon = framework.viewIcon
                         )
-
                     }
-
                 }
                 Row(
                     Modifier.wrapContentHeight().fillMaxWidth().padding(bottom = 8.dp),
@@ -136,7 +132,7 @@ fun Profile() {
                 }
             }
             item {
-                stickyHeaderContentWithoutSpacer("Mes langages")
+                StickyHeaderContent("Mes langages")
             }
             item {
                 Row {
@@ -146,7 +142,7 @@ fun Profile() {
                     Column(
                         modifier = Modifier.wrapContentSize()
                     ) {
-                        Card {
+                        Card() {
                             Row {
                                 Column {
                                     Text("Clean architecture")
@@ -165,7 +161,7 @@ fun Profile() {
                 }
             }
             item {
-                stickyHeaderContentWithoutSpacer("Mes outils")
+                StickyHeaderContent("Mes outils")
             }
             item {
                 LazyVerticalGrid(
@@ -192,15 +188,8 @@ fun Profile() {
                     }
                 }
             }
-            item {
-                Spacer(
-                    modifier = Modifier.height(50.dp)
-                )
-            }
-
         }
     }
-
 }
 
 

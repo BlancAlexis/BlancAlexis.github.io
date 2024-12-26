@@ -9,4 +9,4 @@ data class FullItemData(
     override val mainIcon: DrawableResource? = null,
     val tags: List<String>,
     val companyName: String = "",
-) : BaseItemData(title, description, date,mainIcon)
+) : BaseItemData(title, description, date, mainIcon)
