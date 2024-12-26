@@ -61,9 +61,7 @@ fun Profile() {
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    LanguageRow(
-                        listOf("Français : Langue natale", "Anglais : Niveau B2")
-                    )
+                    LanguageRow()
                     Row(
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
                         verticalAlignment = Alignment.CenterVertically,
@@ -113,10 +111,11 @@ fun Profile() {
                             title = framework.title,
                             subtitle = framework.langages,
                             description = framework.view,
-                            icon = framework.icon,
+                            leadIcon = framework.icon,
                             libraries = framework.libraries,
                             modifier = Modifier.fillMaxWidth().align(Alignment.Center)
-                                .height(200.dp)
+                                .height(200.dp),
+                            viewIcon = framework.viewIcon
                         )
 
                     }

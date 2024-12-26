@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -86,20 +84,26 @@ fun MainPage(
         Box(
             modifier = Modifier.wrapContentSize(), contentAlignment = Alignment.Center
         ) {
-            ProfessionalMediaCap(modifier = Modifier.align(Alignment.TopCenter), onEvent = {
-                when (it) {
-                    is SocialNav.Linkedin -> {
-                        uriHandler.openUri("https://www.linkedin.com/in/alexis--blanc/")
-                    }
+            ProfessionalMediaCap(modifier = Modifier.align(Alignment.TopCenter),
+                onEvent = {
+                    when (it) {
+                        is SocialNav.Linkedin -> {
+                            uriHandler.openUri("https://www.linkedin.com/in/alexis--blanc/")
+                        }
 
-                    is SocialNav.Github -> {
-                        onEvent(MainScreenEvent.OpenContactDialog)
-                    }
+                        is SocialNav.Github -> {
+                            uriHandler.openUri("https://github.com/BlancAlexis")
 
-                    is SocialNav.Mail -> {
-                        uriHandler.openUri("mailto:blanc.alexispro@gmail.com")
+                        }
+
+                        is SocialNav.Mail -> {
+                            uriHandler.openUri("mailto:blanc.alexispro@gmail.com")
+                        }
+
+                        SocialNav.Contact -> {
+                            onEvent(MainScreenEvent.OpenContactDialog)
+                        }
                     }
-                }
             })
             ProfileHeader()
         }

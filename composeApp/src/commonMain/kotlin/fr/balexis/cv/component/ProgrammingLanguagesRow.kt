@@ -18,12 +18,8 @@ fun ProgrammingLanguageRow(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp), horizontalArrangement = Arrangement.Center
     ) {
-        LanguageRowItem("Kotlin", Res.drawable.compose_multiplatform)
-        LanguageRowItem("Java", Res.drawable.compose_multiplatform)
-        LanguageRowItem("Python", Res.drawable.compose_multiplatform)
-        LanguageRowItem("PHP", Res.drawable.compose_multiplatform)
-        LanguageRowItem("C++", Res.drawable.compose_multiplatform)
-        LanguageRowItem("SQL", Res.drawable.compose_multiplatform)
-        LanguageRowItem("Javascript", Res.drawable.compose_multiplatform)
+        for (ProgrammingLanguage in ProgrammingLanguage.entries) {
+            LanguageRowItem(ProgrammingLanguage.name, ProgrammingLanguage.icon)
+        }
     }
 }

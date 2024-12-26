@@ -11,11 +11,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.mortarboard_icon
 import fr.balexis.cv.model.BaseItemData
 import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.columbiaBlue
+import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -28,9 +32,13 @@ fun TrainingItem(exp: BaseItemData) {
         ListItem(text = {
             Text(exp.title)
         }, icon = {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.List, contentDescription = null
-            )
+            exp.mainIcon?.let {
+                Icon(
+                    tint = Color.Unspecified,
+                    painter = painterResource(it),
+                    contentDescription = null
+                )
+            }
         }, secondaryText = {
             Text(exp.description, maxLines = 1, overflow = TextOverflow.Ellipsis)
         }, trailing = {

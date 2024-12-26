@@ -43,10 +43,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.android
 import balexiscv.composeapp.generated.resources.compose_multiplatform
-import balexiscv.composeapp.generated.resources.flutter_icon
-import balexiscv.composeapp.generated.resources.kotlin_Icon
 import fr.balexis.cv.model.FullItemData
 import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.columbiaBlue
@@ -73,8 +70,9 @@ fun CustomListItem(
                 modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min)
             ) {
                 Icon(
-                    modifier = Modifier.size(50.dp).fillMaxHeight().align(Alignment.CenterVertically),
-                    painter = painterResource(Res.drawable.compose_multiplatform),
+                    tint = Color.Unspecified,
+                    modifier = Modifier.size(50.dp).fillMaxHeight().align(Alignment.CenterVertically).padding(horizontal = 4.dp),
+                    painter = if(itemUiState.mainIcon != null){ painterResource(itemUiState.mainIcon)} else {painterResource(Res.drawable.compose_multiplatform)},
                     contentDescription = null
                 )
 
