@@ -12,20 +12,24 @@ import androidx.compose.foundation.layout.ContextualFlowRow
 import androidx.compose.foundation.layout.ContextualFlowRowOverflow
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Chip
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,51 +41,69 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.ContentDrawScope
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.node.DrawModifierNode
-import androidx.compose.ui.node.ModifierNodeElement
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.flutter_icon
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 val libraryKnowAndroidNative = listOf(
-    "Retrofit",
-    "Room",
-    "Coroutine",
-    "Flow",
-    "Koin",
-    "RXJava",
-    "Hilt",
-    "Coil",
-    "Paging3",
-    "Maps"
+    "Retrofit", "Room", "Coroutine", "Flow", "Koin", "RXJava", "Hilt", "Coil", "Paging3", "Maps"
 )
 
 val libraryKnowFlutter = listOf(
-    "Riverpod",
-    "Bloc",
-    "Hive",
-    "Dio",
-    "Injectable + Get It",
-    "Maps"
+    "Riverpod", "Bloc", "Hive", "Dio", "Injectable + Get It", "Maps"
 )
 
 val libraryKnowKMP = listOf(
-    "Ktor",
-    "Kotlin Serialization",
-    "Room",
-    "Koin",
-    "Maps"
+    "Ktor", "Kotlin Serialization", "Room", "Koin", "Maps"
 )
 
 
 //Faire un genre de carousel horizontalPager
+@Composable
+fun HorizontalPagerIconButtonControl(
+    modifier: Modifier, event: (HorizontalPagerDesktopControl) -> Unit
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        IconButton(
+            onClick = { event(HorizontalPagerDesktopControl.OnLeftButtonClick) },
+            modifier = Modifier.clip(
+                CircleShape
+            ).background(Color.Black.copy(alpha = 0.5f))
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = null,
+                modifier = Modifier.size(24.dp),
+                tint = LocalAppColors.current.onBackground
+            )
+        }
+        IconButton(onClick = { event(HorizontalPagerDesktopControl.OnRightButtonClick) }) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                contentDescription = null,
+                modifier = Modifier.size(24.dp),
+                tint = LocalAppColors.current.onBackground
+            )
+        }
+
+    }
+}
+
+sealed class HorizontalPagerDesktopControl() {
+    object OnLeftButtonClick : HorizontalPagerDesktopControl()
+    object OnRightButtonClick : HorizontalPagerDesktopControl()
+}
 
 @Composable
 fun FrameworkCard(
@@ -94,8 +116,8 @@ fun FrameworkCard(
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        modifier =
-            Modifier.fillMaxWidth().fillMaxHeight(0.4f) //Fait crash avec key item100
+        modifier = modifier
+        //Fait crash avec key item100
 
     ) {
         Row(
@@ -103,15 +125,15 @@ fun FrameworkCard(
         ) {
             Image(
                 contentScale = ContentScale.FillBounds,
-                painter = painterResource(icon),
+                painter = painterResource(Res.drawable.flutter_icon),
                 contentDescription = null,
-                modifier = Modifier.fillMaxHeight().fillMaxWidth(0.3f)
+                modifier = Modifier.fillMaxWidth(0.2f)
                     .padding(top = 16.dp, start = 16.dp, bottom = 16.dp)
             )
             Column(
-                modifier = Modifier.fillMaxHeight()
-                    .clip(RoundedCornerShape(4.dp)).background(LocalAppColors.current.surface)
-                    .border(1.dp, Color.Black, RoundedCornerShape(4.dp)).padding(8.dp),
+                modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp))
+                    .background(LocalAppColors.current.surface).border(1.dp, Color.Black, RoundedCornerShape(16.dp))
+                    .padding(8.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
 
                 ) {
@@ -139,12 +161,10 @@ private fun IconTextRow(text: String, icon: ImageVector) {
         horizontalArrangement = Arrangement.Center
     ) {
         Icon(
-            imageVector = icon,
-            modifier = Modifier.size(24.dp),
-            contentDescription = null
+            imageVector = icon, modifier = Modifier.size(24.dp), contentDescription = null
         )
         Text(
-            text = text,
+            text = text, modifier = Modifier.padding(start = 8.dp),
         )
     }
 
@@ -186,23 +206,6 @@ fun LibraryKnow(
     }
 }
 
-
-@Composable
-fun archi(
-    list: List<String> = listOf("MVVM", "MVC", "MVI", "Clean architecture")
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp))
-            .border(1.dp, Color.Black, RoundedCornerShape(16.dp))
-            .background(LocalAppColors.current.surface),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        list.forEach {
-            Text(it)
-        }
-    }
-}
-
 @Composable
 fun SkillsCard() {
     val skills = listOf("Android", "Kotlin", "Java", "Python", "PHP", "C++", "SQL", "Javascript")
@@ -219,44 +222,4 @@ fun SkillsCard() {
             }
         }
     }
-}
-
-
-@Composable
-fun AbilitySkillsRow(
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        SkillsCard()
-        SkillsCard()
-    }
-}
-
-
-@Composable
-fun controlOverPager() {
-
-}
-
-fun Modifier.cardControlOverPager(position: Int, lastIndex: Int, event: () -> Unit): Modifier =
-    graphicsLayer {
-
-    }
-
-fun Modifier.circle(color: Color) = this then CircleElement(color)
-
-private data class CircleElement(val color: Color) : ModifierNodeElement<ControlNode>() {
-    override fun create() = ControlNode(color)
-
-    override fun update(node: ControlNode) {
-        node.color = color
-    }
-}
-
-private class ControlNode(var color: Color = Color.Red) : DrawModifierNode, Modifier.Node() {
-    override fun ContentDrawScope.draw() {
-        drawCircle(Color.Red, radius = 10f)
-    }
-
 }

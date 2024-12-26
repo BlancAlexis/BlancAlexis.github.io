@@ -24,22 +24,22 @@ val paynesGray = Color(0xFF395C6B)
 val columbiaBlue = Color(0xFFBCD3F2)
 
 val LightAppColors = AppColors(
-    primary = paynesGray,
-    secondary = vistaBlue,
-    background = pearl,
-    surface = sage, 
-    onPrimary = pearl,
-    onBackground = paynesGray
+    primary = sage,
+    secondary = columbiaBlue,
+    background = paynesGray,
+    surface = pearl,
+    onPrimary = Color.Black,
+    onBackground = Color.Black
 )
 
 
 val DarkAppColors = AppColors(
-    primary = paynesGray,
+    primary = sage,
     secondary = columbiaBlue,
-    background = pearl,
-    surface = sage,
-    onPrimary = pearl,
-    onBackground = paynesGray
+    background = paynesGray,
+    surface = pearl,
+    onPrimary = Color.Black,
+    onBackground = Color.Black
 )
 
 val LocalAppColors = staticCompositionLocalOf {

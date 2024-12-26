@@ -65,7 +65,7 @@ fun CustomListItem(
 ) {
     var isOpen by remember { mutableStateOf(false) }
     Card(
-        backgroundColor = columbiaBlue,
+        backgroundColor = LocalAppColors.current.secondary,
         modifier = Modifier.fillMaxWidth().padding(8.dp), elevation = 4.dp
     ) {
         Column {

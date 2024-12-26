@@ -30,7 +30,7 @@ fun LanguageRowItem(
     text: String, icon: DrawableResource
 ) {
     Row(
-        Modifier.wrapContentSize().clip(RoundedCornerShape(8.dp)).background(LocalAppColors.current.surface)
+        Modifier.wrapContentSize().clip(RoundedCornerShape(8.dp)).background(LocalAppColors.current.secondary)
             .border(1.dp, Color.Black, RoundedCornerShape(8.dp)).padding(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

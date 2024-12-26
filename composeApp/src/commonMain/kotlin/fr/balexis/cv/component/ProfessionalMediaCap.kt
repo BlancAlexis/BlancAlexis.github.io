@@ -55,7 +55,7 @@ sealed class ActionWrapper {
 fun ProfessionalMediaCap(
     modifier: Modifier = Modifier, onEvent: (event: SocialNav) -> Unit
 ) {
-    val circleColor = LocalAppColors.current.surface
+    val circleColor = LocalAppColors.current.primary
     Row(
         horizontalArrangement = Arrangement.Center, modifier = modifier.then(
             Modifier.fillMaxWidth(0.7f).wrapContentWidth(Alignment.End).heightIn(50.dp, 100.dp)
@@ -63,7 +63,7 @@ fun ProfessionalMediaCap(
                     shape = RoundedCornerShape(
                         bottomStart = 32.dp, bottomEnd = 32.dp
                     )
-                ).background(LocalAppColors.current.primary)
+                ).background(LocalAppColors.current.background)
         ), verticalAlignment = Alignment.CenterVertically
 
     ) {

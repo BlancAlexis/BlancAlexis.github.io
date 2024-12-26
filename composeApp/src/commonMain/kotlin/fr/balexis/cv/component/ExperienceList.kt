@@ -53,7 +53,7 @@ fun ExperienceList() {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp)
                     .clip(RoundedCornerShape(4.dp)).background(
-                    LocalAppColors.current.onPrimary
+                    LocalAppColors.current.surface
                 ).border(1.dp, Color.Black,RoundedCornerShape(4.dp)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween

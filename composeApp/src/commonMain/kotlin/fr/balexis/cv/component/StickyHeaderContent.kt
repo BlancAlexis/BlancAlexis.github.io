@@ -25,11 +25,11 @@ import fr.balexis.cv.theme.LocalAppColors
 fun stickyHeaderContent(
     text: String
 ) {
-    val color = LocalAppColors.current.primary
+    val color = LocalAppColors.current.background
     Row(
         modifier = Modifier.drawBehind {
             drawRect(color, size = size.copy(height = size.height / 2))
-        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.secondary)
+        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.primary)
             .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -47,11 +47,11 @@ fun stickyHeaderContent(
 fun stickyHeaderContentWithoutSpacer(
     text: String
 ) {
-    val color = LocalAppColors.current.primary
+    val color = LocalAppColors.current.background
     Row(
         modifier = Modifier.drawBehind {
             drawRect(color, size = size.copy(height = size.height / 2))
-        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.secondary)
+        }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.primary)
             .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
