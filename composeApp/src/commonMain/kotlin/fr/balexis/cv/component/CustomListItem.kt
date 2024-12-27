@@ -1,8 +1,10 @@
 package fr.balexis.cv.data
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -33,6 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
@@ -42,10 +45,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
+import fr.balexis.cv.component.BulletPointFormatter
 import fr.balexis.cv.model.FullItemData
 import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.pearl
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 val topShape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
@@ -60,7 +65,8 @@ fun CustomListItem(
     var isOpen by remember { mutableStateOf(false) }
     Card(
         backgroundColor = LocalAppColors.current.secondary,
-        modifier = Modifier.fillMaxWidth().padding(8.dp), elevation = 4.dp
+        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        elevation = 4.dp
     ) {
         Column {
             Row(
@@ -117,18 +123,25 @@ fun CustomListItem(
                                 Icons.Filled.ArrowDropDown
                             } else {
                                 Icons.Filled.KeyboardArrowUp
-                            },
-                            contentDescription = null
+                            }, contentDescription = null
                         )
                     }
                 }
             }
-            AnimatedVisibility(
-                isOpen
-            ) {
-                Text(
-                    itemUiState.description, modifier = Modifier.padding(16.dp)
-                )
+            AnimatedVisibility(isOpen) {
+                    Box(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+                            .clip(RoundedCornerShape(15.dp)).background(Color.White).padding(horizontal = 8.dp)
+                    ) {
+                        BulletPointFormatter(
+                            text = stringResource(itemUiState.description),
+                            bulletColor = Color.Black,
+                            bulletSize = 4f,
+                            textColor = LocalAppColors.current.onBackground,
+                            textSize = 16,
+                            boldSection = listOf("architecture", "clean")
+                        )
+                    }
             }
             KeySkillsRow(
                 itemUiState.tags
@@ -149,10 +162,7 @@ fun KeySkillsRow(itemUiState: List<String>, autoScroll: Boolean = false) {
             Chip(colors = ChipDefaults.chipColors(backgroundColor = pearl), onClick = {
 
             }, content = {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null
-                )
-                Text(skill)
+                Text(text = skill, fontSize = 12.sp)
             })
         }
     }

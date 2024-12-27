@@ -108,7 +108,7 @@ fun FrameworkCard(
             modifier = Modifier.fillMaxWidth(),
         ) {
             Image(
-                contentScale = ContentScale.FillBounds,
+                contentScale = ContentScale.Fit,
                 painter = painterResource(leadIcon),
                 contentDescription = null,
                 modifier = Modifier.fillMaxWidth(0.2f).fillMaxHeight()

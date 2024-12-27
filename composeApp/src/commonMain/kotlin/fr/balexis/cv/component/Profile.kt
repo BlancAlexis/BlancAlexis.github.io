@@ -46,6 +46,7 @@ fun Profile() {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+
         LazyColumn(
             modifier = Modifier.padding(top = 8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
