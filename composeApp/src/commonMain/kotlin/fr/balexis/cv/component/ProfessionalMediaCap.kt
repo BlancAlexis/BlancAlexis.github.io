@@ -22,6 +22,7 @@ import balexiscv.composeapp.generated.resources.contact_icon
 import balexiscv.composeapp.generated.resources.github_icon
 import balexiscv.composeapp.generated.resources.linkedin_icon
 import balexiscv.composeapp.generated.resources.mail_icon
+import fr.balexis.cv.getPlatform
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -77,7 +78,7 @@ fun ProfessionalMediaCap(
     ) {
         ProfessionalMedia.entries.forEach {
             IconButton(
-                modifier = Modifier.circleBackground(circleColor, 20f),
+                modifier = Modifier.circleBackground(circleColor, if(getPlatform() == "JS") { 20f} else { 50f }),
                 onClick = {
                     onEvent(it.action)
                 }) {

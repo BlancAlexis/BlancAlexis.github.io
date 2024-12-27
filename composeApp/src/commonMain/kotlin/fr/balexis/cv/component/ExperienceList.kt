@@ -36,7 +36,7 @@ import fr.balexis.cv.data.BackgroundWrapper
 import fr.balexis.cv.data.CustomListItem
 import fr.balexis.cv.data.listMentoredProject
 import fr.balexis.cv.data.listPersonalProject
-import fr.balexis.cv.data.listProfesionalExperience
+import fr.balexis.cv.data.listProfessionalExperience
 import fr.balexis.cv.data.listSchool
 import fr.balexis.cv.theme.LocalAppColors
 
@@ -72,22 +72,23 @@ fun ExperienceList() {
             )
         }
 
-        itemsIndexed(listProfesionalExperience.take(maxItemsLazyRowProXP),
+        itemsIndexed(listProfessionalExperience.take(maxItemsLazyRowProXP),
             key = { _, item -> item.hashCode() }) { index, exp ->
-            LazyColumnCategory(listProfesionalExperience.size, index) { shape ->
+            LazyColumnCategory(listProfessionalExperience.size, index) { shape ->
                 BackgroundWrapper(
-                    shape = if (index != listProfesionalExperience.size - 1) {
+                    modifier = Modifier.animateItem(),
+                    shape = if (index != listProfessionalExperience.size - 1) {
                         shape
                     } else {
                         RectangleShape
                     }
                 ) {
-                    CustomListItem(exp)
+                    CustomListItem(itemUiState = exp, modifier = Modifier.animateItem())
 
                 }
             }
         }
-        if (listProfesionalExperience.size > 2) {
+        if (listProfessionalExperience.size > 2) {
             item {
                 Row(horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
@@ -99,8 +100,8 @@ fun ExperienceList() {
                             )
                         ).background(LocalAppColors.current.surface).clickable {
                             maxItemsLazyRowProXP =
-                                if (maxItemsLazyRowProXP < listProfesionalExperience.size) {
-                                    listProfesionalExperience.size
+                                if (maxItemsLazyRowProXP < listProfessionalExperience.size) {
+                                    listProfessionalExperience.size
                                 } else {
                                     2
                                 }
@@ -126,9 +127,10 @@ fun ExperienceList() {
             LazyColumnCategory(
                 listPersonalProject.size, index
             ) { shape ->
-                BackgroundWrapper(shape) {
-                    CustomListItem(exp)
-                }
+                BackgroundWrapper(
+                    shape = shape, content = {
+                    CustomListItem(exp, Modifier.animateItem())
+                }, modifier = Modifier.animateItem())
             }
         }
         item {
@@ -145,9 +147,10 @@ fun ExperienceList() {
             LazyColumnCategory(
                 listMentoredProject.size, index
             ) { shape ->
-                BackgroundWrapper(shape) {
-                    CustomListItem(exp)
-                }
+                BackgroundWrapper(
+                    shape = shape, content = {
+                    CustomListItem(exp, Modifier.animateItem())
+                }, modifier = Modifier.animateItem())
             }
         }
         item {
@@ -162,9 +165,9 @@ fun ExperienceList() {
         }
         itemsIndexed(listSchool, key = { _, item -> item.hashCode() }) { index, exp ->
             LazyColumnCategory(listSchool.size, index) { shape ->
-                BackgroundWrapper(shape) {
+                BackgroundWrapper(shape = shape, content = {
                     TrainingItem(exp)
-                }
+                }, modifier = Modifier.animateItem())
             }
         }
     }

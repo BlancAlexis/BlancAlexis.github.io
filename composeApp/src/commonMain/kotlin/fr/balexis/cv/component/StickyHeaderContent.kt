@@ -22,12 +22,12 @@ import fr.balexis.cv.theme.LocalAppColors
 
 @Composable
 fun StickyHeaderContent(
-    text: String, endSpacer: Boolean = true
+    text: String, endSpacer: Boolean = true, backgroundColor: Color = Color.Transparent
 ) {
     val color = LocalAppColors.current.background
     Row(
         modifier = Modifier.drawBehind {
-            drawRect(color, size = size.copy(height = size.height / 2))
+            drawRect(backgroundColor, size = size.copy(height = size.height / 2))
         }.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(LocalAppColors.current.primary)
             .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,

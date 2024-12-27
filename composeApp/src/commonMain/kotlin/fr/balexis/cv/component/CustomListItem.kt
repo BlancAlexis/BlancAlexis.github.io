@@ -55,12 +55,13 @@ val bottomShape = RoundedCornerShape(bottomStart = 15.dp, bottomEnd = 15.dp)
 @Preview
 @Composable
 fun CustomListItem(
-    itemUiState: FullItemData
+    itemUiState: FullItemData,
+    modifier: Modifier
 ) {
     var isOpen by remember { mutableStateOf(false) }
     Card(
         backgroundColor = LocalAppColors.current.secondary,
-        modifier = Modifier.fillMaxWidth().padding(8.dp), elevation = 4.dp
+        modifier = modifier.then(Modifier.fillMaxWidth().padding(8.dp)) , elevation = 4.dp
     ) {
         Column {
             Row(
@@ -160,11 +161,16 @@ fun KeySkillsRow(itemUiState: List<String>, autoScroll: Boolean = false) {
 
 @Composable
 fun BackgroundWrapper(
-    shape: Shape, color: Color = LocalAppColors.current.surface, content: @Composable () -> Unit
+    modifier: Modifier,
+    shape: Shape,
+    color: Color = LocalAppColors.current.surface,
+    content: @Composable () -> Unit,
+
 ) {
     Card(
         shape = shape,
         backgroundColor = color,
+        modifier = modifier
     ) {
         content()
     }

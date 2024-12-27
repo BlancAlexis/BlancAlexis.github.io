@@ -74,7 +74,7 @@ val listPersonalProject = listOf(
     )
 )
 
-val listProfesionalExperience = listOf(
+val listProfessionalExperience = listOf(
     FullItemData(
         title = "Alternance - Développeur Android",
         description = "Développements de nouvelles fonctionnalités\n" +
