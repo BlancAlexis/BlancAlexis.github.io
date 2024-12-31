@@ -2,6 +2,7 @@ package fr.balexis.cv.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import fr.balexis.cv.model.BaseItemData
 import fr.balexis.cv.theme.columbiaBlue
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -29,13 +31,14 @@ fun TrainingItem(exp: BaseItemData) {
         }, icon = {
             exp.mainIcon?.let {
                 Icon(
+                    modifier = Modifier.size(40.dp),
                     tint = Color.Unspecified,
                     painter = painterResource(it),
                     contentDescription = null
                 )
             }
         }, secondaryText = {
-            Text(exp.description, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(stringResource(exp.description) , maxLines = 1, overflow = TextOverflow.Ellipsis)
         }, trailing = {
             Text(exp.date)
         })

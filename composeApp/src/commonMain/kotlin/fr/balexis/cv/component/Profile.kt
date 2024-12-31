@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 fun Profile() {
     val coroutineScope = rememberCoroutineScope()
     Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
                 Column(

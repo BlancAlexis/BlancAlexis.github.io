@@ -26,6 +26,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Chip
+import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -51,6 +52,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import fr.balexis.cv.theme.LocalAppColors
+import fr.balexis.cv.theme.vistaBlue
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -208,7 +210,7 @@ fun LibraryKnow(
     }
     var remainingItems = 0
     ContextualFlowRow(
-            modifier = Modifier.fillMaxWidth().wrapContentHeight().background(LocalAppColors.current.background).animateContentSize(),
+            modifier = Modifier.fillMaxWidth().wrapContentHeight().animateContentSize(),
             maxLines = maxLines,
             itemCount = libs.size,
             horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -217,14 +219,16 @@ fun LibraryKnow(
                     Chip(
                         content = { Text("+$remainingItems") },
                         onClick = { maxLines = 4},
-                        modifier = Modifier.wrapContentSize()
+                        modifier = Modifier.wrapContentSize(),
+                        colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
                     )
                 },
                 collapseIndicator = {
                     Chip(
                         content = { Text("Restreindre") },
                         onClick = { maxLines = 1},
-                        modifier = Modifier.wrapContentSize()
+                        modifier = Modifier.wrapContentSize(),
+                        colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
                     )
                 }
             ),
