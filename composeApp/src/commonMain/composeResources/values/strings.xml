@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="title_internship_wimova_year">Alternance - Développeur Android</string>
+    <string name="description_internship_wimova_year">
+        Lors de mon alternance, j'ai pu :
+             - Implémentation d'architecture logicielle sur du code legacy
+             - Ajouts de nouvelles fonctionnalités respectant les principes de la clean architecture, en contact avec le back
+             - Correction de bugs et visualisation d'entre eux via CrashAnalitycs
+             - Création de nouveau composant d'affichage complétement personnalisé
+             - Test du code pour garantir le bon fonctionnement
+    </string>
+
+
+    <string name="title_internship_wimova">Stage - Développeur Android</string>
+    <string name="description_internship_wimova">
+        Lors de mon stage j'ai pu :
+- Ajout d'une fonctionnalité
+- Création de composant personnalisé
+- Test du code pour garantir le bon fonctionnement
+    </string>
+
+
+    <string name="description_project_pokedex">
+    Projet ayant pour but de démontrer mes compétences en Android natif :
+        - Architecture basée sur un MVVM en appliquant les principes de la clean architecture
+        - Récupération d'objet via une API puis affichage dans une liste paginée grâce a Paging3
+        - Sauvegarde d'un groupe d'objets grâce à Room
+        - Affichage adaptatif entre les formats tablettes, smartphones et foldables
+    </string>
+
+    <string name="description_project_cv">
+        Court projet visant à proposer une version en ligne de mon CV
+- Utilisation de compose multiplateforme
+- Version web disponible sur GitHub pages, version Android dans les releases du projet GIT
+
+        * Ceci n'est pas la version définitive, des modifications sont en cours de réalisation
+    </string>
+
+    <string name="description_project_no_name">
+        Projet visant à monter en compétences sur l'univers KMP
+
+
+    </string>
+
+    <string name="title_monuments_of_roubaix">Monuments de Roubaix</string>
+    <string name="description_monuments_of_roubaix">
+        - Architecture faite avec Riverpod en utilisant les principes de la clean architecture
+- Récupération d'objet via une API distante, puis après traitement les afficher sur une map
+- Sauvegarde des favoris
+
+* L'api n'étant plus disponible, elle utilise maintenant plus qu'un court fichier JSON de la réponse que retournait l'API
+    </string>
+
+    <string name="title_sae_android">Vegetabilis Auditor - IOT</string>
+    <string name="description_sae_android">
+        SAE (Situation d'apprentissage et d'évaluation) de 2ème année, visant à construire un appareil dôté de capteurs biologiques et à suivre les valeurs via une app mobile Android
+- Utilisation d'un arduino équipé de capteurs biométriques pour l'acquisition de données
+- Firebase realtime
+- Une application Android qui récupère en temps réel ces données pour en faire des graphiques / visualisation de données
+    </string>
+
+    <string name="title_sae_flutter">Portage d'un jeu AR en Flutter</string>"
+    <string name="description_sae_flutter">
+        SAE (situation d'apprentissage et évaluation) de 3ème année, nous avons dû récupérer un ancien projet (fait en 2014) d'un professeur en Objective C
+- Utilisation de Flutter BLoC
+- Création de widget totalement personnalisé pour répondre à nos besoins spécifiques
+- Possibilité de changer le scénario du jeu sans recompiler
+    </string>
+
+    <string name="title_iut">BUT Informatique</string>
+    <string name="address_iut">IUT Lyon 1 - Bourg-en-Bresse</string>
+    <string name="title_lycee">Baccalauréat</string>
+    <string name="address_lycee">Lycée carriat - Bourg-en-Bresse</string>
+
+    <string name="description_mechanic_internship">
+        Première expérience professionelle
+        - Responsabilité des voitures qui me sont confiées
+        - Exigence quant à la qualité du travail que je dois rendre
+        - Échange avec le client
+    </string>
+    <string name="description_nexans">
+        Travail lors des vacances d'été 4 années successives
+        - Travail en équipe
+        - Horaire changeant, travail de nuit
+        - Contrôle sur chaîne de production et traçabilité produit
+        - Contrôle qualité
+        - Gestion des matériaux
+    </string>
+
+    <string name="me_personal_description">
+        Bonjour,
+
+
+    Aujourd'hui j'aime tout ce qui touche à lunivers de la programmation mobile, je suis également ouvert a la nouveauté, tel Kotlin multiplatform en qui je fonde de grand espoir depuis quelques temps
+    </string>
+
+    <string name="me_professional_description">
+        Malgré mon âge assez jeune je commence a avoir
+
+        Toujours intérréssé par l'informatique, c'est après un début dans l'univers de la mécanique automobile infructueux que je me tourne vers cette voie.
+    </string>
+</resources>

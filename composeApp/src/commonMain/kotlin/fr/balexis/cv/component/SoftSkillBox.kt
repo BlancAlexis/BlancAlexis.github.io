@@ -31,11 +31,11 @@ fun SoftSkillBox(
 ) {
     Box(
         modifier = Modifier.clip(RoundedCornerShape(16.dp))
-            .border(1.dp, Color.Black, RoundedCornerShape(16.dp)).size(100.dp).background(vistaBlue)
+            .border(1.dp, Color.Black, RoundedCornerShape(16.dp)).size(80.dp).background(vistaBlue)
     ) {
         Icon(
             imageVector = Icons.Default.Build,
-            modifier = Modifier.align(Alignment.TopCenter).padding(top = 16.dp),
+            modifier = Modifier.align(Alignment.TopCenter).padding(top = 8.dp),
             // painter = painterResource(icon),
             contentDescription = null
         )

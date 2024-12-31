@@ -1,106 +1,117 @@
 package fr.balexis.cv.data
 
+
+import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.address_iut
+import balexiscv.composeapp.generated.resources.address_lycee
+import balexiscv.composeapp.generated.resources.android_icon
+import balexiscv.composeapp.generated.resources.description_internship_wimova
+import balexiscv.composeapp.generated.resources.description_internship_wimova_year
+import balexiscv.composeapp.generated.resources.description_mechanic_internship
+import balexiscv.composeapp.generated.resources.description_monuments_of_roubaix
+import balexiscv.composeapp.generated.resources.description_nexans
+import balexiscv.composeapp.generated.resources.description_project_cv
+import balexiscv.composeapp.generated.resources.description_project_no_name
+import balexiscv.composeapp.generated.resources.description_project_pokedex
+import balexiscv.composeapp.generated.resources.description_sae_android
+import balexiscv.composeapp.generated.resources.description_sae_flutter
+import balexiscv.composeapp.generated.resources.flutter_icon
+import balexiscv.composeapp.generated.resources.kotlin_icon
+import balexiscv.composeapp.generated.resources.nexans_icon
+import balexiscv.composeapp.generated.resources.opel_icon
 import fr.balexis.cv.model.BaseItemData
 import fr.balexis.cv.model.FullItemData
 
 val listSchool = listOf(
     BaseItemData(
-        "BUT Informatique", "IUT Lyon 1 - Bourg-en-Bresse", "2021 - 2024"
+        title = "BUT Informatique", description = Res.string.address_iut, date = "2021 - 2024",
     ),
     BaseItemData(
-        "Baccalauréat", "Lycée carriat - Bourg-en-Bresse", "2018 - 2021"
+        title = "Baccalauréat", description = Res.string.address_lycee, date = "2018 - 2021",
     ),
 )
 
 val listMentoredProject = listOf(
     FullItemData(
-        "Programmation équipement domotique - IOT",
-        "Arduino avec plusieurs capteurs biologiques, mesures enregistrées dans une base de données Firebase puis l’application Android interprète sous forme de graphique les données disponibles où que vous soyez en temps réel.",
-        "",
-        listOf("Kotlin", "Java", "Android"),
-        "IUT Lyon 1"
-    ),
-    FullItemData(
-        "Portage d'un jeu AR en Flutter",
-        "Récupération d’un ancien projet IOS objective-C d’un professeur, portage sur Flutter pour le rendre multiplateforme\n" +
-                "avec un système de fichier scénario modifiable à tout moment sans besoin de recompiler",
-        "",
-        listOf("IOS", "Flutter"),
-        "IUT Lyon 1"
+        title = "Programmation équipement domotique - IOT",
+        date = "",
+        tags = listOf("Java", "C", "Android", "Arduino", "MVVM"),
+        companyName = "IUT Lyon 1",
+        mainIcon = Res.drawable.android_icon,
+        description = Res.string.description_sae_android
+    ), FullItemData(
+        title = "Portage d'un jeu AR en Flutter",
+        date = "",
+        tags = listOf("IOS", "Objective-C", "Flutter", "BLoC"),
+        companyName = "IUT Lyon 1",
+        mainIcon = Res.drawable.flutter_icon,
+        description = Res.string.description_sae_flutter
     )
 
 )
 
 val listPersonalProject = listOf(
     FullItemData(
-        "PokedexPokemon",
-        "Application de consultation du pokedex paginée, mise en db local de groupe de cartes",
-        "",
-        listOf(
-            "Flutter",
-            "Dart",
-            "Clean archi",
-            "Android",
-            "Riverpods",
-            "Maps",
-            "GetIt",
-            "Injectable",
-            "Hive",
-            "Dio"
-        ),
-
-        ),
-    FullItemData(
-        "Guide des monuments de roubaix",
-        "Application permettant la visualisation des monuments et une mise en favori",
-        "",
-        listOf(
-            "Kotlin",
-            "Clean archi",
-            "Android",
-            "Compose",
-            "Paging 3",
-            "Retrofit",
-            "Room",
-            "Coil"
-        ),
-
-        )
-)
-
-val listProfesionalExperience = listOf(
-    FullItemData(
-        "Alternance - Développeur Android",
-        "Développements de nouvelles fonctionnalités\n" +
-                "Corrections de bugs \n" +
-                "Mise en place d’architecture logicielle \n" +
-                "Intégré en équipe suivant une méthode Agile\n" +
-                "Test unitaire",
-        "Septembre 2023 - 2024",
-        listOf("Kotlin", "Java", "Android", "Kotlin", "Java", "Android"),
-        "Wimova"
+        title = "PokedexPokemon", date = "", tags = listOf(
+            "Kotlin", "Clean archi", "Compose", "Koin", "Retrofit", "Room", "Paging 3", "Coil"
+        ), mainIcon = Res.drawable.android_icon, description = Res.string.description_project_pokedex
     ),
+
     FullItemData(
-        "Stage - Développeur Android",
-        "Développements de nouvelles fonctionnalités\n" +
-                "Corrections de bugs ",
-        "Mai - Juin 2023",
-        listOf("Java", "Android", "Clean Archi", "XML", "Volley", "JUnit"),
-        "Wimova"
-    ),
-    FullItemData(
-        "Intérim - Usine en horaire 3/8",
-        "Travail en équipe",
-        "Été 2020 - 2023",
-        listOf(),
-        "Nexans"
-    ),
-    FullItemData(
-        "Alternance - Mécanicien autombile",
-        "Entretien courant / Tâches plus complexes \n Contact avec les clients ",
-        "Juin - Août 2020 jusqu'à 2023",
-        listOf(),
-        "Nexans"
+        title = "Curriculum vitae - CV", date = "", tags = listOf(
+            "KMP", "Android", "IOS", "Web", "Compose multiplateform"
+        ), description = Res.string.description_project_cv, mainIcon = Res.drawable.kotlin_icon, companyName = ""
+    ), FullItemData(
+        title = "App KMP", date = "", tags = listOf(
+            "Kotlin", "Clean archi", "Android", "Ktor", "Room", "Maps", "Koin"
+        ), description = Res.string.description_project_no_name, mainIcon = Res.drawable.kotlin_icon, companyName = ""
+    ), FullItemData(
+        title = "Guide des monuments de roubaix", date = "", tags = listOf(
+            "Clean archi", "Riverpods", "Maps", "GetIt", "Injectable", "Hive", "Dio"
+        ), mainIcon = Res.drawable.flutter_icon, description = Res.string.description_monuments_of_roubaix
     )
 )
 
+val listProfessionalExperience = listOf(
+    FullItemData(
+        title = "Alternance - Développeur Android",
+        date = "Septembre 2023 - 2024",
+        tags = listOf("Kotlin", "Clean Archi", "Java", "Hilt", "Compose", "Retrofit", "Room"),
+        companyName = "Wimova",
+        mainIcon = Res.drawable.android_icon,
+        description = Res.string.description_internship_wimova_year
+    ), FullItemData(
+        title = "Stage - Développeur Android",
+        date = "Mai - Juin 2023",
+        tags = listOf("Java", "XML", "Volley", "Room"),
+        companyName = "Wimova",
+        mainIcon = Res.drawable.android_icon,
+        description = Res.string.description_internship_wimova
+    ), FullItemData(
+        title = "Intérim - Usine en horaire 3/8",
+        date = "Été 2020 - 2023",
+        tags = listOf(),
+        companyName = "Nexans",
+        description = Res.string.description_nexans,
+        mainIcon = Res.drawable.nexans_icon
+    ), FullItemData(
+        title = "Alternance - Mécanicien automobile",
+        date = "Juin - Août 2020 jusqu'à 2023",
+        tags = listOf(),
+        companyName = "Opel",
+        description = Res.string.description_mechanic_internship,
+        mainIcon = Res.drawable.opel_icon
+    )
+)
+
+val libraryKnowAndroidNative = listOf(
+    "Retrofit", "Room", "Coroutine", "Flow", "Koin", "RXJava", "Hilt", "Coil", "Paging3", "Maps"
+)
+
+val libraryKnowFlutter = listOf(
+    "Riverpod", "Bloc", "Hive", "Dio", "Injectable + Get It", "Maps"
+)
+
+val libraryKnowKMP = listOf(
+    "Ktor", "Kotlin Serialization", "Room", "Koin", "Maps"
+)

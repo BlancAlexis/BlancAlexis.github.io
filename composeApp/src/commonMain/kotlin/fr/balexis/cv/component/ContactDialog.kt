@@ -1,11 +1,13 @@
 package fr.balexis.cv.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -22,10 +24,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.linkedin_icon
+import fr.balexis.cv.theme.LocalAppColors
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun contactDialog(
-    onEvent: (event: ContactEvent) -> Unit
+    onEvent: (event: ContactEvent) -> Unit, backgroundColor: Color = LocalAppColors.current.surface
 
 ) {
     Dialog(onDismissRequest = {
@@ -33,6 +39,8 @@ fun contactDialog(
     }) {
         Card(
             elevation = 8.dp,
+            shape = RoundedCornerShape(8.dp),
+            backgroundColor = backgroundColor,
         ) {
             Column(
                 modifier = Modifier.padding(16.dp),
@@ -44,7 +52,7 @@ fun contactDialog(
                 ) {
                     Text(
                         "Me contacter",
-                        style = MaterialTheme.typography.h2,
+                        style = MaterialTheme.typography.h3,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -53,10 +61,10 @@ fun contactDialog(
                     "Pour me contacter rien de plus simple, vous avez l'embarras du choix!"
                 )
                 InfoRow(
-                    imageVector = Icons.Default.Phone, text = "07.81.70.86.41"
+                    imageVector = Icons.Default.Phone, text = "07.81.70.86.41", onClick = { println("Clicked on phone")}
                 )
                 InfoRow(
-                    imageVector = Icons.Default.Email, text = "thomas.johnson@example.com"
+                    imageVector = Icons.Default.Email, text = "blanc.alexispro@gmail.com", onClick = { println("Clicked on phone")}
                 )
                 Row(
                     verticalAlignment = Alignment.Bottom,
@@ -65,8 +73,7 @@ fun contactDialog(
                     Icon(
                         modifier = Modifier.size(size = 30.dp),
                         tint = Color.Unspecified,
-                        imageVector = Icons.Default.Phone,
-                        //painter = painterResource(Res.drawable.linkedin),
+                        painter = painterResource(Res.drawable.linkedin_icon),
                         contentDescription = null
 
                     )
@@ -85,10 +92,10 @@ sealed interface ContactEvent {
 
 @Composable
 fun InfoRow(
-    imageVector: ImageVector, text: String
+    imageVector: ImageVector, text: String, onClick: () -> Unit = {}
 ) {
     Row(
-        verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)
+        verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.clickable { onClick() }
     ) {
         Icon(
             modifier = Modifier.size(size = 30.dp),

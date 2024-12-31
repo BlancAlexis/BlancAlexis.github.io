@@ -10,10 +10,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CustomDivider() {
+fun CustomDivider(width: Float) {
     Divider(
         color = Color.Black,
         thickness = 1.dp,
-        modifier = Modifier.widthIn(100.dp, 300.dp).fillMaxWidth(0.9f).padding(vertical = 8.dp)
+        modifier = Modifier.widthIn(100.dp, 300.dp).fillMaxWidth(width).padding(vertical = 8.dp)
     )
 }

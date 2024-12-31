@@ -19,8 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.compose_multiplatform
-import fr.balexis.cv.theme.vistaBlue
+import balexiscv.composeapp.generated.resources.english_flag
+import balexiscv.composeapp.generated.resources.french_flag
+import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -29,33 +30,41 @@ fun LanguageRowItem(
     text: String, icon: DrawableResource
 ) {
     Row(
-        Modifier.wrapContentSize().clip(RoundedCornerShape(8.dp)).background(vistaBlue)
+        Modifier.wrapContentSize().clip(RoundedCornerShape(8.dp))
+            .background(LocalAppColors.current.secondary)
             .border(1.dp, Color.Black, RoundedCornerShape(8.dp)).padding(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
+            tint = Color.Unspecified,
             modifier = Modifier.size(24.dp),
             painter = painterResource(icon),
             contentDescription = null
         )
         Text(
-            text, fontSize = 14.sp,
+            text, fontSize = 14.sp, modifier = Modifier.padding(start = 4.dp)
         )
     }
 }
 
 @Composable
-fun LanguageRow(
-    language: List<String>
-) {
+fun LanguageRow() {
     Row(
         modifier = Modifier.clip(RoundedCornerShape(16.dp)).fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        language.forEach {
-            LanguageRowItem(it, Res.drawable.compose_multiplatform)
+        Language.entries.forEach {
+            LanguageRowItem(it.text, it.icon)
         }
     }
+
+}
+
+enum class Language(
+    val text: String, val icon: DrawableResource
+) {
+    FRENCH("Français : Langue natale", Res.drawable.french_flag),
+    ENGLISH("Anglais : Niveau B1", Res.drawable.english_flag)
 
 }
