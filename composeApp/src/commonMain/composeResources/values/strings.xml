@@ -5,7 +5,7 @@
         Lors de mon alternance, j'ai pu :
              - Implémentation d'architecture logicielle sur du code legacy
              - Ajouts de nouvelles fonctionnalités respectant les principes de la clean architecture, en contact avec le back
-             - Correction de bug et visualisation d'entre eux via CrashAnalitycs
+             - Correction de bugs et visualisation d'entre eux via CrashAnalitycs
              - Création de nouveau composant d'affichage complétement personnalisé
              - Test du code pour garantir le bon fonctionnement
     </string>
@@ -29,12 +29,16 @@
     </string>
 
     <string name="description_project_cv">
-        Court projet visant a proposer une version en ligne de mon CV
+        Court projet visant à proposer une version en ligne de mon CV
 - Utilisation de compose multiplateforme
 - Version web disponible sur GitHub pages, version Android dans les releases du projet GIT
+
+        * Ceci n'est pas la version définitive, des modifications sont en cours de réalisation
     </string>
 
     <string name="description_project_no_name">
+        Projet visant à monter en compétences sur l'univers KMP
+
 
     </string>
 
@@ -49,7 +53,7 @@
 
     <string name="title_sae_android">Vegetabilis Auditor - IOT</string>
     <string name="description_sae_android">
-        SAE (Situation d'apprentissage et d'évaluation) de 2ème année, visant a construire un appareil dôté de capteurs biologiques et à suivre les valeurs via une app mobile Android
+        SAE (Situation d'apprentissage et d'évaluation) de 2ème année, visant à construire un appareil dôté de capteurs biologiques et à suivre les valeurs via une app mobile Android
 - Utilisation d'un arduino équipé de capteurs biométriques pour l'acquisition de données
 - Firebase realtime
 - Une application Android qui récupère en temps réel ces données pour en faire des graphiques / visualisation de données
@@ -68,6 +72,31 @@
     <string name="title_lycee">Baccalauréat</string>
     <string name="address_lycee">Lycée carriat - Bourg-en-Bresse</string>
 
-    <string name="description_mechanic_internship"></string>
-    <string name="description_nexans"></string>
+    <string name="description_mechanic_internship">
+        Première expérience professionelle
+        - Responsabilité des voitures qui me sont confiées
+        - Exigence quant à la qualité du travail que je dois rendre
+        - Échange avec le client
+    </string>
+    <string name="description_nexans">
+        Travail lors des vacances d'été 4 années successives
+        - Travail en équipe
+        - Horaire changeant, travail de nuit
+        - Contrôle sur chaîne de production et traçabilité produit
+        - Contrôle qualité
+        - Gestion des matériaux
+    </string>
+
+    <string name="me_personal_description">
+        Bonjour,
+
+
+    Aujourd'hui j'aime tout ce qui touche à lunivers de la programmation mobile, je suis également ouvert a la nouveauté, tel Kotlin multiplatform en qui je fonde de grand espoir depuis quelques temps
+    </string>
+
+    <string name="me_professional_description">
+        Malgré mon âge assez jeune je commence a avoir
+
+        Toujours intérréssé par l'informatique, c'est après un début dans l'univers de la mécanique automobile infructueux que je me tourne vers cette voie.
+    </string>
 </resources>

@@ -17,6 +17,8 @@ import balexiscv.composeapp.generated.resources.description_sae_android
 import balexiscv.composeapp.generated.resources.description_sae_flutter
 import balexiscv.composeapp.generated.resources.flutter_icon
 import balexiscv.composeapp.generated.resources.kotlin_icon
+import balexiscv.composeapp.generated.resources.nexans_icon
+import balexiscv.composeapp.generated.resources.opel_icon
 import fr.balexis.cv.model.BaseItemData
 import fr.balexis.cv.model.FullItemData
 
@@ -56,11 +58,11 @@ val listPersonalProject = listOf(
     ),
 
     FullItemData(
-        title = "CV", date = "", tags = listOf(
+        title = "Curriculum vitae - CV", date = "", tags = listOf(
             "KMP", "Android", "IOS", "Web", "Compose multiplateform"
         ), description = Res.string.description_project_cv, mainIcon = Res.drawable.kotlin_icon, companyName = ""
     ), FullItemData(
-        title = "No name", date = "", tags = listOf(
+        title = "App KMP", date = "", tags = listOf(
             "Kotlin", "Clean archi", "Android", "Ktor", "Room", "Maps", "Koin"
         ), description = Res.string.description_project_no_name, mainIcon = Res.drawable.kotlin_icon, companyName = ""
     ), FullItemData(
@@ -90,13 +92,15 @@ val listProfessionalExperience = listOf(
         date = "Été 2020 - 2023",
         tags = listOf(),
         companyName = "Nexans",
-        description = Res.string.description_nexans
+        description = Res.string.description_nexans,
+        mainIcon = Res.drawable.nexans_icon
     ), FullItemData(
         title = "Alternance - Mécanicien automobile",
         date = "Juin - Août 2020 jusqu'à 2023",
         tags = listOf(),
         companyName = "Opel",
-        description = Res.string.description_mechanic_internship
+        description = Res.string.description_mechanic_internship,
+        mainIcon = Res.drawable.opel_icon
     )
 )
 
