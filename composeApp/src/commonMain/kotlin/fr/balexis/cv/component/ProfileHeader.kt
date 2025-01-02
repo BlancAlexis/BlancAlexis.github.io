@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.b_alexis
-import fr.balexis.cv.getPlatform
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -28,7 +27,7 @@ fun ProfileHeader() {
     ) {
         Image(
             painter = painterResource(Res.drawable.b_alexis),
-            modifier = Modifier.platformImageSize().align(Alignment.CenterVertically),
+            modifier = Modifier.widthIn(max = 200.dp).align(Alignment.CenterVertically),
             contentDescription = null,
         )
         Text(
@@ -43,13 +42,3 @@ fun ProfileHeader() {
     }
 }
 
-@Composable
-fun Modifier.platformImageSize(): Modifier {
-    return when (getPlatform()) {
-        "JS" -> this then Modifier.widthIn(max = 300.dp)
-        "Android" -> this then Modifier.widthIn(max = 150.dp)
-        else -> {
-            Modifier
-        }
-    }
-}

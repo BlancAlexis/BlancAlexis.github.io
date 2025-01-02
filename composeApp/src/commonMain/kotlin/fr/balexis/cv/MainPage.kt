@@ -148,7 +148,7 @@ enum class MainScreenTabs(
     val selectedIcon: ImageVector, val unselectedIcon: ImageVector, val text: String
 ) {
     Profile(
-        unselectedIcon = Icons.Outlined.Person, selectedIcon = Icons.Filled.Person, text = "Profile"
+        unselectedIcon = Icons.Outlined.Person, selectedIcon = Icons.Filled.Person, text = "Profil"
     ),
     Experience(
         unselectedIcon = Icons.Outlined.Star, selectedIcon = Icons.Filled.Star, text = "Experience"

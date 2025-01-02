@@ -73,9 +73,7 @@ fun Profile() {
                     fontSize = 14.sp
                 )
             }
-            SoftSkillRow(
-                listOf("Adaptabilité", "Autonomie", "Rigeur")
-            )
+            SoftSkillRow()
             StickyHeaderContent("Mes frameworks", endSpacer = false)
             val horizontalPagerState =
                 rememberPagerState(initialPage = 0, pageCount = { Framework.entries.size })

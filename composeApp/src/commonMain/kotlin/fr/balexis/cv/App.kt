@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import fr.balexis.cv.component.contactDialog
+import fr.balexis.cv.component.ContactDialog
 import fr.balexis.cv.theme.DarkAppColors
 import fr.balexis.cv.theme.LightAppColors
 import fr.balexis.cv.theme.LocalAppColors
@@ -31,7 +31,7 @@ fun App() {
                     dialogContact.value = true
                 })
                 if (dialogContact.value) {
-                    contactDialog(onEvent = {
+                    ContactDialog(onEvent = {
                         dialogContact.value = false
                     })
                 }

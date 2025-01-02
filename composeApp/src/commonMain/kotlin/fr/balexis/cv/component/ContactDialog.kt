@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -30,10 +31,12 @@ import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun contactDialog(
-    onEvent: (event: ContactEvent) -> Unit, backgroundColor: Color = LocalAppColors.current.surface
+fun ContactDialog(
+    onEvent: (event: ContactEvent) -> Unit,
+    backgroundColor: Color = LocalAppColors.current.secondary
 
 ) {
+    val uriHandler = LocalUriHandler.current
     Dialog(onDismissRequest = {
         onEvent(ContactEvent.closeDialog)
     }) {
@@ -63,16 +66,22 @@ fun contactDialog(
                 InfoRow(
                     imageVector = Icons.Default.Phone,
                     text = "07.81.70.86.41",
-                    onClick = { println("Clicked on phone") }
+                    onClick = {
+                    }
                 )
                 InfoRow(
                     imageVector = Icons.Default.Email,
                     text = "blanc.alexispro@gmail.com",
-                    onClick = { println("Clicked on phone") }
+                    onClick = {
+                        uriHandler.openUri("mailto:blanc.alexispro@gmail.com")
+                    }
                 )
                 Row(
                     verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.clickable {
+                        uriHandler.openUri("https://www.linkedin.com/in/alexis--blanc/")
+                    }
                 ) {
                     Icon(
                         modifier = Modifier.size(size = 30.dp),
