@@ -26,7 +26,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
@@ -67,7 +66,7 @@ fun CustomListItem(
     var isOpen by remember { mutableStateOf(false) }
     Card(
         backgroundColor = LocalAppColors.current.secondary,
-        modifier = modifier.then(Modifier.fillMaxWidth().padding(8.dp)) , elevation = 4.dp
+        modifier = modifier.then(Modifier.fillMaxWidth().padding(8.dp)), elevation = 4.dp
     ) {
         Column {
             Row(
@@ -130,21 +129,22 @@ fun CustomListItem(
                 }
             }
             AnimatedVisibility(isOpen) {
-                    Box(
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
-                            .clip(RoundedCornerShape(15.dp)).background(Color.White).padding(horizontal = 8.dp)
-                    ) {
-                        BulletPointFormatter(
-                            text = stringResource(itemUiState.description),
-                            bulletColor = Color.Black,
-                            bulletSize = 4f,
-                            textColor = LocalAppColors.current.onBackground,
-                            textSize = 16,
-                            boldSection = listOf("architecture", "clean")
-                        )
-                    }
+                Box(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+                        .clip(RoundedCornerShape(15.dp)).background(Color.White)
+                        .padding(horizontal = 8.dp)
+                ) {
+                    BulletPointFormatter(
+                        text = stringResource(itemUiState.description),
+                        bulletColor = Color.Black,
+                        bulletSize = 4f,
+                        textColor = LocalAppColors.current.onBackground,
+                        textSize = 16,
+                        boldSection = listOf("architecture", "clean")
+                    )
+                }
             }
-            if(itemUiState.tags.isEmpty()){
+            if (itemUiState.tags.isEmpty()) {
                 Spacer(modifier = Modifier.height(8.dp))
             } else {
                 KeySkillsRow(
@@ -181,7 +181,7 @@ fun BackgroundWrapper(
     color: Color = LocalAppColors.current.surface,
     content: @Composable () -> Unit,
 
-) {
+    ) {
     Card(
         shape = shape,
         backgroundColor = color,

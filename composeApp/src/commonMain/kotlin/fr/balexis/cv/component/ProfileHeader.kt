@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.Text
@@ -16,19 +15,20 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.istockphoto_1090878494_612x612
+import balexiscv.composeapp.generated.resources.b_alexis
+import fr.balexis.cv.getPlatform
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun ProfileHeader() {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(start = 3.dp, top = 16.dp),
+        modifier = Modifier.fillMaxWidth().padding(start = 30.dp, top = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start
     ) {
         Image(
-            painter = painterResource(Res.drawable.istockphoto_1090878494_612x612),
-            modifier = Modifier.widthIn(max = 150.dp),
+            painter = painterResource(Res.drawable.b_alexis),
+            modifier = Modifier.platformImageSize().align(Alignment.CenterVertically),
             contentDescription = null,
         )
         Text(
@@ -37,8 +37,19 @@ fun ProfileHeader() {
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             textDecoration = TextDecoration.Underline,
-            modifier = Modifier.weight(1F).padding(start = 16.dp).offset(x = -(8).dp)
+            modifier = Modifier.weight(1F).padding(start = 8.dp)
                 .align(Alignment.Bottom)
         )
+    }
+}
+
+@Composable
+fun Modifier.platformImageSize(): Modifier {
+    return when (getPlatform()) {
+        "JS" -> this then Modifier.widthIn(max = 300.dp)
+        "Android" -> this then Modifier.widthIn(max = 150.dp)
+        else -> {
+            Modifier
+        }
     }
 }

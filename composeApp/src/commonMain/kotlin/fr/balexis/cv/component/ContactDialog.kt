@@ -61,10 +61,14 @@ fun contactDialog(
                     "Pour me contacter rien de plus simple, vous avez l'embarras du choix!"
                 )
                 InfoRow(
-                    imageVector = Icons.Default.Phone, text = "07.81.70.86.41", onClick = { println("Clicked on phone")}
+                    imageVector = Icons.Default.Phone,
+                    text = "07.81.70.86.41",
+                    onClick = { println("Clicked on phone") }
                 )
                 InfoRow(
-                    imageVector = Icons.Default.Email, text = "blanc.alexispro@gmail.com", onClick = { println("Clicked on phone")}
+                    imageVector = Icons.Default.Email,
+                    text = "blanc.alexispro@gmail.com",
+                    onClick = { println("Clicked on phone") }
                 )
                 Row(
                     verticalAlignment = Alignment.Bottom,
@@ -95,7 +99,9 @@ fun InfoRow(
     imageVector: ImageVector, text: String, onClick: () -> Unit = {}
 ) {
     Row(
-        verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.clickable { onClick() }
+        verticalAlignment = Alignment.Bottom,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.clickable { onClick() }
     ) {
         Icon(
             modifier = Modifier.size(size = 30.dp),

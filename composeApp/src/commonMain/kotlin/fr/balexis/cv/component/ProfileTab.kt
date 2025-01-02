@@ -11,10 +11,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ContextualFlowRow
 import androidx.compose.foundation.layout.ContextualFlowRowOverflow
-import androidx.compose.foundation.layout.ContextualFlowRowOverflowScope
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,7 +29,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
@@ -39,7 +36,6 @@ import androidx.compose.material.icons.filled.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -57,19 +53,22 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 data class HorizontalPagerState(
-    val leftButton: Boolean, val rightButton : Boolean
+    val leftButton: Boolean, val rightButton: Boolean
 )
 
 @Composable
 fun HorizontalPagerIconButtonControl(
-    modifier: Modifier, event: (HorizontalPagerDesktopControl) -> Unit, devicePlatform: String, horizontalPagerState: HorizontalPagerState
+    modifier: Modifier,
+    event: (HorizontalPagerDesktopControl) -> Unit,
+    devicePlatform: String,
+    horizontalPagerState: HorizontalPagerState
 ) {
     if (devicePlatform == "JS") {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier.then(Modifier.fillMaxWidth()),
         ) {
-            AnimatedVisibility (horizontalPagerState.leftButton) {
+            AnimatedVisibility(horizontalPagerState.leftButton) {
                 Column(
                     modifier = Modifier.fillMaxSize(0.8f).padding(horizontal = 16.dp),
                     horizontalAlignment = Alignment.Start,
@@ -77,7 +76,8 @@ fun HorizontalPagerIconButtonControl(
                 ) {
                     IconButton(
                         onClick = { event(HorizontalPagerDesktopControl.OnLeftButtonClick) },
-                        modifier = Modifier.clip(CircleShape).background(Color.Black.copy(alpha = 0.2f))
+                        modifier = Modifier.clip(CircleShape)
+                            .background(Color.Black.copy(alpha = 0.2f))
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -89,7 +89,7 @@ fun HorizontalPagerIconButtonControl(
                 }
 
             }
-            AnimatedVisibility (horizontalPagerState.rightButton) {
+            AnimatedVisibility(horizontalPagerState.rightButton) {
                 Column(
                     modifier = Modifier.fillMaxSize(0.8f),
                     horizontalAlignment = Alignment.End,
@@ -97,7 +97,8 @@ fun HorizontalPagerIconButtonControl(
                 ) {
                     IconButton(
                         onClick = { event(HorizontalPagerDesktopControl.OnRightButtonClick) },
-                        modifier = Modifier.clip(CircleShape).background(Color.Black.copy(alpha = 0.2f))
+                        modifier = Modifier.clip(CircleShape)
+                            .background(Color.Black.copy(alpha = 0.2f))
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowForward,
@@ -128,17 +129,18 @@ fun FrameworkCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        shape = RoundedCornerShape(16.dp), modifier = modifier.border(1.dp, Color.Black, RoundedCornerShape(16.dp))
+        shape = RoundedCornerShape(16.dp),
+        modifier = modifier.border(1.dp, Color.Black, RoundedCornerShape(16.dp))
     ) {
         Row(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.wrapContentWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 contentScale = ContentScale.FillWidth,
                 painter = painterResource(leadIcon),
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth(0.2f).fillMaxHeight().padding(horizontal = 8.dp)
+                modifier = Modifier.size(80.dp).fillMaxWidth(0.2f).padding(horizontal = 8.dp)
             )
             Column(
                 modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp))
@@ -210,32 +212,32 @@ fun LibraryKnow(
     }
     var remainingItems = 0
     ContextualFlowRow(
-            modifier = Modifier.fillMaxWidth().wrapContentHeight().animateContentSize(),
-            maxLines = maxLines,
-            itemCount = libs.size,
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
-            overflow = ContextualFlowRowOverflow.expandOrCollapseIndicator(
-                expandIndicator = {
-                    Chip(
-                        content = { Text("+$remainingItems") },
-                        onClick = { maxLines = 4},
-                        modifier = Modifier.wrapContentSize(),
-                        colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
-                    )
-                },
-                collapseIndicator = {
-                    Chip(
-                        content = { Text("Restreindre") },
-                        onClick = { maxLines = 1},
-                        modifier = Modifier.wrapContentSize(),
-                        colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
-                    )
-                }
-            ),
-        ) { index ->
+        modifier = Modifier.fillMaxWidth().wrapContentHeight().animateContentSize(),
+        maxLines = maxLines,
+        itemCount = libs.size,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        overflow = ContextualFlowRowOverflow.expandOrCollapseIndicator(
+            expandIndicator = {
+                Chip(
+                    content = { Text("+$remainingItems") },
+                    onClick = { maxLines = 4 },
+                    modifier = Modifier.wrapContentSize(),
+                    colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
+                )
+            },
+            collapseIndicator = {
+                Chip(
+                    content = { Text("Restreindre") },
+                    onClick = { maxLines = 1 },
+                    modifier = Modifier.wrapContentSize(),
+                    colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
+                )
+            }
+        ),
+    ) { index ->
         remainingItems = libs.size - index
-                Chip(content = { Text(libs[index], fontSize = 12.sp) }, onClick = {})
-        }
+        Chip(content = { Text(libs[index], fontSize = 12.sp) }, onClick = {})
     }
+}
 
 

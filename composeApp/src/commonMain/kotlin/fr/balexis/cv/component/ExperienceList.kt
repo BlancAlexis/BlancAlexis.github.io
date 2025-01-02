@@ -2,7 +2,6 @@ package fr.balexis.cv.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -15,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -27,9 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import fr.balexis.cv.DEFAULT_MAX_ITEM
 import fr.balexis.cv.data.BackgroundWrapper
@@ -47,25 +43,8 @@ fun ExperienceList() {
     var maxItemsLazyRowProXP by remember { mutableStateOf(DEFAULT_MAX_ITEM) }
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(vertical = 8.dp),
     ) {
-        item {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp)
-                    .clip(RoundedCornerShape(4.dp)).background(
-                        LocalAppColors.current.surface
-                    ).border(1.dp, Color.Black, RoundedCornerShape(4.dp)),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    modifier = Modifier.padding(4.dp),
-                    textAlign = TextAlign.Justify,
-                    color = Color.Black,
-                    text = "Jeune développeur Android ayant pu faire ses armes au cours de mon alternance chez Wimova s'inscrivant dans le cadre de ma 3ème années de BUT Informatique."
-                )
-            }
-        }
         stickyHeader {
             StickyHeaderContent(
                 text = "Expérience"
@@ -129,8 +108,9 @@ fun ExperienceList() {
             ) { shape ->
                 BackgroundWrapper(
                     shape = shape, content = {
-                    CustomListItem(exp, Modifier.animateItem())
-                }, modifier = Modifier.animateItem())
+                        CustomListItem(exp, Modifier.animateItem())
+                    }, modifier = Modifier.animateItem()
+                )
             }
         }
         item {
@@ -149,8 +129,9 @@ fun ExperienceList() {
             ) { shape ->
                 BackgroundWrapper(
                     shape = shape, content = {
-                    CustomListItem(exp, Modifier.animateItem())
-                }, modifier = Modifier.animateItem())
+                        CustomListItem(exp, Modifier.animateItem())
+                    }, modifier = Modifier.animateItem()
+                )
             }
         }
         item {

@@ -52,23 +52,41 @@ val listMentoredProject = listOf(
 
 val listPersonalProject = listOf(
     FullItemData(
-        title = "PokedexPokemon", date = "", tags = listOf(
+        title = "PokedexPokemon",
+        date = "",
+        tags = listOf(
             "Kotlin", "Clean archi", "Compose", "Koin", "Retrofit", "Room", "Paging 3", "Coil"
-        ), mainIcon = Res.drawable.android_icon, description = Res.string.description_project_pokedex
+        ),
+        mainIcon = Res.drawable.android_icon,
+        description = Res.string.description_project_pokedex
     ),
 
     FullItemData(
-        title = "Curriculum vitae - CV", date = "", tags = listOf(
+        title = "Curriculum vitae - CV",
+        date = "",
+        tags = listOf(
             "KMP", "Android", "IOS", "Web", "Compose multiplateform"
-        ), description = Res.string.description_project_cv, mainIcon = Res.drawable.kotlin_icon, companyName = ""
+        ),
+        description = Res.string.description_project_cv,
+        mainIcon = Res.drawable.kotlin_icon,
+        companyName = ""
     ), FullItemData(
-        title = "App KMP", date = "", tags = listOf(
+        title = "App KMP",
+        date = "",
+        tags = listOf(
             "Kotlin", "Clean archi", "Android", "Ktor", "Room", "Maps", "Koin"
-        ), description = Res.string.description_project_no_name, mainIcon = Res.drawable.kotlin_icon, companyName = ""
+        ),
+        description = Res.string.description_project_no_name,
+        mainIcon = Res.drawable.kotlin_icon,
+        companyName = ""
     ), FullItemData(
-        title = "Guide des monuments de roubaix", date = "", tags = listOf(
+        title = "Guide des monuments de roubaix",
+        date = "",
+        tags = listOf(
             "Clean archi", "Riverpods", "Maps", "GetIt", "Injectable", "Hive", "Dio"
-        ), mainIcon = Res.drawable.flutter_icon, description = Res.string.description_monuments_of_roubaix
+        ),
+        mainIcon = Res.drawable.flutter_icon,
+        description = Res.string.description_monuments_of_roubaix
     )
 )
 

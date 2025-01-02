@@ -95,8 +95,23 @@
     </string>
 
     <string name="me_professional_description">
-        Malgré mon âge assez jeune je commence a avoir
+        Au cours de ces dernières années, j'ai eu l'occasion de travailler dans plusieurs secteurs, l'automobile mais aussi en intérim, qui m'ont chacun a leurs tours appris des notions essentiel ( travail en équipe, communication, ponctualité, etc..)
 
-        Toujours intérréssé par l'informatique, c'est après un début dans l'univers de la mécanique automobile infructueux que je me tourne vers cette voie.
+        Puis dans l'informatique ou j'ai pu faire mon stage et l'alternance en tant que développeur Android afin de valider mon BUT Informatique
+
+        C'est grâce a ces expériences que je suis certains de la voie professionel que je veux entreprendre pour mon avenir, aujourd'hui je suis a la recherche d'un poste de développeur mobile.
     </string>
+
+    <string name="personnal_description_desktop">
+        Fort d'une expérience diversifiée acquise dans des secteurs variés tels que l'automobile et l'intérim, j'ai développé de solides compétences en matière de travail en équipe, de communication et d'adaptation.
+
+C'est au cours de mon BUT Informatique que ma passion pour le développement mobile s'est affirmée. Mon stage et mon alternance en tant que développeur Android m'ont chacun permis de consolider mes connaissances dans l'écosystème Android en diversifiant mes compétences.
+
+Enthousiaste et motivé, je suis convaincu que mon parcours me permet d'apporter une réelle valeur ajoutée à une équipe de développement mobile. Je suis à la recherche d'un poste me permettant de continuer à apprendre et à évoluer dans un environnement stimulant.
+    </string>
+
+    <string name="personnal_description_mobile">
+        Jeune développeur Android issu d'un parcours diversifié (automobile, intérim), je maîtrise les fondamentaux du développement mobile.
+        Mes stages et mon alternance m'ont permis de consolider mes compétences en Android. Motivé et passionné, je suis à la recherche de nouveaux challenges.
+        </string>
 </resources>

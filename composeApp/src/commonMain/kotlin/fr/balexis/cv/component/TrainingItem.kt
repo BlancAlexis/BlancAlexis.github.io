@@ -38,7 +38,7 @@ fun TrainingItem(exp: BaseItemData) {
                 )
             }
         }, secondaryText = {
-            Text(stringResource(exp.description) , maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(stringResource(exp.description), maxLines = 1, overflow = TextOverflow.Ellipsis)
         }, trailing = {
             Text(exp.date)
         })

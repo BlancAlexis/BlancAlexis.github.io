@@ -130,11 +130,11 @@ fun MainPage(
                 ) { page ->
                     when (page) {
                         0 -> {
-                            ExperienceList()
+                            Profile()
                         }
 
                         1 -> {
-                            Profile()
+                            ExperienceList()
                         }
                     }
                 }
@@ -147,12 +147,13 @@ fun MainPage(
 enum class MainScreenTabs(
     val selectedIcon: ImageVector, val unselectedIcon: ImageVector, val text: String
 ) {
+    Profile(
+        unselectedIcon = Icons.Outlined.Person, selectedIcon = Icons.Filled.Person, text = "Profile"
+    ),
     Experience(
         unselectedIcon = Icons.Outlined.Star, selectedIcon = Icons.Filled.Star, text = "Experience"
     ),
-    Profile(
-        unselectedIcon = Icons.Outlined.Person, selectedIcon = Icons.Filled.Person, text = "Profile"
-    )
+
 }
 
 

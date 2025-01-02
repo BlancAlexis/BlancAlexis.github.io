@@ -78,7 +78,13 @@ fun ProfessionalMediaCap(
     ) {
         ProfessionalMedia.entries.forEach {
             IconButton(
-                modifier = Modifier.circleBackground(circleColor, if(getPlatform() == "JS") { 20f} else { 50f }),
+                modifier = Modifier.circleBackground(
+                    circleColor, if (getPlatform() == "JS") {
+                        20f
+                    } else {
+                        50f
+                    }
+                ),
                 onClick = {
                     onEvent(it.action)
                 }) {

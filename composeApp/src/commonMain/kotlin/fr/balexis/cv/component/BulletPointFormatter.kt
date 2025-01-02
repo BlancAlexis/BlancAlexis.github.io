@@ -32,7 +32,11 @@ fun BulletPointFormatter(
     boldSection: List<String> = emptyList()
 ) {
     var textFormatted = text
-    val cautionText = if (text.contains("*")) { text.split("*").last() } else { null }
+    val cautionText = if (text.contains("*")) {
+        text.split("*").last()
+    } else {
+        null
+    }
     if (!cautionText.isNullOrEmpty()) {
         textFormatted = text.removeRange(text.indexOf("*"), text.length)
     }
