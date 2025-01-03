@@ -39,7 +39,7 @@ import fr.balexis.cv.theme.LocalAppColors
 
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
-fun ExperienceList() {
+fun ExperienceListTab() {
     var maxItemsLazyRowProXP by remember { mutableStateOf(DEFAULT_MAX_ITEM) }
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -65,7 +65,7 @@ val listPersonalProject = listOf(
         title = "Curriculum vitae - CV",
         date = "",
         tags = listOf(
-            "KMP", "Android", "IOS", "Web", "Compose multiplateform"
+            "KMP", "Android", "IOS", "Web", "Compose multiplatform"
         ),
         description = Res.string.description_project_cv,
         mainIcon = Res.drawable.kotlin_icon,
@@ -74,7 +74,7 @@ val listPersonalProject = listOf(
         title = "App KMP",
         date = "",
         tags = listOf(
-            "Kotlin", "Clean archi", "Android", "Ktor", "Room", "Maps", "Koin"
+            "Kotlin", "Clean archi", "Android", "Ktor", "Room", "Maps", "Koin",
         ),
         description = Res.string.description_project_no_name,
         mainIcon = Res.drawable.kotlin_icon,
@@ -94,7 +94,17 @@ val listProfessionalExperience = listOf(
     FullItemData(
         title = "Alternance - Développeur Android",
         date = "Septembre 2023 - 2024",
-        tags = listOf("Kotlin", "Clean Archi", "Java", "Hilt", "Compose", "Retrofit", "Room"),
+        tags = listOf(
+            "Flavors",
+            "Kotlin",
+            "Clean Archi",
+            "Java",
+            "Hilt",
+            "Compose",
+            "Retrofit",
+            "Room",
+            "RXJava"
+        ),
         companyName = "Wimova",
         mainIcon = Res.drawable.android_icon,
         description = Res.string.description_internship_wimova_year
@@ -133,3 +143,5 @@ val libraryKnowFlutter = listOf(
 val libraryKnowKMP = listOf(
     "Ktor", "Kotlin Serialization", "Room", "Koin", "Maps"
 )
+
+val listArchi = listOf("MVVM", "MVC", "MVI", "Clean architecture")

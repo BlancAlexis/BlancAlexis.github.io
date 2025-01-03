@@ -61,7 +61,7 @@ fun ContactDialog(
                 }
 
                 Text(
-                    "Pour me contacter rien de plus simple, vous avez l'embarras du choix!"
+                    "Voici les canaux sur lesquels vous pouvez me contacter"
                 )
                 InfoRow(
                     imageVector = Icons.Default.Phone,

@@ -33,17 +33,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
-import fr.balexis.cv.component.ExperienceList
+import fr.balexis.cv.component.ExperienceListTab
 import fr.balexis.cv.component.MainScreenEvent
 import fr.balexis.cv.component.MediaItems
 import fr.balexis.cv.component.ProfessionalMediaCap
-import fr.balexis.cv.component.Profile
 import fr.balexis.cv.component.ProfileHeader
+import fr.balexis.cv.component.ProfileTab
 import fr.balexis.cv.theme.LocalAppColors
 import kotlinx.coroutines.launch
 
 const val MAX_SCREEN_WIDTH = 1200
-val DEFAULT_MAX_ITEM = 2
+const val DEFAULT_MAX_ITEM = 2
 
 @Composable
 fun MainPage(
@@ -130,11 +130,11 @@ fun MainPage(
                 ) { page ->
                     when (page) {
                         0 -> {
-                            Profile()
+                            ProfileTab()
                         }
 
                         1 -> {
-                            ExperienceList()
+                            ExperienceListTab()
                         }
                     }
                 }

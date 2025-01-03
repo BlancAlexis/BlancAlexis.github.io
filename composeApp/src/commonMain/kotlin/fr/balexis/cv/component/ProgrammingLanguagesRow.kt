@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import fr.balexis.cv.data.ProgrammingLanguage
+import fr.balexis.cv.data.listArchi
 import fr.balexis.cv.theme.LocalAppColors
 
 @OptIn(ExperimentalLayoutApi::class)

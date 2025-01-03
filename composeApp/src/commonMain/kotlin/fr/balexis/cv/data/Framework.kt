@@ -19,7 +19,7 @@ enum class Framework(
 ) {
 
     AndroidNative(
-        title = "Android Native",
+        title = "Android Natif",
         languages = "Kotlin & Java",
         view = "Compose & XML",
         icon = Res.drawable.android_icon,
@@ -37,7 +37,7 @@ enum class Framework(
     KMP(
         title = "KMP",
         languages = "Kotlin",
-        view = "Compose mutliplateform",
+        view = "Compose mutliplatform",
         icon = Res.drawable.kotlin_icon,
         libraries = libraryKnowKMP,
         viewIcon = Res.drawable.compose_multiplatform
