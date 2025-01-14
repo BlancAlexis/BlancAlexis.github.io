@@ -105,7 +105,8 @@ fun CustomListItem(
                             color = Color.Blue.copy(0.5F),
                             modifier = Modifier.clickable {
                                 onEvent(itemUiState.secondaryText)
-                            }
+                            },
+                            fontSize = 12.sp,
                         )
                     }else{
                         Text(
