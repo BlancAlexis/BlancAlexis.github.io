@@ -36,14 +36,14 @@ val listMentoredProject = listOf(
         title = "Programmation équipement domotique - IOT",
         date = "",
         tags = listOf("Java", "C", "Android", "Arduino", "MVVM"),
-        companyName = "IUT Lyon 1",
+        secondaryText = "IUT Lyon 1",
         mainIcon = Res.drawable.android_icon,
         description = Res.string.description_sae_android
     ), FullItemData(
         title = "Portage d'un jeu AR en Flutter",
         date = "",
         tags = listOf("IOS", "Objective-C", "Flutter", "BLoC"),
-        companyName = "IUT Lyon 1",
+        secondaryText = "IUT Lyon 1",
         mainIcon = Res.drawable.flutter_icon,
         description = Res.string.description_sae_flutter
     )
@@ -53,6 +53,7 @@ val listMentoredProject = listOf(
 val listPersonalProject = listOf(
     FullItemData(
         title = "PokedexPokemon",
+        secondaryText = "https://github.com/BlancAlexis/PokedexPokemon",
         date = "",
         tags = listOf(
             "Kotlin", "Clean archi", "Compose", "Koin", "Retrofit", "Room", "Paging 3", "Coil"
@@ -69,8 +70,9 @@ val listPersonalProject = listOf(
         ),
         description = Res.string.description_project_cv,
         mainIcon = Res.drawable.kotlin_icon,
-        companyName = ""
+        secondaryText = "Vous y êtes!"
     ), FullItemData(
+        secondaryText = "https://github.com/BlancAlexis/KMP-test",
         title = "App KMP",
         date = "",
         tags = listOf(
@@ -78,7 +80,6 @@ val listPersonalProject = listOf(
         ),
         description = Res.string.description_project_no_name,
         mainIcon = Res.drawable.kotlin_icon,
-        companyName = ""
     ), FullItemData(
         title = "Guide des monuments de roubaix",
         date = "",
@@ -105,28 +106,28 @@ val listProfessionalExperience = listOf(
             "Room",
             "RXJava"
         ),
-        companyName = "Wimova",
+        secondaryText = "Wimova",
         mainIcon = Res.drawable.android_icon,
         description = Res.string.description_internship_wimova_year
     ), FullItemData(
         title = "Stage - Développeur Android",
         date = "Mai - Juin 2023",
         tags = listOf("Java", "XML", "Volley", "Room"),
-        companyName = "Wimova",
+        secondaryText = "Wimova",
         mainIcon = Res.drawable.android_icon,
         description = Res.string.description_internship_wimova
     ), FullItemData(
         title = "Intérim - Usine en horaire 3/8",
         date = "Été 2020 - 2023",
         tags = listOf(),
-        companyName = "Nexans",
+        secondaryText = "Nexans",
         description = Res.string.description_nexans,
         mainIcon = Res.drawable.nexans_icon
     ), FullItemData(
         title = "Alternance - Mécanicien automobile",
         date = "Juin - Août 2020 jusqu'à 2023",
         tags = listOf(),
-        companyName = "Opel",
+        secondaryText = "Opel",
         description = Res.string.description_mechanic_internship,
         mainIcon = Res.drawable.opel_icon
     )

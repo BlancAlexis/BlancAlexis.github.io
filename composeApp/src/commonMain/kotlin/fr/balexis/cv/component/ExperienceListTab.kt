@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.unit.dp
 import fr.balexis.cv.DEFAULT_MAX_ITEM
 import fr.balexis.cv.data.BackgroundWrapper
@@ -39,7 +40,9 @@ import fr.balexis.cv.theme.LocalAppColors
 
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
-fun ExperienceListTab() {
+fun ExperienceListTab(
+    uriHandler: UriHandler
+) {
     var maxItemsLazyRowProXP by remember { mutableStateOf(DEFAULT_MAX_ITEM) }
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -108,7 +111,10 @@ fun ExperienceListTab() {
             ) { shape ->
                 BackgroundWrapper(
                     shape = shape, content = {
-                        CustomListItem(exp, Modifier.animateItem())
+                        CustomListItem(exp, Modifier.animateItem(), onEvent = {
+                            uriHandler.openUri(it)
+                        }
+                        )
                     }, modifier = Modifier.animateItem()
                 )
             }

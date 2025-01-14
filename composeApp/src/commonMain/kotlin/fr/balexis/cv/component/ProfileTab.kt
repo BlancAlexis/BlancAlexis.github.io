@@ -1,6 +1,7 @@
 package fr.balexis.cv.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
@@ -23,11 +25,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import balexiscv.composeapp.generated.resources.Res
+import balexiscv.composeapp.generated.resources.linkedin_icon
 import balexiscv.composeapp.generated.resources.personnal_description_desktop
 import balexiscv.composeapp.generated.resources.personnal_description_mobile
 import fr.balexis.cv.data.Framework
@@ -35,11 +41,14 @@ import fr.balexis.cv.data.listArchi
 import fr.balexis.cv.getPlatform
 import fr.balexis.cv.theme.LocalAppColors
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 
 @Composable
-fun ProfileTab() {
+fun ProfileTab(
+    uriHandler: UriHandler
+) {
     val coroutineScope = rememberCoroutineScope()
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
@@ -115,6 +124,40 @@ fun ProfileTab() {
             ProgrammingLanguageRow()
             StickyHeaderContent("Patrons architectures", endSpacer = false)
             ArchiRow(list = listArchi)
+            StickyHeaderContent("Référents", endSpacer = false)
+            Row(
+                modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp))
+                    .background(LocalAppColors.current.secondary)
+                    .border(1.dp, Color.Black, RoundedCornerShape(16.dp)),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(
+                    modifier = Modifier.weight(1F)
+                ) {
+                    Text(
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Justify,
+                        text = "CHAMPION Émilien",
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        fontSize = 14.sp
+                    )
+                    Text(
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Justify,
+                        text = "Tech lead développement Mobile et tuteur",
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                    )
+                }
+                IconButton(
+                    onClick = { uriHandler.openUri("https://www.linkedin.com/in/emilien-champion/") },
+                ) {
+                    Icon(
+                        painter = painterResource(Res.drawable.linkedin_icon),
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+            }
         }
     }
 }

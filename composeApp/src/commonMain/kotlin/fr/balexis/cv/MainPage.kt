@@ -130,11 +130,11 @@ fun MainPage(
                 ) { page ->
                     when (page) {
                         0 -> {
-                            ProfileTab()
+                            ProfileTab(uriHandler)
                         }
 
                         1 -> {
-                            ExperienceListTab()
+                            ExperienceListTab(uriHandler)
                         }
                     }
                 }

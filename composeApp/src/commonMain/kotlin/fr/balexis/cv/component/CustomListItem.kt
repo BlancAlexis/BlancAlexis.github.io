@@ -2,6 +2,7 @@ package fr.balexis.cv.data
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,6 +41,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -61,7 +63,8 @@ val bottomShape = RoundedCornerShape(bottomStart = 15.dp, bottomEnd = 15.dp)
 @Composable
 fun CustomListItem(
     itemUiState: FullItemData,
-    modifier: Modifier
+    modifier: Modifier,
+    onEvent: (String) -> Unit = {}
 ) {
     var isOpen by remember { mutableStateOf(false) }
     Card(
@@ -96,10 +99,20 @@ fun CustomListItem(
                         maxLines = 1,
                         overflow = TextOverflow.Clip
                     )
+                    if(itemUiState.secondaryText.matches("^https://.*".toRegex())){
+                        Text(
+                            text = itemUiState.secondaryText,
+                            color = Color.Blue.copy(0.5F),
+                            modifier = Modifier.clickable {
+                                onEvent(itemUiState.secondaryText)
+                            }
+                        )
+                    }else{
+                        Text(
+                            text = itemUiState.secondaryText
+                        )
+                    }
 
-                    Text(
-                        text = itemUiState.companyName
-                    )
                     Text(
                         itemUiState.date, style = TextStyle(
                             color = Color.Gray,
