@@ -98,7 +98,7 @@ fun CustomListItem(
                         maxLines = 1,
                         overflow = TextOverflow.Clip
                     )
-                    if(itemUiState.secondaryText.matches("^https://.*".toRegex())){
+                    if (itemUiState.secondaryText.matches("^https://.*".toRegex())) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -117,7 +117,7 @@ fun CustomListItem(
                             )
                         }
 
-                    }else{
+                    } else {
                         Text(
                             text = itemUiState.secondaryText
                         )

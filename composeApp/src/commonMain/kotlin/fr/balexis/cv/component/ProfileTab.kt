@@ -77,40 +77,40 @@ fun ProfileTab(
 
             StickyHeaderContent("Référents", endSpacer = false)
 
-                Row(
-                    modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp))
-                        .background(LocalAppColors.current.secondary)
-                        .border(1.dp, Color.Black, RoundedCornerShape(16.dp)),
-                    verticalAlignment = Alignment.CenterVertically,
+            Row(
+                modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp))
+                    .background(LocalAppColors.current.secondary)
+                    .border(1.dp, Color.Black, RoundedCornerShape(16.dp)),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(
+                    modifier = Modifier.weight(1F)
                 ) {
-                    Column(
-                        modifier = Modifier.weight(1F)
-                    ) {
-                        Text(
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Justify,
-                            text = "CHAMPION Émilien",
-                            modifier = Modifier.padding(horizontal = 8.dp),
-                            fontSize = 14.sp
-                        )
-                        Text(
-                            fontSize = 12.sp,
-                            textAlign = TextAlign.Justify,
-                            text = "Tech lead développement Mobile et tuteur entreprise",
-                            modifier = Modifier.padding(horizontal = 8.dp),
-                        )
-                    }
-
-                    IconButton(
-                        onClick = { uriHandler.openUri("https://www.linkedin.com/in/emilien-champion/") },
-                    ) {
-                        Icon(
-                            painter = painterResource(Res.drawable.linkedin_icon),
-                            contentDescription = null,
-                            modifier = Modifier.size(24.dp),
-                        )
-                    }
+                    Text(
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Justify,
+                        text = "CHAMPION Émilien",
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        fontSize = 14.sp
+                    )
+                    Text(
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Justify,
+                        text = "Tech lead développement Mobile et tuteur entreprise",
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                    )
                 }
+
+                IconButton(
+                    onClick = { uriHandler.openUri("https://www.linkedin.com/in/emilien-champion/") },
+                ) {
+                    Icon(
+                        painter = painterResource(Res.drawable.linkedin_icon),
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+            }
 
             StickyHeaderContent("Mes frameworks", endSpacer = false)
             val horizontalPagerState =

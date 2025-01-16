@@ -25,10 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import balexiscv.composeapp.generated.resources.Res
-import balexiscv.composeapp.generated.resources.linkedin_icon
 import fr.balexis.cv.theme.LocalAppColors
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun ContactDialog(
