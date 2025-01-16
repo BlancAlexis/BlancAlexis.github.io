@@ -7,8 +7,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import fr.balexis.cv.data.bottomShape
-import fr.balexis.cv.data.topShape
 
 @Composable
 fun LazyColumnCategory(

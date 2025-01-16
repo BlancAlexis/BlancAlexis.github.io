@@ -36,25 +36,14 @@ fun LibraryKnow(
         maxLines = maxLines,
         itemCount = libs.size,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
-        overflow = ContextualFlowRowOverflow.expandOrCollapseIndicator(
-            minRowsToShowCollapse = 2,
-            expandIndicator = {
-                Chip(
-                    content = { Text("+$remainingItems") },
-                    onClick = { maxLines = 4 },
-                    modifier = Modifier.wrapContentSize(),
-                    colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
-                )
-            },
-            collapseIndicator = {
-                Chip(
-                    content = { Text("Restreindre") },
-                    onClick = { maxLines = 1 },
-                    modifier = Modifier.wrapContentSize(),
-                    colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
-                )
-            }
-        ),
+        overflow = ContextualFlowRowOverflow.expandIndicator {
+            Chip(
+                content = { Text("+$remainingItems") },
+                onClick = { maxLines = 4 },
+                modifier = Modifier.wrapContentSize(),
+                colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
+            )
+        },
     ) { index ->
         remainingItems = libs.size - index
         Chip(content = { Text(libs[index], fontSize = 12.sp) }, onClick = {})

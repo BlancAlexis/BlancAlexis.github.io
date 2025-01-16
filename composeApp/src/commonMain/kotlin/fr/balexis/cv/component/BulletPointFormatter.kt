@@ -44,7 +44,7 @@ fun BulletPointFormatter(
 
     Column(modifier = modifier) {
         bulletPoints.forEachIndexed { index, point ->
-            Row(verticalAlignment = Alignment.Top) {
+            Row(verticalAlignment = Alignment.Top, modifier = Modifier.padding(horizontal = 8.dp)) {
                 if (index != 0) {
                     Canvas(modifier = Modifier.padding(top = 8.dp).size(10.dp)) {
                         drawCircle(

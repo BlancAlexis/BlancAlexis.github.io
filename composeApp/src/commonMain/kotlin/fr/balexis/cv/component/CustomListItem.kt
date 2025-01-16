@@ -1,4 +1,4 @@
-package fr.balexis.cv.data
+package fr.balexis.cv.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -27,7 +27,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,13 +41,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
-import fr.balexis.cv.component.BulletPointFormatter
+import balexiscv.composeapp.generated.resources.github_icon
 import fr.balexis.cv.model.FullItemData
 import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.pearl
@@ -100,13 +99,24 @@ fun CustomListItem(
                         overflow = TextOverflow.Clip
                     )
                     if(itemUiState.secondaryText.matches("^https://.*".toRegex())){
-                        Text(
-                            text = itemUiState.secondaryText,
-                            color = Color.Blue.copy(0.5F),
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
                             modifier = Modifier.clickable {
                                 onEvent(itemUiState.secondaryText)
                             }
-                        )
+                        ) {
+                            Icon(
+                                painter = painterResource(Res.drawable.github_icon),
+                                modifier = Modifier.size(24.dp),
+                                contentDescription = null,
+                            )
+                            Text(
+                                text = itemUiState.secondaryText.removeRange(0, 19),
+                                color = Color.Blue.copy(0.5F),
+                            )
+                        }
+
                     }else{
                         Text(
                             text = itemUiState.secondaryText
@@ -133,7 +143,7 @@ fun CustomListItem(
                     }) {
                         Icon(
                             imageVector = if (!isOpen) {
-                                Icons.Filled.ArrowDropDown
+                                Icons.Filled.KeyboardArrowDown
                             } else {
                                 Icons.Filled.KeyboardArrowUp
                             }, contentDescription = null

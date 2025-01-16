@@ -22,6 +22,7 @@ import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.battery_icon
 import balexiscv.composeapp.generated.resources.build_icon
 import balexiscv.composeapp.generated.resources.perfect_icon
+import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.vistaBlue
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -32,7 +33,8 @@ fun SoftSkillBox(
 ) {
     Box(
         modifier = Modifier.clip(RoundedCornerShape(16.dp))
-            .border(1.dp, Color.Black, RoundedCornerShape(16.dp)).size(80.dp).background(vistaBlue)
+            .border(1.dp, Color.Black, RoundedCornerShape(16.dp)).size(80.dp).background(
+                LocalAppColors.current.secondary)
     ) {
         Icon(
             modifier = Modifier.align(Alignment.TopCenter).size(24.dp).offset(y = 4.dp),

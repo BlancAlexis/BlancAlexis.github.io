@@ -48,7 +48,7 @@ fun ContactDialog(
             Column(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
@@ -76,23 +76,6 @@ fun ContactDialog(
                         uriHandler.openUri("mailto:blanc.alexispro@gmail.com")
                     }
                 )
-                Row(
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.clickable {
-                        uriHandler.openUri("https://www.linkedin.com/in/alexis--blanc/")
-                    }
-                ) {
-                    Icon(
-                        modifier = Modifier.size(size = 30.dp),
-                        tint = Color.Unspecified,
-                        painter = painterResource(Res.drawable.linkedin_icon),
-                        contentDescription = null
-
-                    )
-                    Text(text = "BLANC Alexis")
-
-                }
             }
         }
     }
