@@ -10,10 +10,12 @@ compose-multiplatform = "1.7.3"
 kotlin = "2.0.21"
 navigationCompose = "2.8.0-alpha10"
 kotlinSerialization = "1.7.3"
+uuid = "0.8.3"
 
 
 
 [libraries]
+uuid-generator = { group="com.benasher44", name="uuid", version.ref = "uuid"}
 jetbrains-compose-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }

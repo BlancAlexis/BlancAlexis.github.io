@@ -48,7 +48,7 @@ fun ExperienceListTab(
     ) {
         stickyHeader {
             StickyHeaderContent(
-                text = "Expérience professionnelle"
+                text = "Expériences professionnelles"
             )
         }
 

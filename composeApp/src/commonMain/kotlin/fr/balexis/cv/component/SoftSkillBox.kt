@@ -22,6 +22,7 @@ import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.battery_icon
 import balexiscv.composeapp.generated.resources.build_icon
 import balexiscv.composeapp.generated.resources.perfect_icon
+import fr.balexis.cv.data.SoftSkill
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -57,11 +58,4 @@ fun SoftSkillRow() {
             SoftSkillBox(it.title, it.icon)
         }
     }
-}
-
-enum class SoftSkill(val title: String, val icon: DrawableResource) {
-    Adaptability("Adaptabilité", Res.drawable.build_icon),
-    Autonomy("Autonomie", Res.drawable.battery_icon),
-    Rigor("Rigeur", Res.drawable.perfect_icon),
-
 }

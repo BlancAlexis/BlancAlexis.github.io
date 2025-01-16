@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.vistaBlue
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
@@ -46,6 +47,6 @@ fun LibraryKnow(
         },
     ) { index ->
         remainingItems = libs.size - index
-        Chip(content = { Text(libs[index], fontSize = 12.sp) }, onClick = {})
+        Chip(content = { Text(libs[index], fontSize = 12.sp) }, colors = ChipDefaults.chipColors(backgroundColor = LocalAppColors.current.surface), onClick = {})
     }
 }

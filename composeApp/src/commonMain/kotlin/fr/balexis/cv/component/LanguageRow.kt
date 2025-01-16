@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.english_flag
 import balexiscv.composeapp.generated.resources.french_flag
+import fr.balexis.cv.data.Language
 import fr.balexis.cv.theme.LocalAppColors
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -58,13 +59,5 @@ fun LanguageRow() {
             LanguageRowItem(it.text, it.icon)
         }
     }
-
-}
-
-enum class Language(
-    val text: String, val icon: DrawableResource
-) {
-    FRENCH("Français : Langue natale", Res.drawable.french_flag),
-    ENGLISH("Anglais : Niveau B1", Res.drawable.english_flag)
 
 }

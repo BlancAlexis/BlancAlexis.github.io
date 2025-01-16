@@ -8,6 +8,9 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 
+val topShape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
+val bottomShape = RoundedCornerShape(bottomStart = 15.dp, bottomEnd = 15.dp)
+
 @Composable
 fun LazyColumnCategory(
     itemCount: Int,

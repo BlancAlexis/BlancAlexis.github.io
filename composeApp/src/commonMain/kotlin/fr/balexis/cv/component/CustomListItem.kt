@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -49,13 +47,10 @@ import balexiscv.composeapp.generated.resources.compose_multiplatform
 import balexiscv.composeapp.generated.resources.github_icon
 import fr.balexis.cv.model.FullItemData
 import fr.balexis.cv.theme.LocalAppColors
-import fr.balexis.cv.theme.pearl
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-val topShape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
-val bottomShape = RoundedCornerShape(bottomStart = 15.dp, bottomEnd = 15.dp)
 
 
 @Preview
@@ -183,17 +178,18 @@ fun CustomListItem(
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
 fun KeySkillsRow(itemUiState: List<String>, autoScroll: Boolean = false) {
-    LazyRow(
+    AutoScrollingLazyRow(
+        list = itemUiState,
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(itemUiState) { skill ->
-            Chip(colors = ChipDefaults.chipColors(backgroundColor = pearl), onClick = {
+    ) { skill ->
+        Chip(
+            colors = ChipDefaults.chipColors(backgroundColor = LocalAppColors.current.surface),
+            onClick = {
 
-            }, content = {
+            },
+            content = {
                 Text(text = skill, fontSize = 12.sp)
             })
-        }
     }
 }
 
