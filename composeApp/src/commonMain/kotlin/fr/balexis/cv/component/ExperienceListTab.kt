@@ -29,8 +29,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.unit.dp
 import fr.balexis.cv.DEFAULT_MAX_ITEM
-import fr.balexis.cv.data.BackgroundWrapper
-import fr.balexis.cv.data.CustomListItem
 import fr.balexis.cv.data.listMentoredProject
 import fr.balexis.cv.data.listPersonalProject
 import fr.balexis.cv.data.listProfessionalExperience
@@ -50,7 +48,7 @@ fun ExperienceListTab(
     ) {
         stickyHeader {
             StickyHeaderContent(
-                text = "Expérience"
+                text = "Expériences professionnelles"
             )
         }
 

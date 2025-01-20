@@ -2,7 +2,6 @@
 <resources>
     <string name="title_internship_wimova_year">Alternance - Développeur Android</string>
     <string name="description_internship_wimova_year">
-        Lors de mon alternance, j'ai pu :
              - Implémentation d'architecture logicielle sur du code legacy
              - Ajouts de nouvelles fonctionnalités respectant les principes de la clean architecture, en contact avec le back
              - Correction de bugs et visualisation d'entre eux via CrashAnalitycs
@@ -13,7 +12,6 @@
 
     <string name="title_internship_wimova">Stage - Développeur Android</string>
     <string name="description_internship_wimova">
-        Lors de mon stage j'ai pu :
 - Ajout d'une fonctionnalité
 - Création de composant personnalisé
 - Test du code pour garantir le bon fonctionnement
@@ -21,7 +19,6 @@
 
 
     <string name="description_project_pokedex">
-    Projet ayant pour but de démontrer mes compétences en Android natif :
         - Architecture basée sur un MVVM en appliquant les principes de la clean architecture
         - Récupération d'objet via une API puis affichage dans une liste paginée grâce a Paging3
         - Sauvegarde d'un groupe d'objets grâce à Room
@@ -29,7 +26,6 @@
     </string>
 
     <string name="description_project_cv">
-        Court projet visant à proposer une version en ligne de mon CV
 - Utilisation de compose multiplateforme
 - Version web disponible sur GitHub pages, version Android dans les releases du projet GIT
 
@@ -53,7 +49,7 @@
 
     <string name="title_sae_android">Vegetabilis Auditor - IOT</string>
     <string name="description_sae_android">
-        SAE (Situation d'apprentissage et d'évaluation) de 2ème année, visant à construire un appareil dôté de capteurs biologiques et à suivre les valeurs via une app mobile Android
+        Projet en groupe de 2ème année, visant à construire un appareil dôté de capteurs biologiques et à suivre les valeurs via une app mobile Android
 - Utilisation d'un arduino équipé de capteurs biométriques pour l'acquisition de données
 - Firebase realtime
 - Une application Android qui récupère en temps réel ces données pour en faire des graphiques / visualisation de données
@@ -61,7 +57,7 @@
 
     <string name="title_sae_flutter">Portage d'un jeu AR en Flutter</string>"
     <string name="description_sae_flutter">
-        SAE (situation d'apprentissage et évaluation) de 3ème année, nous avons dû récupérer un ancien projet (fait en 2014) d'un professeur en Objective C
+        Projet en groupe de 3ème année, nous avons dû récupérer un ancien projet (fait en 2014) d'un professeur en Objective C
 - Utilisation de Flutter BLoC
 - Création de widget totalement personnalisé pour répondre à nos besoins spécifiques
 - Possibilité de changer le scénario du jeu sans recompiler
@@ -91,7 +87,7 @@
         Bonjour,
 
 
-    Aujourd'hui j'aime tout ce qui touche à lunivers de la programmation mobile, je suis également ouvert a la nouveauté, tel Kotlin multiplatform en qui je fonde de grand espoir depuis quelques temps
+    Aujourd'hui j'aime tout ce qui touche à l'univers de la programmation mobile, je suis également ouvert a la nouveauté, tel Kotlin multiplatform en qui je fonde de grand espoir depuis quelques temps
     </string>
 
     <string name="me_professional_description">

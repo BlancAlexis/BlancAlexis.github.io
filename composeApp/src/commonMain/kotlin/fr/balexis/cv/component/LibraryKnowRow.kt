@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import fr.balexis.cv.theme.LocalAppColors
 import fr.balexis.cv.theme.vistaBlue
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
@@ -36,27 +37,16 @@ fun LibraryKnow(
         maxLines = maxLines,
         itemCount = libs.size,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
-        overflow = ContextualFlowRowOverflow.expandOrCollapseIndicator(
-            minRowsToShowCollapse = 2,
-            expandIndicator = {
-                Chip(
-                    content = { Text("+$remainingItems") },
-                    onClick = { maxLines = 4 },
-                    modifier = Modifier.wrapContentSize(),
-                    colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
-                )
-            },
-            collapseIndicator = {
-                Chip(
-                    content = { Text("Restreindre") },
-                    onClick = { maxLines = 1 },
-                    modifier = Modifier.wrapContentSize(),
-                    colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
-                )
-            }
-        ),
+        overflow = ContextualFlowRowOverflow.expandIndicator {
+            Chip(
+                content = { Text("+$remainingItems") },
+                onClick = { maxLines = 4 },
+                modifier = Modifier.wrapContentSize(),
+                colors = ChipDefaults.chipColors(backgroundColor = vistaBlue)
+            )
+        },
     ) { index ->
         remainingItems = libs.size - index
-        Chip(content = { Text(libs[index], fontSize = 12.sp) }, onClick = {})
+        Chip(content = { Text(libs[index], fontSize = 12.sp) }, colors = ChipDefaults.chipColors(backgroundColor = LocalAppColors.current.surface), onClick = {})
     }
 }

@@ -1,4 +1,4 @@
-package fr.balexis.cv.data
+package fr.balexis.cv.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -27,7 +25,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,22 +39,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.compose_multiplatform
-import fr.balexis.cv.component.BulletPointFormatter
+import balexiscv.composeapp.generated.resources.github_icon
 import fr.balexis.cv.model.FullItemData
 import fr.balexis.cv.theme.LocalAppColors
-import fr.balexis.cv.theme.pearl
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-val topShape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
-val bottomShape = RoundedCornerShape(bottomStart = 15.dp, bottomEnd = 15.dp)
 
 
 @Preview
@@ -99,16 +93,26 @@ fun CustomListItem(
                         maxLines = 1,
                         overflow = TextOverflow.Clip
                     )
-                    if(itemUiState.secondaryText.matches("^https://.*".toRegex())){
-                        Text(
-                            text = itemUiState.secondaryText,
-                            color = Color.Blue.copy(0.5F),
+                    if (itemUiState.secondaryText.matches("^https://.*".toRegex())) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
                             modifier = Modifier.clickable {
                                 onEvent(itemUiState.secondaryText)
-                            },
-                            fontSize = 12.sp,
-                        )
-                    }else{
+                            }
+                        ) {
+                            Icon(
+                                painter = painterResource(Res.drawable.github_icon),
+                                modifier = Modifier.size(24.dp),
+                                contentDescription = null,
+                            )
+                            Text(
+                                text = itemUiState.secondaryText.removeRange(0, 19),
+                                color = Color.Blue.copy(0.5F),
+                            )
+                        }
+
+                    } else {
                         Text(
                             text = itemUiState.secondaryText
                         )
@@ -134,7 +138,7 @@ fun CustomListItem(
                     }) {
                         Icon(
                             imageVector = if (!isOpen) {
-                                Icons.Filled.ArrowDropDown
+                                Icons.Filled.KeyboardArrowDown
                             } else {
                                 Icons.Filled.KeyboardArrowUp
                             }, contentDescription = null
@@ -174,17 +178,18 @@ fun CustomListItem(
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
 fun KeySkillsRow(itemUiState: List<String>, autoScroll: Boolean = false) {
-    LazyRow(
+    AutoScrollingLazyRow(
+        list = itemUiState,
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(itemUiState) { skill ->
-            Chip(colors = ChipDefaults.chipColors(backgroundColor = pearl), onClick = {
+    ) { skill ->
+        Chip(
+            colors = ChipDefaults.chipColors(backgroundColor = LocalAppColors.current.surface),
+            onClick = {
 
-            }, content = {
+            },
+            content = {
                 Text(text = skill, fontSize = 12.sp)
             })
-        }
     }
 }
 

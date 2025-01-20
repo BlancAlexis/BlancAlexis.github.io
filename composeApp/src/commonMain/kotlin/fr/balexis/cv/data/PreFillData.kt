@@ -5,6 +5,8 @@ import balexiscv.composeapp.generated.resources.Res
 import balexiscv.composeapp.generated.resources.address_iut
 import balexiscv.composeapp.generated.resources.address_lycee
 import balexiscv.composeapp.generated.resources.android_icon
+import balexiscv.composeapp.generated.resources.battery_icon
+import balexiscv.composeapp.generated.resources.build_icon
 import balexiscv.composeapp.generated.resources.description_internship_wimova
 import balexiscv.composeapp.generated.resources.description_internship_wimova_year
 import balexiscv.composeapp.generated.resources.description_mechanic_internship
@@ -15,12 +17,16 @@ import balexiscv.composeapp.generated.resources.description_project_no_name
 import balexiscv.composeapp.generated.resources.description_project_pokedex
 import balexiscv.composeapp.generated.resources.description_sae_android
 import balexiscv.composeapp.generated.resources.description_sae_flutter
+import balexiscv.composeapp.generated.resources.english_flag
 import balexiscv.composeapp.generated.resources.flutter_icon
+import balexiscv.composeapp.generated.resources.french_flag
 import balexiscv.composeapp.generated.resources.kotlin_icon
 import balexiscv.composeapp.generated.resources.nexans_icon
 import balexiscv.composeapp.generated.resources.opel_icon
+import balexiscv.composeapp.generated.resources.perfect_icon
 import fr.balexis.cv.model.BaseItemData
 import fr.balexis.cv.model.FullItemData
+import org.jetbrains.compose.resources.DrawableResource
 
 val listSchool = listOf(
     BaseItemData(
@@ -90,6 +96,13 @@ val listPersonalProject = listOf(
         description = Res.string.description_monuments_of_roubaix
     )
 )
+enum class Language(
+    val text: String, val icon: DrawableResource
+) {
+    FRENCH("Français : Langue natale", Res.drawable.french_flag),
+    ENGLISH("Anglais : Niveau B1", Res.drawable.english_flag)
+
+}
 
 val listProfessionalExperience = listOf(
     FullItemData(
@@ -132,6 +145,12 @@ val listProfessionalExperience = listOf(
         mainIcon = Res.drawable.opel_icon
     )
 )
+enum class SoftSkill(val title: String, val icon: DrawableResource) {
+    Adaptability("Adaptabilité", Res.drawable.build_icon),
+    Autonomy("Autonomie", Res.drawable.battery_icon),
+    Rigor("Rigeur", Res.drawable.perfect_icon),
+
+}
 
 val libraryKnowAndroidNative = listOf(
     "Retrofit", "Room", "Coroutine", "Flow", "Koin", "RXJava", "Hilt", "Coil", "Paging3", "Maps"

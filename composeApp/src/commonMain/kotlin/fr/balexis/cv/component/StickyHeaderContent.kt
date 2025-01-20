@@ -24,7 +24,6 @@ import fr.balexis.cv.theme.LocalAppColors
 fun StickyHeaderContent(
     text: String, endSpacer: Boolean = true, backgroundColor: Color = Color.Transparent
 ) {
-    val color = LocalAppColors.current.background
     Row(
         modifier = Modifier.drawBehind {
             drawRect(backgroundColor, size = size.copy(height = size.height / 2))

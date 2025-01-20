@@ -4,6 +4,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -43,9 +44,8 @@ fun BulletPointFormatter(
     val bulletPoints = textFormatted.split("-").filter { it.isNotBlank() }
 
     Column(modifier = modifier) {
-        bulletPoints.forEachIndexed { index, point ->
-            Row(verticalAlignment = Alignment.Top) {
-                if (index != 0) {
+        bulletPoints.forEach { point ->
+            Row(verticalAlignment = Alignment.Top, modifier = Modifier.padding(horizontal = 8.dp)) {
                     Canvas(modifier = Modifier.padding(top = 8.dp).size(10.dp)) {
                         drawCircle(
                             color = bulletColor,
@@ -54,9 +54,6 @@ fun BulletPointFormatter(
                             style = Fill
                         )
                     }
-
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
 
                 Text(
                     text = buildAnnotatedString {
@@ -88,10 +85,10 @@ fun BulletPointFormatter(
             }
         }
         if (!cautionText.isNullOrEmpty()) {
-            Text(text = buildAnnotatedString {
+            Text( modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally), text = buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
-                        fontWeight = FontWeight.Bold, color = Color.Red, fontSize = textSize.sp
+                        fontWeight = FontWeight.Bold, color = Color.Red.copy(0.6f), fontSize = textSize.sp
                     )
                 ) {
                     append(cautionText)
