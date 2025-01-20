@@ -47,11 +47,7 @@ fun <T : Any> AutoScrollingLazyRow(
 
     LazyRow(
         state = lazyListState,
-        modifier = modifier.then(Modifier.clickable {
-            coroutineScope.launch {
-                lazyListState.autoScroll()
-            }
-        }),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

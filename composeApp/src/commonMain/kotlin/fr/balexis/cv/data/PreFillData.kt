@@ -118,6 +118,7 @@ val listProfessionalExperience = listOf(
             "Retrofit",
             "Room",
             "RXJava"
+            ,"Azure 365"
         ),
         secondaryText = "Wimova",
         mainIcon = Res.drawable.android_icon,
@@ -125,7 +126,7 @@ val listProfessionalExperience = listOf(
     ), FullItemData(
         title = "Stage - Développeur Android",
         date = "Mai - Juin 2023",
-        tags = listOf("Java", "XML", "Volley", "Room"),
+        tags = listOf("Java", "XML", "Volley", "Room","Postman","Azure 365"),
         secondaryText = "Wimova",
         mainIcon = Res.drawable.android_icon,
         description = Res.string.description_internship_wimova
